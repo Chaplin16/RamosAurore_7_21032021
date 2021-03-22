@@ -1,0 +1,15 @@
+//ROUTE USER
+
+SIGNUP
+CREER SON PROFIL
+    - PSEUDO   (UNIQUE)                         POST
+    - DATE INCRIPTION                           POST
+    - GOUT  (quelques lignes de commentaires)   POST
+
+VOIR LE PROFIL D'1 UTILISATEUR                  GET
+MODIFIER SON PROFIL                             PUT
+SUPPRIMER SON PROFIL                            DELETE
+
+
+LOGIN                                           POST
+    -MOT DE PASSE FORT
