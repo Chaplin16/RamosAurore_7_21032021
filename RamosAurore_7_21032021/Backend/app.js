@@ -3,9 +3,13 @@ const app = express();
 const path = require('path'); //donne acces au chemin de notre systeme de fichier
 
 const mysql2 = require('mysql2');
+require('dotenv').config(); 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('mysql://chaplin:160877@localhost:3306/elevage')
+//connction à la base de données
+const sequelize = new Sequelize(`mysql://${process.env.BD_USERNAME}:${process.env.BD_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_DATABASE}`);
+
+//routes
 //const userRoutes = require('./routes/user');
 
 //entetes
