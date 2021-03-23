@@ -2,8 +2,9 @@
 
 SIGNUP
 CREER SON PROFIL
+    - ID                                        POST
     - PSEUDO   (UNIQUE)                         POST
-    - DATE INCRIPTION                           POST
+    - EMAIL (UNIQUE)
     - GOUT  (quelques lignes de commentaires)   POST
 
 VOIR LE PROFIL D'1 UTILISATEUR                  GET
