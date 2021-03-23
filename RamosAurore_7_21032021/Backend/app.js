@@ -10,7 +10,8 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(`mysql://${process.env.BD_USERNAME}:${process.env.BD_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_DATABASE}`);
 
 //routes
-//const userRoutes = require('./routes/user');
+const usersRoutes = require('./routes/users');
+const tchatRoutes = require('./routes/tchat');
 
 //entetes
 app.use((req, res, next) => {
