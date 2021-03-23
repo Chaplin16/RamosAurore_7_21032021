@@ -18,7 +18,12 @@ module.exports = function(sequelize, DataTypes) {
         modelName: 'User',
         underscored: true,
         paranoid: true
-    }
-);
-  return User;
+    }, {
+        classMethods: {
+            associate: function(models) {
+                models.User.hasMany(models.Tchat)
+            }
+        }
+    });
+    return User;
 };

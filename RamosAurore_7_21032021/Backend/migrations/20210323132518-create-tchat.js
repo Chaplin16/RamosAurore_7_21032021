@@ -9,7 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       idUsers: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       idTchat: {
         type: Sequelize.STRING
@@ -21,6 +26,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       attachment: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       likes: {

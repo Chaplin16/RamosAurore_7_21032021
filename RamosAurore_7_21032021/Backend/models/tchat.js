@@ -12,6 +12,16 @@ module.exports = function(sequelize, DataTypes) {
         sequelize,
         modelName: 'Tchat',
         paranoid: true
+    }, {
+        classMethods: {
+            associate: function(models) {
+                models.Tchat.belongsTo(models.User, {
+                    foreignKey: {
+                        allowNull:false
+                    }
+                })
+            }
+        }
     });
     return Tchat;
 };
