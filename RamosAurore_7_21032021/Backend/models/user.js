@@ -1,20 +1,23 @@
 'use strict';
-//const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-    const User = sequelize.define('User', {
+const {Sequelize,DataTypes, database} = require('./connexion');
+
+    const User = database.define('User', {
         username: {
-          type: Sequelize.DataTypes.STRING,
+          type: DataTypes.STRING,
           unique:true
         },
         email: {
-          type: Sequelize.DataTypes.STRING,
+          type: DataTypes.STRING,
           unique:true
         },
         password: DataTypes.STRING,
         bio: DataTypes.STRING,
-        isAdmin: DataTypes.BOOLEAN
+        isAdmin: {
+            type:DataTypes.BOOLEAN,
+            defaultValue:false
+        }
     }, {
-        sequelize,
+        Sequelize,
         modelName: 'User',
         underscored: true,
         paranoid: true
@@ -25,5 +28,11 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return User;
-};
+//User.sync({alter:true})
+ module.exports = User;
+
+
+
+
+
+
