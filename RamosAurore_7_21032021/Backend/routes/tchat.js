@@ -8,3 +8,8 @@
 // MODIFIER UN TCHAT                   PUT
 // SUPPRIMER SON TCHAT                 PUT
 
+//FORUM
+//     -TCHAT                                      POST     
+//          avec texte
+//          avec photo  
+//          avec date de creation

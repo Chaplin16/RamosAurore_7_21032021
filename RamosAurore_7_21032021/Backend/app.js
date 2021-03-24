@@ -1,17 +1,14 @@
 const express = require("express");
 const app = express();
 const path = require('path'); //donne acces au chemin de notre systeme de fichier
+const bodyParser = require('body-parser');
 
 const mysql2 = require('mysql2');
 require('dotenv').config(); 
-const Sequelize = require('sequelize');
-
-//connction à la base de données
-const sequelize = new Sequelize(`mysql://${process.env.BD_USERNAME}:${process.env.BD_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_DATABASE}`);
 
 //routes
-const usersRoutes = require('./routes/users');
-const tchatRoutes = require('./routes/tchat');
+const userRoutes = require('./routes/user');
+//const tchatRoutes = require('./routes/tchat');
 
 //entetes
 app.use((req, res, next) => {
@@ -19,14 +16,14 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); //methode acceptées
     next();
-  });
-
-sequelize.authenticate()
-    .then(() => console.log("REUSSIE!!! connectée a Mysql"))
-    .catch(err =>console.log("error: " + err));
+});
 
   //remplace body-parser deprecié
-app.use(express.urlencoded({extended: true})); //remplace bodyParser.json() deprecié depuis 2014
+app.use(bodyParser.urlencoded({extended: true})); //remplace bodyParser.json() deprecié depuis 2014
 app.use(express.json());
+
+
+app.use('/user', userRoutes);
+//app.use('/api/tchat', tchatRoutes);
 
 module.exports = app; //devient accessible pour les autres fichiers

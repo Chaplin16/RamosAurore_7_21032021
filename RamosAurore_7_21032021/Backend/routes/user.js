@@ -9,15 +9,21 @@
 //LOGIN
 //     - MOT DE PASSE FORT                         POST
 
-//FORUM
-//     -TCHAT                                      POST     
-//          avec texte
-//          avec photo  
-//          avec date de creation
 
-// VOIR LE PROFIL D'1 UTILISATEUR                  GET
 // MODIFIER SON PROFIL                             PUT
 // SUPPRIMER SON PROFIL                            DELETE
 
                                      
+const express = require('express');
+const router = express.Router();
 
+//const auth = require('../middlewares/auth');
+const userControllers = require('../controllers/user');
+
+router.post('/signup', userControllers.create_account);
+router.post('/login', userControllers.login);
+
+//router.put('/login', auth, userControllers.updateLogin);
+router.delete('/:id/delete', userControllers.userDelete);
+
+module.exports = router;
