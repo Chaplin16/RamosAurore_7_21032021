@@ -73,8 +73,25 @@ exports.login = (req, res, next) => {
         );
 };
 
-//toutes pour modifier le pseudo
-exports.usernameUpdate = (req, res, next) => {
+//route pour voir le profil d'un utilisateur
+exports.getOneUser = (req, res, next) => {
+    const id = req.params.id
+    User.findOne({ where: { id: id } })
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(404).json({ error }));
+};
+
+//route pour voir le profil d'un utilisateur
+exports.getAllUsers = (req, res, next) => {
+    User.findAll()
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(404).json({ error }));
+};
+
+////////////////////////////////////////////////
+
+//route pour modifier le pseudo
+exports.modifyUsername = (req, res, next) => {
     const id = req.params.id
     User.findOne({ where: { id: id } })
         .then(username => {
@@ -92,7 +109,7 @@ exports.usernameUpdate = (req, res, next) => {
 };
 
 //route pour modifier l'email(avec securité)
-exports.userEmailUpdate = (req, res, next) => {
+exports.modifyUserEmail = (req, res, next) => {
     const id = req.params.id
     User.findOne({ where: { id: id } })
         .then(email => {
@@ -113,7 +130,7 @@ exports.userEmailUpdate = (req, res, next) => {
 };
 
 //route pour modifier le mot de passe(avec securité)
-exports.userPasswordUpdate = (req, res, next) => {
+exports.modifyUserPassword = (req, res, next) => {
     const id = req.params.id
     User.findOne({ where: { id: id } })
         .then(password => {
@@ -137,7 +154,7 @@ exports.userPasswordUpdate = (req, res, next) => {
 };
 
 //route pour modifier le mot de passe(avec securité)
-exports.userJobUpdate = (req, res, next) => {
+exports.modifyUserJob = (req, res, next) => {
     const id = req.params.id
     User.findOne({ where: { id: id } })
         .then(job => {

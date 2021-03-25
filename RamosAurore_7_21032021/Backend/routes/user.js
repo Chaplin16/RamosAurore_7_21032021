@@ -23,10 +23,13 @@ const userControllers = require('../controllers/user');
 router.post('/signup', userControllers.create_account);
 router.post('/login', userControllers.login);
 
-router.put('/:id/username/update', userControllers.usernameUpdate);
-router.put('/:id/email/update', userControllers.userEmailUpdate);
-router.put('/:id/password/update', userControllers.userPasswordUpdate);
-router.put('/:id/job/update', userControllers.userJobUpdate);
+router.get('/:id', userControllers.getOneUser);
+router.get('/users', userControllers.getAllUsers);
+
+router.put('/:id/username/update', userControllers.modifyUsername);
+router.put('/:id/email/update', userControllers.modifyUserEmail);
+router.put('/:id/password/update', userControllers.modifyUserPassword);
+router.put('/:id/job/update', userControllers.modifyUserJob);
 
 router.delete('/:id/delete', userControllers.userDelete);
 
