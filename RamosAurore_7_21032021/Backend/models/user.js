@@ -11,7 +11,7 @@ const {Sequelize,DataTypes, database} = require('./connexion');
           unique:true
         },
         password: DataTypes.STRING,
-        bio: DataTypes.STRING,
+        job: DataTypes.STRING,
         isAdmin: {
             type:DataTypes.BOOLEAN,
             defaultValue:false

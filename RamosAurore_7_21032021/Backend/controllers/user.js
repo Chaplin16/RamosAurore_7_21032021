@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
 const passwordValidator = require('password-validator');
 //const maskData = require('maskdata'); //masque email dans BDD
@@ -8,80 +8,164 @@ const passwordValidator = require('password-validator');
 //creation du schema
 let schema = new passwordValidator();
 schema
-.is().min(8) //au moins 8 caractères
-.is().max(20) // pas plus de 20 caractères
-.has().uppercase() // au moins une minuscule
-.has().lowercase() // au moins une majuscule
-.has().digits(1) // au moins un chiffre
-.has().not().spaces()  //pas d espaces                         
-.is().not().oneOf(['Passw0rd', 'Password123']); // pas de mdp bateau
+    .is().min(8) //au moins 8 caractères
+    .is().max(20) // pas plus de 20 caractères
+    .has().uppercase() // au moins une minuscule
+    .has().lowercase() // au moins une majuscule
+    .has().digits(1) // au moins un chiffre
+    .has().not().spaces()  //pas d espaces                         
+    .is().not().oneOf(['Passw0rd', 'Password123']); // pas de mdp bateau
 
 
 //enregistrement des nouveaux utilisateurs dans BDD
 //regex et hachage du mot de passe
 exports.create_account = (req, res, next) => {
-    if(!schema.validate(req.body.password)) {
-        res.status(400).json({error:"le mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 minuscule"});
-    }else {
+    if (!schema.validate(req.body.password)) {
+        res.status(400).json({ error: "le mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 minuscule" });
+    } else {
         bcrypt.hash(req.body.password, 10) //hash le mot de passe, on execute 10 fois l algorithme de hachage
             .then(hash => {
                 User.create({ //on recupere le hash du MDP et on le met ds un objet pour l enregistrer dans la BDD
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,
-                    bio: req.body.bio
+                    job: req.body.bio
                 }).then(() => res.status(201).send({ message: "Nouvel utilisateur créé !" }))
                     .catch(error => res.status(400).json({ error: "éléments manquants" }));
             })
             .catch(error => res.status(500).json({ error }));
-        }
+    }
 };
 
 // connections des utilisateurs deja existants
 exports.login = (req, res, next) => {
-        const email = req.body.email; 
-        User.findOne({ where: { email } })
-            .then(user => {
-                if (!user) {
-                    return res.status(401).json({ error: `Il n y a pas d'utilisateur avec ce mail ${email}!` });
-                }
+    const email = req.body.email;
+    User.findOne({ where: { email } })
+        .then(user => {
+            if (!user) {
+                return res.status(401).json({ error: `Il n y a pas d'utilisateur avec ce mail ${email}!` });
+            }
 
             const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/;
             if (!regexEmail.test(req.body.email)) {
                 res.status(401).json({ error: "Rentrez un mail valide" })
                 return false
-            }  
-           
+            }
+
             bcrypt.compare(req.body.password, user.password) // on compare le mdp qui est envoye dans la requete avec le mdp hashé qui est dans la BDD,
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).send({ error: 'Mot de passe incorrect !' });
                     }
-                    res.status(200).send({userId: user.id,
-                        
+                    res.status(200).send({
+                        userId: user.id,
                         token: jsonwebtoken.sign( //fonction sign prend en argument
                             { userId: user.id }, //1 argument : les données que l on veut encoder à l int de ce token
                             `${process.env.TOP_SECRET}`, // 2ieme argument : clef secrete de l encodage 
                             { expiresIn: '2h' } // chq TOKEN dure 24h 
                         )
                     });
-                }) 
+                })
                 .catch(error => res.status(500).send({ error }));
         })
-        .catch(error => 
+        .catch(error =>
             res.status(500).send({ error })
         );
 };
 
-exports.userDelete = (req, res, next) => {
+//toutes pour modifier le pseudo
+exports.usernameUpdate = (req, res, next) => {
     const id = req.params.id
-    User.findOne({ where: {id:id}  }) 
-        .then(user => {
-                user.destroy({ where: {id:id}  })
-                    .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
-                    .catch(error => res.status(400).json({ error }));
+    User.findOne({ where: { id: id } })
+        .then(username => {
+            username.update(
+                { username: req.body.username }
+            )
+                .then(() =>
+                    res.status(200).json({ message: 'Votre pseudo est modifié!' }))
+                .catch(error =>
+                    res.status(400).json({ error }));
         })
         .catch(error =>
-             res.status(500).json({ error })
+            res.status(500).json({ error: 'Problème de serveur!!' })
+        );
+};
+
+//route pour modifier l'email(avec securité)
+exports.userEmailUpdate = (req, res, next) => {
+    const id = req.params.id
+    User.findOne({ where: { id: id } })
+        .then(email => {
+            const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/;
+            if (!regexEmail.test(req.body.email)) {
+                res.status(401).json({ error: "Rentrez un mail valide" })
+                return false
+            }
+            email.update({ email: req.body.email })
+                .then(() =>
+                    res.status(200).json({ message: 'Votre email est modifié!' }))
+                .catch(error =>
+                    res.status(400).json({ error }));
+        })
+        .catch(error =>
+            res.status(500).json({ error: 'Problème de serveur!!' })
+        );
+};
+
+//route pour modifier le mot de passe(avec securité)
+exports.userPasswordUpdate = (req, res, next) => {
+    const id = req.params.id
+    User.findOne({ where: { id: id } })
+        .then(password => {
+            if (!schema.validate(req.body.password)) {
+                res.status(400).json({ error: "Votre mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 lettre minuscule" });
+            } else {
+                bcrypt.hash(req.body.password, 10)
+                    .then(hash => {
+                        password.update({ password: hash })
+                            .then(() =>
+                                res.status(200).json({ message: 'Votre mot de passe est modifié!' }))
+                            .catch(error =>
+                                res.status(400).json({ error }));
+                    })
+               
+            } 
+        })       
+        .catch(error =>
+            res.status(500).json({ error: 'Problème de serveur!!' })
+        );
+};
+
+//route pour modifier le mot de passe(avec securité)
+exports.userJobUpdate = (req, res, next) => {
+    const id = req.params.id
+    User.findOne({ where: { id: id } })
+        .then(job => {
+                job.update(
+                    { job: req.body.job }
+                )
+                    .then(() =>
+                        res.status(200).json({ message: 'Votre métier est modifié!' }))
+                    .catch(error =>
+                        res.status(400).json({ error }));
+            
+        })
+        .catch(error =>
+            res.status(500).json({ error: 'Problème de serveur!!' })
+        );
+};
+
+
+// route pour supprimer le compte de l'utilisateur
+exports.userDelete = (req, res, next) => {
+    const id = req.params.id
+    User.findOne({ where: { id: id } })
+        .then(user => {
+            user.destroy({ where: { id: id } })
+                .then(() => res.status(200).json({ message: 'utilisateur supprimé !' }))
+                .catch(error => res.status(400).json({ error }));
+        })
+        .catch(error =>
+            res.status(500).json({ error })
         );
 };

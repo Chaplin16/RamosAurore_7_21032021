@@ -23,7 +23,11 @@ const userControllers = require('../controllers/user');
 router.post('/signup', userControllers.create_account);
 router.post('/login', userControllers.login);
 
-//router.put('/login', auth, userControllers.updateLogin);
+router.put('/:id/username/update', userControllers.usernameUpdate);
+router.put('/:id/email/update', userControllers.userEmailUpdate);
+router.put('/:id/password/update', userControllers.userPasswordUpdate);
+router.put('/:id/job/update', userControllers.userJobUpdate);
+
 router.delete('/:id/delete', userControllers.userDelete);
 
 module.exports = router;
