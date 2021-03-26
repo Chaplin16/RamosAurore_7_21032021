@@ -24,8 +24,9 @@ exports.createAccount = (req, res, next) => {
         res.status(400).json({ error: "le mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 minuscule" });
     } else {
         bcrypt.hash(req.body.password, 10) //hash le mot de passe, on execute 10 fois l algorithme de hachage
-            .then(hash => {
-                User.create({ //on recupere le hash du MDP et on le met ds un objet pour l enregistrer dans la BDD
+            .then(hash => {//on recupere le hash du MDP et on le met ds un objet pour l enregistrer dans la BDD
+                User.create({
+                    avatar: `${req.protocol}://${req.get("host")}/images/avatarDefault.png` ,
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,

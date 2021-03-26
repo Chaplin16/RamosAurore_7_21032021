@@ -12,6 +12,7 @@ const User = database.define('User', {
     },
     password: DataTypes.STRING,
     job: DataTypes.STRING,
+    avatar: DataTypes.STRING,
     isAdmin: {
         type:DataTypes.BOOLEAN,
         defaultValue:false
@@ -30,7 +31,7 @@ const User = database.define('User', {
 });
 
 //User.sync({alter:true})
- module.exports = User;
+module.exports = User;
 
 
 
