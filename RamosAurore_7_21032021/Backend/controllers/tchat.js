@@ -16,12 +16,14 @@ exports.createTchat = (req, res, next) => {
 //route pour modifier le tchat
 exports.modifyTchatContent = (req, res, next) => {
     const id = req.params.id  
-        Tchat.update({ content: req.body.content })
+    Tchat.findOne({ where: { id: id } })
+    .then(content => {
+        content.update({ content: req.body.content })
             .then(() => 
                 res.status(200).send({ message: 'Votre message est modifié!' }))
             .catch(error =>
-                res.status(400).send({ error }))
-
+                res.status(400).send({ error }));
+    })
     .catch(error =>
         console.log(error),
         res.status(500).send({ error: 'Problème de serveur!!' })
