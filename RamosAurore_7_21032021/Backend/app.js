@@ -1,14 +1,13 @@
 const express = require("express");
 const app = express();
 const path = require('path'); //donne acces au chemin de notre systeme de fichier
-const bodyParser = require('body-parser');
 
 const mysql2 = require('mysql2');
 require('dotenv').config(); 
 
 //routes
 const userRoutes = require('./routes/user');
-//const tchatRoutes = require('./routes/tchat');
+const tchatRoutes = require('./routes/tchat');
 
 //entetes
 app.use((req, res, next) => {
@@ -19,11 +18,11 @@ app.use((req, res, next) => {
 });
 
   //remplace body-parser deprecié
-app.use(bodyParser.urlencoded({extended: true})); //remplace bodyParser.json() deprecié depuis 2014
+app.use(express.urlencoded({extended: true})); //remplace bodyParser.json() deprecié depuis 2014
 app.use(express.json());
 
 
 app.use('/user', userRoutes);
-//app.use('/api/tchat', tchatRoutes);
+app.use('/tchat', tchatRoutes);
 
 module.exports = app; //devient accessible pour les autres fichiers

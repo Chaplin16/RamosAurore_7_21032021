@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      bio: {
+      job: {
         allowNull: true,
         type: Sequelize.STRING
       },

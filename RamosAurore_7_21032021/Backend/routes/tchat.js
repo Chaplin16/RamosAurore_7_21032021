@@ -5,7 +5,6 @@
 // VOIR UN TCHAT D 1 USER PARTICULIER  GET
 // LIKER UN TCHAT                      POST
 // DISLIKER UN TCHAT                   POST
-// MODIFIER UN TCHAT                   PUT
 // SUPPRIMER SON TCHAT                 PUT
 
 //FORUM
@@ -13,3 +12,17 @@
 //          avec texte
 //          avec photo  
 //          avec date de creation
+const express = require('express');
+const router = express.Router();
+
+//const auth = require('../middlewares/auth');
+const tchatControllers = require('../controllers/tchat');
+
+router.post('/', tchatControllers.createTchat);
+router.put('/:id/content/update', tchatControllers.modifyTchatContent);
+//router.put('/:id/title/update', tchatControllers.modifyTchatTitle);
+//router.put('/:id/attachment/update', tchatControllers.modifyTchatAttachment);
+
+//router.delete('/:id/delete', tchatControllers.tchatDelete);
+
+module.exports = router;

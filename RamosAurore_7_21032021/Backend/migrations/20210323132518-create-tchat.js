@@ -16,13 +16,10 @@ module.exports = {
           key: 'id'
         }
       },
-      idTchat: {
-        type: Sequelize.STRING
-      },
       title: {
         type: Sequelize.STRING
       },
-      tchat: {
+      content: {
         type: Sequelize.STRING
       },
       attachment: {

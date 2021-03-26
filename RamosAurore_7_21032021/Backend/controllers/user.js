@@ -19,7 +19,7 @@ schema
 
 //enregistrement des nouveaux utilisateurs dans BDD
 //regex et hachage du mot de passe
-exports.create_account = (req, res, next) => {
+exports.createAccount = (req, res, next) => {
     if (!schema.validate(req.body.password)) {
         res.status(400).json({ error: "le mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 minuscule" });
     } else {
@@ -29,7 +29,7 @@ exports.create_account = (req, res, next) => {
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,
-                    job: req.body.bio
+                    job: req.body.job
                 }).then(() => res.status(201).send({ message: "Nouvel utilisateur créé !" }))
                     .catch(error => res.status(400).json({ error: "éléments manquants" }));
             })
@@ -87,8 +87,6 @@ exports.getAllUsers = (req, res, next) => {
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
 };
-
-////////////////////////////////////////////////
 
 //route pour modifier le pseudo
 exports.modifyUsername = (req, res, next) => {
@@ -158,14 +156,11 @@ exports.modifyUserJob = (req, res, next) => {
     const id = req.params.id
     User.findOne({ where: { id: id } })
         .then(job => {
-                job.update(
-                    { job: req.body.job }
-                )
+                job.update({ job: req.body.job })
                     .then(() =>
                         res.status(200).json({ message: 'Votre métier est modifié!' }))
                     .catch(error =>
-                        res.status(400).json({ error }));
-            
+                        res.status(400).json({ error }));    
         })
         .catch(error =>
             res.status(500).json({ error: 'Problème de serveur!!' })
@@ -179,8 +174,14 @@ exports.userDelete = (req, res, next) => {
     User.findOne({ where: { id: id } })
         .then(user => {
             user.destroy({ where: { id: id } })
-                .then(() => res.status(200).json({ message: 'utilisateur supprimé !' }))
-                .catch(error => res.status(400).json({ error }));
+                .then(() => 
+                res.status(200).json({ 
+                    message: 'utilisateur supprimé !' 
+                }))
+                .catch(error => 
+                    res.status(400).json({ 
+                        error 
+                }));
         })
         .catch(error =>
             res.status(500).json({ error })

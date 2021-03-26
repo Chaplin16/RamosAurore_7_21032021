@@ -7,7 +7,7 @@
 //         const decodedToken = jsonwebtoken.verify(token, `${process.env.TOP_SECRET}`);
 //         const userId = decodedToken.userId;//on en fait un objet JS pour récupérer l'Id qui est dedans
     
-//         if (req.body.userId && req.body.userId !== userId) {  //on verifie userId avec celui de la requete
+//         if (req.body.id && req.body.id !== id) {  //on verifie userId avec celui de la requete
 //           throw "Identitée de l'utilisateur non enregistrée";
 //         } else {
 //           next();
