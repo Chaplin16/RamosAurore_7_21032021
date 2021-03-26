@@ -107,7 +107,9 @@ exports.modifyUsername = (req, res, next) => {
         );
 };
 
-//route pour modifier l'email(avec securité)
+//route pour changer d'avatar
+
+//route pour modifier l'email(avec securité)git add 
 exports.modifyUserEmail = (req, res, next) => {
     const id = req.params.id
     User.findOne({ where: { id: id } })

@@ -1,11 +1,12 @@
 const Tchat = require('../models/tchat');
+const firesystem = require('fs');
 
 //route pour creer un tchat
 exports.createTchat = (req, res, next) => {
         Tchat.create({
             title: req.body.title,
             content: req.body.content,
-            attachment: req.body.attachment,
+            attachment: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
             likes: req.body.likes,
             comment: req.body.comment
         }).then(() => res.status(201).send({ message: "Nouveau message créé !" }))
@@ -49,11 +50,15 @@ exports.modifyTchatAttachment = (req, res, next) => {
     Tchat.findOne({ where: { id: id } })
     .then(attachment => {
         attachment.update({ attachment: req.body.attachment })
-        .then(() => {
-            res.status(200).json({ 
-                message: 'Votre photo est modifiée!' 
-
-            })
+        .then(tchat => {
+            const filename = tchat.attachment.split('/images/')[1];
+            firesystem.unlink(`images/${filename}`, (error => {
+                if(error) 
+                    {console.log(error)}
+                else {
+                    console.log("image effacée");
+                }
+            })) 
         })
         .catch(error =>res.status(400).json({error: 'Photo non modifiée' })
         );             
