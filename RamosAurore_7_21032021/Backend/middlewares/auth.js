@@ -5,9 +5,9 @@ module.exports = (req, res, next) => {
     try {   
         const token = req.headers.authorization.split(' ')[1]; //on trouve le numero du token par son emplacement 
         const decodedToken = jsonwebtoken.verify(token, `${process.env.TOP_SECRET}`);
-        const userId = decodedToken.userId;//on en fait un objet JS pour récupérer l'Id qui est dedans
+        const id = decodedToken.userId;//on en fait un objet JS pour récupérer l'Id qui est dedans
     
-        if (req.body.id && req.body.id !== userId) {  //on verifie userId avec celui de la requete
+        if (req.body.id && req.body.id !== id) {  //on verifie userId avec celui de la requete
           throw "Identitée de l'utilisateur non enregistrée";
         } else {
           next();

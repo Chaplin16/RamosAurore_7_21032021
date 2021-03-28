@@ -18,7 +18,7 @@ const Tchat = database.define('Tchat', {
 }, {
     Sequelize,
     modelName: 'Tchat',
-    paranoid: true
+    paranoid: false
 }, {
     classMethods: {
         associate: function(models) {
@@ -32,7 +32,7 @@ const Tchat = database.define('Tchat', {
     }
 });
 
-//Tchat.sync({alter:true})
+Tchat.sync({alter:true})
 module.exports = Tchat;
 
 

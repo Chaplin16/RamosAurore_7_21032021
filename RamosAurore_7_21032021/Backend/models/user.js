@@ -20,8 +20,8 @@ const User = database.define('User', {
 }, {
     Sequelize,
     modelName: 'User',
-    underscored: true,
-    paranoid: true
+    underscored: false,
+    paranoid: false
 }, {
     classMethods: {
          associate: function(models) {
@@ -30,7 +30,7 @@ const User = database.define('User', {
     }
 });
 
-//User.sync({alter:true})
+User.sync({alter:true})
 module.exports = User;
 
 

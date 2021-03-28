@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const firesystem = require('fs');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
 const passwordValidator = require('password-validator');
@@ -77,8 +77,7 @@ exports.login = (req, res, next) => {
 
 //route pour voir le profil d'un utilisateur
 exports.getOneUser = (req, res, next) => {
-    const id = req.params.id
-    User.findOne({ where: { id: id } })
+    User.findOne({ where: { id: req.params.userId } })
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
 };
@@ -92,20 +91,19 @@ exports.getAllUsers = (req, res, next) => {
 
 //route pour modifier le pseudo
 exports.modifyUsername = (req, res, next) => {
-    const id = req.params.id
-    User.findOne({ where: { id: id } })
-        .then(username => {
-            username.update(
-                { username: req.body.username }
-            )
-                .then(() =>
-                    res.status(200).json({ message: 'Votre pseudo est modifié!' }))
-                .catch(error =>
-                    res.status(400).json({ error }));
-        })
-        .catch(error =>
-            res.status(500).json({ error: 'Problème de serveur!!' })
-        );
+        User.findOne({ where: { id: req.params.id } })
+            .then(username => {
+                username.update(
+                    { username: req.body.username }
+                )
+                    .then(() =>
+                        res.status(200).json({ message: 'Votre pseudo est modifié!' }))
+                    .catch(error =>
+                        res.status(400).json({ error }));
+            })
+            .catch(error =>
+                res.status(500).json({ error: 'Problème de serveur!!' })
+            );
 };
 
 //route pour changer d'avatar NE FONCTIONNE PAS 
@@ -123,7 +121,7 @@ exports.modifyUserAvatar = (req, res, next) => {
             }))
         })
     const avatarObject = { 
-            avatar: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+            avatar: `${req.protocol}://${req.get('host')}/images/avatarDefault3.png`
     }
     avatar.updateOne({ where: { id: id } }, { ...avatarObject, id: req.params.id }) //
         .then(() => res.status(200).json({ message: 'avatar modifié !' }))
