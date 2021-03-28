@@ -8,15 +8,15 @@ const auth = require('../middlewares/auth');
 router.post('/signup', userControllers.createAccount);
 router.post('/login', userControllers.login);
 
-router.get('/:id', userControllers.getOneUser);
-router.get('/', userControllers.getAllUsers);
+router.get('/:id', auth, userControllers.getOneUser);
+router.get('/', auth, userControllers.getAllUsers);
 
 router.put('/:id/username/update', auth, userControllers.modifyUsername);
-router.put('/:id/avatar/update', userControllers.modifyUserAvatar);
-router.put('/:id/email/update', userControllers.modifyUserEmail);
-router.put('/:id/password/update', userControllers.modifyUserPassword);
-router.put('/:id/job/update', userControllers.modifyUserJob);
+router.put('/:id/avatar/update', auth, userControllers.modifyUserAvatar);
+router.put('/:id/email/update', auth, userControllers.modifyUserEmail);
+router.put('/:id/password/update', auth, userControllers.modifyUserPassword);
+router.put('/:id/job/update', auth, userControllers.modifyUserJob);
 
-router.delete('/:id/delete', userControllers.userDelete);
+router.delete('/:id/delete', auth, userControllers.userDelete);
 
 module.exports = router;

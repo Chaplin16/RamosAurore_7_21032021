@@ -25,6 +25,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //app.use('/user', userRoutes);
 app.use('/tchat', tchatRoutes);
-app.use('/auth', userRoutes);
+app.use('/', userRoutes);
 
 module.exports = app; //devient accessible pour les autres fichiers

@@ -128,10 +128,10 @@ exports.modifyUserAvatar = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-//route pour modifier l'email(avec securité)git add 
+//route pour modifier l'email(avec securité)
 exports.modifyUserEmail = (req, res, next) => {
     const id = req.params.id
-    User.findOne({ where: { id: id } })
+    User.findOne({ where: { id: req.params.id } })
         .then(email => {
             const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/;
             if (!regexEmail.test(req.body.email)) {
