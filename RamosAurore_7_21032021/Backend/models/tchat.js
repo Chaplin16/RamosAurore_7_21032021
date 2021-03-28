@@ -32,7 +32,7 @@ const Tchat = database.define('Tchat', {
     }
 });
 
-Tchat.sync({alter:true})
+//Tchat.sync({alter:true})
 module.exports = Tchat;
 
 

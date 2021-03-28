@@ -36,10 +36,6 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      delete_at: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
@@ -47,3 +43,5 @@ module.exports = {
     await queryInterface.dropTable('Tchat');
   }
 };
+
+
