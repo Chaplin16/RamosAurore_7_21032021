@@ -2,7 +2,14 @@
 const {Sequelize,DataTypes, database} = require('./connexion');
 
 const Tchat = database.define('Tchat', {
-    idUser: DataTypes.INTEGER,
+    idUser: {
+        type:DataTypes.INTEGER,
+        foreignKey: true,
+        references: {
+            model: 'users',
+            key: 'id'
+        }
+    },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     attachment: DataTypes.STRING,
@@ -16,6 +23,7 @@ const Tchat = database.define('Tchat', {
     classMethods: {
         associate: function(models) {
             models.Tchat.belongsTo(models.User, {
+                as:"User",
                 foreignKey: {
                     allowNull:false
                 }
@@ -26,6 +34,8 @@ const Tchat = database.define('Tchat', {
 
 //Tchat.sync({alter:true})
 module.exports = Tchat;
+
+
 
 
 

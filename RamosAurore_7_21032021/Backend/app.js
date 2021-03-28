@@ -21,8 +21,10 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: true})); //remplace bodyParser.json() deprecié depuis 2014
 app.use(express.json());
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use('/user', userRoutes);
+//app.use('/user', userRoutes);
 app.use('/tchat', tchatRoutes);
+app.use('/auth', userRoutes);
 
 module.exports = app; //devient accessible pour les autres fichiers

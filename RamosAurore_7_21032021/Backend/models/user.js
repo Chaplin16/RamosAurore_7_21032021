@@ -24,7 +24,7 @@ const User = database.define('User', {
     paranoid: true
 }, {
     classMethods: {
-        associate: function(models) {
+         associate: function(models) {
             models.User.hasMany(models.Tchat)
         }
     }
@@ -32,6 +32,8 @@ const User = database.define('User', {
 
 //User.sync({alter:true})
 module.exports = User;
+
+
 
 
 

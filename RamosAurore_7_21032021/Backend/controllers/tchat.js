@@ -1,12 +1,13 @@
 const Tchat = require('../models/tchat');
 const firesystem = require('fs');
-
+require('../middlewares/multer-config');
 //route pour creer un tchat
 exports.createTchat = (req, res, next) => {
         Tchat.create({
             title: req.body.title,
             content: req.body.content,
-            attachment: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+            //a voir la fin du lien de multer ne fonctionne pas
+            attachment: `${req.protocol}://${req.get("host")}/images/avatarDefault.png`,
             likes: req.body.likes,
             comment: req.body.comment
         }).then(() => res.status(201).send({ message: "Nouveau message créé !" }))

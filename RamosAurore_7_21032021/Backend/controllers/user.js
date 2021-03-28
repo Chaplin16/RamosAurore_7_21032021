@@ -1,4 +1,5 @@
 const User = require('../models/user');
+
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
 const passwordValidator = require('password-validator');
@@ -32,7 +33,7 @@ exports.createAccount = (req, res, next) => {
                     password: hash,
                     job: req.body.job
                 }).then(() => res.status(201).send({ message: "Nouvel utilisateur créé !" }))
-                    .catch(error => res.status(400).json({ error: "éléments manquants" }));
+                .catch(error => res.status(400).json({ error: "éléments manquants" }));
             })
             .catch(error => res.status(500).json({ error }));
     }
@@ -57,8 +58,8 @@ exports.login = (req, res, next) => {
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).send({ error: 'Mot de passe incorrect !' });
-                    }
-                    res.status(200).send({
+                    } 
+                    res.status(200).json({
                         userId: user.id,
                         token: jsonwebtoken.sign( //fonction sign prend en argument
                             { userId: user.id }, //1 argument : les données que l on veut encoder à l int de ce token
@@ -107,7 +108,27 @@ exports.modifyUsername = (req, res, next) => {
         );
 };
 
-//route pour changer d'avatar
+//route pour changer d'avatar NE FONCTIONNE PAS 
+exports.modifyUserAvatar = (req, res, next) => {
+    const id = req.params.id
+    User.findOne({ where: { id: id } })
+        .then(user => {
+            const filename = user.avatar.split('/images/')[1];
+            firesystem.unlink(`images/${filename}`, (error => {
+                if(error) 
+                    {console.log(error)}
+                else {
+                    console.log("image effacée");
+                }
+            }))
+        })
+    const avatarObject = { 
+            avatar: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    }
+    avatar.updateOne({ where: { id: id } }, { ...avatarObject, id: req.params.id }) //
+        .then(() => res.status(200).json({ message: 'avatar modifié !' }))
+        .catch(error => res.status(400).json({ error }));
+};
 
 //route pour modifier l'email(avec securité)git add 
 exports.modifyUserEmail = (req, res, next) => {
