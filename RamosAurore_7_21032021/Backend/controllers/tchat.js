@@ -1,6 +1,8 @@
 const Tchat = require('../models/tchat');
 const firesystem = require('fs');
-require('../middlewares/multer-config');
+const multer = require('../middlewares/multer');
+
+
 
 //route pour creer un tchat
 exports.createTchat = (req, res, next) => {
@@ -28,7 +30,7 @@ exports.getOneTchat = (req, res, next) => {
 };
 
 //route pour voir tous les tchats
-exports.getAllTchat = (req, res, next) => { //NE FONCTIONNE PAS 
+exports.getAllTchat = (req, res, next) => {
     Tchat.findAll()
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
@@ -56,7 +58,7 @@ exports.tchatDelete = (req, res, next) => {
     );
 };
 
-//route des likes
+//route des likes                A VOIR    A VOIR    A VOIR 
 exports.likeTchat = (req, res, next) => {
     Tchat.findOne({ id: req.params.id }) //  findOne c est pour trouver un seul objet (on veut que l id trouvé soit le meme que le id de la requete)
         .then(tchat => {

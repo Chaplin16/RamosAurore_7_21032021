@@ -3,6 +3,7 @@ const firesystem = require('fs');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
 const passwordValidator = require('password-validator');
+const multer = require('../middlewares/multerAvatar');
 //const maskData = require('maskdata'); //masque email dans BDD
 
 
@@ -27,7 +28,7 @@ exports.createAccount = (req, res, next) => {
         bcrypt.hash(req.body.password, 10) //hash le mot de passe, on execute 10 fois l algorithme de hachage
             .then(hash => {//on recupere le hash du MDP et on le met ds un objet pour l enregistrer dans la BDD
                 User.create({
-                    avatar: `${req.protocol}://${req.get("host")}/images/avatarDefault.png` ,
+                    avatar: `${req.protocol}://${req.get("host")}/images/avatarDefault1.png` ,
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,
@@ -83,7 +84,7 @@ exports.getOneUser = (req, res, next) => {
 };
 
 //route pour voir le profil d'un utilisateur   
-exports.getAllUsers = (req, res, next) => {  //NE FONCTIONNE PAS
+exports.getAllUsers = (req, res, next) => {  
     User.findAll()
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
@@ -108,24 +109,17 @@ exports.modifyUsername = (req, res, next) => {
 
 //route pour changer d'avatar NE FONCTIONNE PAS 
 exports.modifyUserAvatar = (req, res, next) => {
-    const id = req.params.id
-    User.findOne({ where: { id: id } })
+    User.findOne({ where: { id: req.params.id } })
         .then(user => {
-            const filename = user.avatar.split('/images/')[1];
-            firesystem.unlink(`images/${filename}`, (error => {
-                if(error) 
-                    {console.log(error)}
-                else {
-                    console.log("image effacée");
-                }
-            }))
-        })
-    const avatarObject = { 
-            avatar: `${req.protocol}://${req.get('host')}/images/avatarDefault3.png`
-    }
-    avatar.updateOne({ where: { id: id } }, { ...avatarObject, id: req.params.id }) //
-        .then(() => res.status(200).json({ message: 'avatar modifié !' }))
-        .catch(error => res.status(400).json({ error }));
+             const avatar=  `${req.protocol}://${req.get('host')}/images/${req.body.avatar}`;
+            user.update({ where: { id: req.params.id } },
+                { avatar: avatar }) 
+                .then(() => res.status(200).json({ message: 'avatar modifié !' }))
+                .catch(error => res.status(400).json({ error }));
+        }) 
+        .catch(error => 
+            res.status(500).json({ error: 'Problème de serveur!!' })   
+        );
 };
 
 //route pour modifier l'email(avec securité)
