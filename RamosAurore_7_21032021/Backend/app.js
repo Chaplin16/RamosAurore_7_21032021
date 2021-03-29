@@ -8,6 +8,7 @@ require('dotenv').config();
 //routes
 const userRoutes = require('./routes/user');
 const tchatRoutes = require('./routes/tchat');
+//const adminRoutes = require('./routes/admin')
 
 //entetes
 app.use((req, res, next) => {
@@ -26,5 +27,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 //app.use('/user', userRoutes);
 app.use('/tchat', tchatRoutes);
 app.use('/', userRoutes);
+//pp.use('/admin', adminRoutes);
 
 module.exports = app; //devient accessible pour les autres fichiers
