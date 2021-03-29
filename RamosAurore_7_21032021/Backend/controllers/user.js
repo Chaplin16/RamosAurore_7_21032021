@@ -64,7 +64,7 @@ exports.login = (req, res, next) => {
                         token: jsonwebtoken.sign( //fonction sign prend en argument
                             { userId: user.id }, //1 argument : les données que l on veut encoder à l int de ce token
                             `${process.env.TOP_SECRET}`, // 2ieme argument : clef secrete de l encodage 
-                            { expiresIn: '2h' } // chq TOKEN dure 24h 
+                            { expiresIn: '24h' } // chq TOKEN dure 24h 
                         )
                     });
                 })
@@ -77,13 +77,13 @@ exports.login = (req, res, next) => {
 
 //route pour voir le profil d'un utilisateur
 exports.getOneUser = (req, res, next) => {
-    User.findOne({ where: { id: req.params.userId } })
+    User.findOne({ where: { id: req.params.id } })
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
 };
 
-//route pour voir le profil d'un utilisateur
-exports.getAllUsers = (req, res, next) => {
+//route pour voir le profil d'un utilisateur   
+exports.getAllUsers = (req, res, next) => {  //NE FONCTIONNE PAS
     User.findAll()
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));

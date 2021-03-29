@@ -9,7 +9,7 @@ router.post('/signup', userControllers.createAccount);
 router.post('/login', userControllers.login);
 
 router.get('/:id', auth, userControllers.getOneUser);
-router.get('/', auth, userControllers.getAllUsers);
+router.get('/all', auth, userControllers.getAllUsers); //NE FONCTIONNE PAS
 
 router.put('/:id/username/update', auth, userControllers.modifyUsername);
 router.put('/:id/avatar/update', auth, userControllers.modifyUserAvatar);
