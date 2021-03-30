@@ -3,7 +3,7 @@ const firesystem = require('fs');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
 const passwordValidator = require('password-validator');
-const multer = require('../middlewares/multerAvatar');
+const multerAvatar = require('../middlewares/multerAvatar');
 //const maskData = require('maskdata'); //masque email dans BDD
 
 
@@ -62,8 +62,12 @@ exports.login = (req, res, next) => {
                     } 
                     res.status(200).json({
                         userId: user.id,
+                        isAdmin:user.isAdmin,
                         token: jsonwebtoken.sign( //fonction sign prend en argument
-                            { userId: user.id }, //1 argument : les données que l on veut encoder à l int de ce token
+                            { 
+                                userId: user.id,
+                                isAdmin: user.isAdmin
+                             }, //1 argument : les données que l on veut encoder à l int de ce token
                             `${process.env.TOP_SECRET}`, // 2ieme argument : clef secrete de l encodage 
                             { expiresIn: '24h' } // chq TOKEN dure 24h 
                         )
@@ -83,7 +87,7 @@ exports.getOneUser = (req, res, next) => {
         .catch(error => res.status(404).json({ error }));
 };
 
-//route pour voir le profil d'un utilisateur   
+//route pour voir les utilisateurs PB A VOIR!!!!  
 exports.getAllUsers = (req, res, next) => {  
     User.findAll()
         .then(user => res.status(200).json(user))
@@ -107,12 +111,12 @@ exports.modifyUsername = (req, res, next) => {
             );
 };
 
-//route pour changer d'avatar NE FONCTIONNE PAS 
+//route pour changer d'avatar NE SE MODIFIE PAS 
 exports.modifyUserAvatar = (req, res, next) => {
     User.findOne({ where: { id: req.params.id } })
         .then(user => {
-             const avatar=  `${req.protocol}://${req.get('host')}/images/${req.body.avatar}`;
-            user.update({ where: { id: req.params.id } },
+             const avatar = `${req.protocol}://${req.get('host')}/images/${req.body.avatar}`;
+            user.update(
                 { avatar: avatar }) 
                 .then(() => res.status(200).json({ message: 'avatar modifié !' }))
                 .catch(error => res.status(400).json({ error }));

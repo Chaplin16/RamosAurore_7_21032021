@@ -4,7 +4,7 @@ const router = express.Router();
 //const auth = require('../middlewares/auth');
 const userControllers = require('../controllers/user');
 const auth = require('../middlewares/auth');
-const multer = require('../middlewares/multerAvatar');
+const multerAvatar = require('../middlewares/multerAvatar');
 
 
 router.post('/signup', userControllers.createAccount);
@@ -14,7 +14,7 @@ router.get('/:id', auth, userControllers.getOneUser);
 router.get('/all', auth, userControllers.getAllUsers); 
 
 router.put('/:id/username/update', auth, userControllers.modifyUsername);
-router.put('/:id/avatar/update', auth, multer, userControllers.modifyUserAvatar);
+router.put('/:id/avatar/update', auth, multerAvatar, userControllers.modifyUserAvatar);
 router.put('/:id/email/update', auth, userControllers.modifyUserEmail);
 router.put('/:id/password/update', auth, userControllers.modifyUserPassword);
 router.put('/:id/job/update', auth, userControllers.modifyUserJob);

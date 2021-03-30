@@ -8,13 +8,11 @@ const Tchat = database.define('Tchat', {
         references: {
             model: 'users',
             key: 'id'
-        }
+        },
     },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     attachment: DataTypes.STRING,
-    likes: DataTypes.INTEGER,
-    comment: DataTypes.STRING
 }, {
     Sequelize,
     modelName: 'Tchat',
@@ -28,8 +26,12 @@ const Tchat = database.define('Tchat', {
                     allowNull:false
                 }
             })
+        },    
+        associate: function(models) {
+            models.Tchat.hasMany(models.Comment)
+            }
         }
-    }
+    
 });
 
 //Tchat.sync({alter:true})

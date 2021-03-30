@@ -19,12 +19,13 @@ const storage = multer.diskStorage({ //methode qui enregistre sur le disque
         const name = file.originalname.split(' ').join('_'); //on enleve les espaces
         const extension = MIME_TYPES[file.mimetype];
         callback(null, name + Date.now() + '.' + extension);//nom de fichier suffisamment unique
-  },
+    },
 })
+
 
 module.exports = multer({
     storage: storage, 
     limits: { 
         fileSize: maxSize 
     }
-}).single('image');
+}).single('avatar');

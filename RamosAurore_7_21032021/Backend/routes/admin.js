@@ -6,5 +6,5 @@ const admin = require('../middlewares/admin');
 const adminControllers = require('../controllers/admin');
 
 //ROUTES
-router.get('/', auth, admin, adminControllers, getAllTchatsByAdmin );
-router.get('/', auth, admin, adminControllers, getAllUsersByAdmin );
+router.delete('/:id', auth, admin, adminControllers, deleteUserByAdmin );
+router.delete('/:id', auth, admin, adminControllers, deleteTchatByAdmin );

@@ -10,7 +10,6 @@ router.post('/', multer,tchatControllers.createTchat);
 
 router.get('/:id',auth, tchatControllers.getOneTchat);
 router.get('/all', auth, tchatControllers.getAllTchat);
-router.post('/:id/likes', auth, tchatControllers.likeTchat);
 
 router.delete('/:id/delete', tchatControllers.tchatDelete);
 

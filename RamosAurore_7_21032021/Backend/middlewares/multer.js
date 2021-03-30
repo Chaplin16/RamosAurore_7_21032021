@@ -13,13 +13,13 @@ const maxSize = 1 * 1024 * 1024 //1MB
 //creation d un objet de configuration 
 const storage = multer.diskStorage({ //methode qui enregistre sur le disque 
     destination: (req, file, callback) => { //emplacement où enregistrer fichier
-        callback(null, 'images');
+    callback(null, 'images');
     },
     filename: (req, file, callback) => { //creation du nouveau nom de fichier d image pour multer
         const name = file.originalname.split(' ').join('_'); //on enleve les espaces
         const extension = MIME_TYPES[file.mimetype];
         callback(null, name + Date.now() + '.' + extension);//nom de fichier suffisamment unique
-  },
+    },
 })
 
 module.exports = multer({
