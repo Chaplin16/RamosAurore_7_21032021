@@ -24,8 +24,9 @@ const User = database.define('User', {
     paranoid: false
 }, {
     classMethods: {
-         associate: function(models) {
+        associate: function(models) {
             models.User.hasMany(models.Tchat)
+            models.User.hasMany(models.Comment)
         }
     }
 });
