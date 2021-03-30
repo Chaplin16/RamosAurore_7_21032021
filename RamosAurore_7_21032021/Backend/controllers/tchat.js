@@ -2,6 +2,7 @@ const Tchat = require('../models/tchat');
 const firesystem = require('fs');
 const multer = require('../middlewares/multer');
 const User = require('../models/user');
+const auth = require('../middlewares/auth');
 
 
 //route pour creer un tchat
@@ -22,7 +23,7 @@ exports.createTchat = (req, res, next) => {
 
 //route pour voir un tchat
 exports.getOneTchat = (req, res, next) => {
-    Tchat.findOne({ where: {id:req.params.id}, include:'User'})
+    Tchat.findOne({ where: {id:req.params.id}}) //include:'User'
         .then(tchat => res.status(200).json(tchat))
         .catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
 };
@@ -38,7 +39,7 @@ exports.getAllTchat = (req, res, next) => {
 exports.tchatDelete = (req, res, next) => {
     Tchat.findOne({ where: { id: req.params.id } })
     .then(tchat => {
-        if(tchat.userId == req.token.userId || req.token.isAdmin){
+        if(tchat.userId == req.token.id || req.token.isAdmin){
             tchat.destroy({ where: { id: id } })
             .then(() =>
                 res.status(200).json({ 

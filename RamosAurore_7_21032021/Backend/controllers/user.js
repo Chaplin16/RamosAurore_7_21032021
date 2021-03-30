@@ -191,8 +191,10 @@ exports.modifyUserJob = (req, res, next) => {
 // route pour supprimer le compte de l'utilisateur
 exports.userDelete = (req, res, next) => {
     const id = req.params.id
-    User.findOne({ where: { id: id } })
+    User.findOne({ where: { id: req.params.id } })
         .then(user => {
+            if(tchat.userId == req.token.id || req.token.isAdmin){
+                tchat.destroy({ where: { id: id } })
             user.destroy({ where: { id: id } })
                 .then(() => 
                 res.status(200).json({ 
@@ -202,6 +204,7 @@ exports.userDelete = (req, res, next) => {
                     res.status(400).json({ 
                         error 
                 }));
+            };
         })
         .catch(error =>
             res.status(500).json({ error })
