@@ -23,11 +23,13 @@ const Comment = database.define('Comment', {
               foreignKey: {
                   allowNull:false
               }
-          })
+          },
+          models.Comment.belongsTo(models.User)
+          )
       }
   }
 });
 
-Tchat.sync({alter:true})
+Comment.sync({alter:true})
 module.exports = Comment;
 
