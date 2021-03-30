@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Tchat = require('../models/tchat');
 const firesystem = require('fs');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
@@ -90,7 +91,7 @@ exports.getOneUser = (req, res, next) => {
 //route pour voir les utilisateurs PB A VOIR!!!!  
 exports.getAllUsers = (req, res, next) => {  
     User.findAll()
-        .then(user => res.status(200).json(user))
+        .then(users => res.status(200).json(users))
         .catch(error => res.status(404).json({ error }));
 };
 
@@ -115,7 +116,7 @@ exports.modifyUsername = (req, res, next) => {
 exports.modifyUserAvatar = (req, res, next) => {
     User.findOne({ where: { id: req.params.id } })
         .then(user => {
-             const avatar = `${req.protocol}://${req.get('host')}/images/${req.body.avatar}`;
+             const avatar = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
             user.update(
                 { avatar: avatar }) 
                 .then(() => res.status(200).json({ message: 'avatar modifié !' }))
@@ -187,26 +188,19 @@ exports.modifyUserJob = (req, res, next) => {
         );
 };
 
-
 // route pour supprimer le compte de l'utilisateur
 exports.userDelete = (req, res, next) => {
     const id = req.params.id
-    User.findOne({ where: { id: req.params.id } })
-        .then(user => {
-            if(tchat.userId == req.token.id || req.token.isAdmin){
-                tchat.destroy({ where: { id: id } })
-            user.destroy({ where: { id: id } })
-                .then(() => 
-                res.status(200).json({ 
-                    message: 'utilisateur supprimé !' 
-                }))
-                .catch(error => 
-                    res.status(400).json({ 
-                        error 
-                }));
-            };
-        })
-        .catch(error =>
-            res.status(500).json({ error })
-        );
+        if(Tchat.userId == req.token.id || req.token.isAdmin){
+            Tchat.destroy({ where: { id: id } })
+                User.destroy({ where: { id: id } })
+                    .then(() => 
+                    res.status(200).json({ 
+                        message: 'utilisateur supprimé !' 
+                    }))
+                    .catch(error => 
+                        res.status(400).json({ 
+                            error 
+                    }))
+        }
 };

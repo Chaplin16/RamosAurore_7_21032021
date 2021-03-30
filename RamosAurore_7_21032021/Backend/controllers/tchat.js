@@ -37,25 +37,20 @@ exports.getAllTchat = (req, res, next) => {
         
 //route pour supprimer un tchat
 exports.tchatDelete = (req, res, next) => {
-    Tchat.findOne({ where: { id: req.params.id } })
-    .then(tchat => {
-        if(tchat.userId == req.token.id || req.token.isAdmin){
-            tchat.destroy({ where: { id: id } })
-            .then(() =>
+    const id = req.params.id;
+        if(Tchat.userId == req.token.id || req.token.isAdmin){
+            Tchat.destroy({ where: { id: id } })
+            .then(() => 
                 res.status(200).json({ 
-                    message: 'Votre message est supprimé!' 
-                }))
-            .catch(error =>
-                res.status(400).json({
-                    error: 'message non supprimé' 
-            }));
+                    message: 'Votre message est supprimé !' 
+            }))
+            .catch(error => 
+                res.status(400).json({ 
+                    error 
+            }))
         }    
-    })
-    .catch(error =>
-        res.status(500).json({ 
-            error: 'Problème de serveur!!' 
-        })
-    );
 };
+
+
 
 

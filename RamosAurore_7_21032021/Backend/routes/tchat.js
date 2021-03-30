@@ -11,7 +11,7 @@ router.post('/', multer,tchatControllers.createTchat);
 router.get('/:id',auth, tchatControllers.getOneTchat);
 router.get('/all', auth, tchatControllers.getAllTchat);
 
-router.delete('/:id/delete', tchatControllers.tchatDelete);
+router.delete('/:id/delete', auth, tchatControllers.tchatDelete);
 
 
 module.exports = router;
