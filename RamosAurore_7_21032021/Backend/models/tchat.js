@@ -9,8 +9,7 @@ const Tchat = database.define('Tchat', {
             model: 'users',
             key: 'id'
         },
-    },
-    title: DataTypes.STRING,
+    }, 
     content: DataTypes.STRING,
     attachment: DataTypes.STRING,
 }, {

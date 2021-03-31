@@ -9,7 +9,7 @@ const multer = require('../middlewares/multer');
 router.post('/', multer,tchatControllers.createTchat);
 
 router.get('/:id',auth, tchatControllers.getOneTchat);
-router.get('/all', auth, tchatControllers.getAllTchat);
+router.get('/allTchats', auth, tchatControllers.getAllTchats);
 
 router.delete('/:id/delete', auth, tchatControllers.tchatDelete);
 

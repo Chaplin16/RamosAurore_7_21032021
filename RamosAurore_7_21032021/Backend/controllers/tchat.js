@@ -23,15 +23,21 @@ exports.createTchat = (req, res, next) => {
 
 //route pour voir un tchat
 exports.getOneTchat = (req, res, next) => {
-    Tchat.findOne({ where: {id:req.params.id}}) //include:'User'
-        .then(tchat => res.status(200).json(tchat))
-        .catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
+    Tchat.findOne({ 
+        where: {
+            id:req.params.id
+        },
+        // include: [{
+        //     models: User   
+        // }]   
+    }).then(tchat => res.status(200).json(tchat))
+    .catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
 };
 
 //route pour voir tous les tchats
-exports.getAllTchat = (req, res, next) => {
+exports.getAllTchats = (req, res, next) => {
     Tchat.findAll()
-        .then(user => res.status(200).json(user))
+        .then(tchats => res.status(200).json(tchats))
         .catch(error => res.status(404).json({ error }));
 };
         
@@ -50,7 +56,3 @@ exports.tchatDelete = (req, res, next) => {
             }))
         }    
 };
-
-
-
-
