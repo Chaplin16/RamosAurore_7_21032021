@@ -1,37 +1,26 @@
-'use strict';
+const User = require('../models/user');
+const Tchat = require('../models/tchat');
+const Comment = require('../models/comment');
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
+ User.hasMany(Tchat, { onDelete: 'cascade' });
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+ //User.hasMany(Comment, { onDelete: 'cascade' });
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
+// Tchat.belongsTo(User, { onDelete: 'cascade'});
+    
+ Tchat.hasMany(Comment, { onDelete: 'cascade' });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+ //Comment.belongsTo(Tchat, { onDelete: 'cascade'});
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+// Comment.belongsTo(User, { onDelete: 'cascade' });
+async function loadModel() {
+    await  User.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', null)
+    await User.sync({force:true});
+    await Tchat.sync({force:true});
+    await Comment.sync({force:true});
+    await User.sequelize.query('SET FOREIGN_KEY_CHECKS = 1', null)
+};
 
-module.exports = db;
+loadModel();
+
+module.exports = {User, Tchat, Comment};

@@ -1,7 +1,6 @@
-const Tchat = require('../models/tchat');
+const {User, Tchat, Comment} = require('../models/index');
 const firesystem = require('fs');
 const multer = require('../middlewares/multer');
-const User = require('../models/user');
 const auth = require('../middlewares/auth');
 
 

@@ -17,21 +17,15 @@ const User = database.define('User', {
         type:DataTypes.BOOLEAN,
         defaultValue:false
     }
-}, {
+    }, {
     Sequelize,
     modelName: 'User',
     underscored: false,
     paranoid: false
-}, {
-    classMethods: {
-        associate: function(models) {
-            models.User.hasMany(models.Tchat, { onDelete: 'cascade' })
-            models.User.hasMany(models.Comment, { onDelete: 'cascade' })
-        }
     }
-});
+);
 
-User.sync({alter:true})
+
 module.exports = User;
 
 

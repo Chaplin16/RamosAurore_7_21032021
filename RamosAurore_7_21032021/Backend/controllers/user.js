@@ -1,5 +1,4 @@
-const User = require('../models/user');
-const Tchat = require('../models/tchat');
+const User = require('../models/index').User;
 const firesystem = require('fs');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
