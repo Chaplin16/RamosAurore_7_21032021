@@ -9,14 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       idUser: {
-        type: Sequelize.INTEGER
-      },
-      comment: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'Tchats',
           key: 'idUser'
         }
+      },
+      comment: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

@@ -5,6 +5,7 @@ const Tchat = database.define('Tchat', {
     idUser: {
         type:DataTypes.INTEGER,
         foreignKey: true,
+        onDelete: 'CASCADE',
         references: {
             model: 'users',
             key: 'id'
@@ -22,18 +23,17 @@ const Tchat = database.define('Tchat', {
             models.Tchat.belongsTo(models.User, {
                 as:"User",
                 foreignKey: {
-                    allowNull:false
-                }
-            })
+                    name: foreign_tchat,
+                    allowNull:false,
+                },
+                onDelete: 'CASCADE'
+            }),
+            models.Tchat.hasMany(models.Comment, { onDelete: 'cascade' })
         },    
-        associate: function(models) {
-            models.Tchat.hasMany(models.Comment)
-            }
-        }
-    
+    }    
 });
 
-//Tchat.sync({alter:true})
+Tchat.sync({alter:true})
 module.exports = Tchat;
 
 

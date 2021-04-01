@@ -4,11 +4,12 @@ const {Sequelize,DataTypes, database} = require('./connexion');
 const Comment = database.define('Comment', {
     idUser: {
         type: DataTypes.INTEGER,
-        foreignKey: true,
-        references: {
-            model: 'Tchats',
-            key: 'idUser'
-        }
+        // foreignKey: true,
+        // onDelete: 'CASCADE',
+        // references: {
+        //     model: 'Tchats',
+        //     key: 'idUser'
+        // }
     },
     comment: DataTypes.STRING
 }, {
@@ -21,15 +22,17 @@ const Comment = database.define('Comment', {
           models.Comment.belongsTo(models.Tchat, {
               as:"idUser",
               foreignKey: {
+                  name: foreign_comment,
                   allowNull:false
-              }
+              },
+              onDelete: 'CASCADE'
           },
-          models.Comment.belongsTo(models.User)
+          models.Comment.belongsTo(models.User, { onDelete: 'cascade' })
           )
       }
   }
 });
 
-//Comment.sync({alter:true})
+Comment.sync({alter:true})
 module.exports = Comment;
 

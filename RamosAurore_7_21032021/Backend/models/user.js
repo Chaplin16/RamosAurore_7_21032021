@@ -25,13 +25,13 @@ const User = database.define('User', {
 }, {
     classMethods: {
         associate: function(models) {
-            models.User.hasMany(models.Tchat)
-            models.User.hasMany(models.Comment)
+            models.User.hasMany(models.Tchat, { onDelete: 'cascade' })
+            models.User.hasMany(models.Comment, { onDelete: 'cascade' })
         }
     }
 });
 
-//User.sync({alter:true})
+User.sync({alter:true})
 module.exports = User;
 
 

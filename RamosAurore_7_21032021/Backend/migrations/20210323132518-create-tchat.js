@@ -10,14 +10,12 @@ module.exports = {
       },
       idUser: {
         allowNull: false,
+        onDelete: 'CASCADE',
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id'
         }
-      },
-      title: {
-        type: Sequelize.STRING
       },
       content: {
         type: Sequelize.STRING
