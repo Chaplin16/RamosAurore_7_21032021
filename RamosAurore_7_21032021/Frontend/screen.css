@@ -1,0 +1,84 @@
+:root{
+    --rouge:#e42525;
+    --gris-maquette: #ccc6c6;
+    --bleu-azur: #1586a8;
+}
+
+html{
+    font-size: 1.5rem;;
+} 
+
+a{
+    color: inherit;
+    text-decoration: none;
+    transition: color .3s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1{
+    font-size:1rem;
+    color: var(--bleu-azur);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+h2{
+    color:var(--rouge);
+    font-size: 1.3rem;
+}
+
+.input_formulaire {
+    width: 100%;
+    height: 2rem;
+    border: 1px solid var(--bleu-azur);
+    border-radius:5px; 
+    text-align: center;
+    font-size: 15px;   
+}
+
+.signup,
+.login{
+    border: 1px var(--rouge) solid;
+    padding:2rem;
+    background-color: var(--gris-maquette);
+}
+
+.title_login{
+    margin-top: -.5rem;
+}
+
+.signup{
+    order:2;
+}
+
+.avatar{
+    width: 4rem;
+    height: 4rem;
+    border-radius:15px;
+    box-shadow: 1px 1px var(--bleu-azur);
+}
+
+.title_signup{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_enter {
+    background-color: var(--bleu-azur);
+    height: 2rem;
+    width: 3rem;
+    opacity: 0.8;
+    transition: all 300ms;
+}
+
+.btn_enter:hover{
+    transform:scale(1.15);
+}
