@@ -1,7 +1,7 @@
 :root{
     --rouge:#e42525;
-    --gris-maquette: #ccc6c6;
-    --bleu-turquoise: #15a3a8;
+    --gris-maquette: #e7e2e2;
+    --turquoise: #1ac9e0;
     background-image: url("images/fond_turquoise.jpg");
 }
 
@@ -22,6 +22,9 @@ a:hover {
 .logo {
     display: flex;
     align-items: center;
+    background-color: var(--turquoise);
+    margin:-5px;
+    margin-bottom: 2rem;
 }
 
 h1{
@@ -31,8 +34,11 @@ h1{
 
 .container{
     display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
+    flex-direction: row;
+    column-gap: 2rem;
+
+    align-items: center;
+    justify-content: center;
 }
 
 h2{
@@ -43,7 +49,7 @@ h2{
 .input_formulaire {
     width: 100%;
     height: 2rem;
-    border: 1px solid var(--bleu-turquoise);
+    border: 1px solid var(--turquoise);
     border-radius:5px; 
     text-align: center;
     font-size: 15px;   
@@ -51,26 +57,21 @@ h2{
 
 .signup,
 .login{
-    width:75%;
+    width:30%;
     border: 1px var(--rouge) solid;
     padding:2rem;
     background-color: var(--gris-maquette);
     border-radius: 5px;
 }
 
-.title_login{
-    margin-top: -.5rem;
+.login{
+    align-self: baseline;
 }
-
-.signup{
-    order:2;
-}
-
 .avatar{
     width: 4rem;
     height: 4rem;
-    border-radius:15px;
-    box-shadow: 2px 2px var(--bleu-turquoise);
+    border-radius: 15px;
+    box-shadow: 2px 2px var(--turquoise);
 }
 
 .title_signup{
@@ -79,7 +80,7 @@ h2{
 }
 
 .btn_enter {
-    background-color: var(--bleu-turquoise);
+    background-color: var(--turquoise);
     height: 2rem;
     width: 3rem;
     opacity: 0.8;
@@ -93,39 +94,84 @@ h2{
 
 .footer{
     display: flex;
-    align-items:center;
-    justify-content: space-between;
-    font-size: 13px;
-    transition: all 300ms;
+    justify-content: center;
+    column-gap: 2rem;
+    font-size: 20px;
+    margin-top: 2rem;
+
 }
 .copyright{
     display: flex;
     align-items: center;
 }
+
 footer a:hover{
-    font-size:15px;
     color: var(--rouge);
     font-weight: 700;
 }
 
-.mainPost,
-.tchatUser{
+/*------------page Tchats.html-----------------*/
+.containerTchatsAndUsers{
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    column-gap: 6rem;
+    width: 100%;
+}
+
+.myTchat,
+.otherTchats,
+.allUsers{
+    display: flex;
     column-gap: 2%;
     margin-bottom: 2rem;
 }
+.myTchat,
+.otherTchats{
+    width:100%;
+}
 
-.input_formulaire_post {
-    width: 70%;
+.input_formulaire_post,
+.input_formulaire_users{
     height: 2rem;
-    border: 1px solid var(--bleu-turquoise);
-    border-radius:5px; 
+    border: 1px solid var(--turquoise);
+    width: 100%;
     text-align: left;
-    padding-left:1rem;
     font-size: 15px;   
+    border-radius:5px; 
     background-color: white;
 }
+
+.post{
+    width: 100%;
+}
+
 .avatar_post{
     border-radius: 50% ;
+    width: 60px;
+    height: 60px;
+}
+
+.users{
+    background-color: rgb(221, 215, 215);
+    padding:2rem;
+    border: 1px var(--rouge) solid;
+}
+
+.input_formulaire_users{
+    padding-right: 1rem;
+}
+
+.otherTchats{
+    border: 1px  var(--rouge) solid;
+    width: 90%;
+    padding: 1rem 0 3rem 1rem;
+    margin-right: 1rem;
+    background-color: rgb(221, 215, 215);
+}
+
+.otherTchats .input_formulaire_post{
+    width:88%;
+}
+.myTchat{
+    width: 90%;
 }
