@@ -8,11 +8,9 @@ const auth = require('../middlewares/auth');
 exports.createTchat = (req, res, next) => {
     const tchat = JSON.parse(req.body.tchat);
     Tchat.create({
-            title: tchat.title,
             content: tchat.content,
             attachment: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-            likes: tchat.likes,
-            idUser:tchat.userId
+            userid:tchat.userId
         }).then(tchat => {
                 res.status(201).json({ message: "Nouveau message créé !" })
             
