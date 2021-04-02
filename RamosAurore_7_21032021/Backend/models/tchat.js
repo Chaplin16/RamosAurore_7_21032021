@@ -20,8 +20,6 @@ const Tchat = database.define('Tchat', {
 }
 );
 
-
-
 module.exports = Tchat;
 
 
