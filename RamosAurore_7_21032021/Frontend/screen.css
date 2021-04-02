@@ -2,7 +2,7 @@
     --rouge:#e42525;
     --gris-maquette: #ccc6c6;
     --bleu-turquoise: #15a3a8;
-    background-image: url("images/texture-fond-degrade.jpg");
+    background-image: url("images/fond_turquoise.jpg");
 }
 
 html{
@@ -51,6 +51,7 @@ h2{
 
 .signup,
 .login{
+    width:75%;
     border: 1px var(--rouge) solid;
     padding:2rem;
     background-color: var(--gris-maquette);
@@ -69,7 +70,7 @@ h2{
     width: 4rem;
     height: 4rem;
     border-radius:15px;
-    box-shadow: 1px 1px var(--bleu-turquoise);
+    box-shadow: 2px 2px var(--bleu-turquoise);
 }
 
 .title_signup{
@@ -107,3 +108,24 @@ footer a:hover{
     font-weight: 700;
 }
 
+.mainPost,
+.tchatUser{
+    display: flex;
+    justify-content: center;
+    column-gap: 2%;
+    margin-bottom: 2rem;
+}
+
+.input_formulaire_post {
+    width: 70%;
+    height: 2rem;
+    border: 1px solid var(--bleu-turquoise);
+    border-radius:5px; 
+    text-align: left;
+    padding-left:1rem;
+    font-size: 15px;   
+    background-color: white;
+}
+.avatar_post{
+    border-radius: 50% ;
+}
