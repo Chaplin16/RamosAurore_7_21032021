@@ -10,7 +10,7 @@ exports.createTchat = (req, res, next) => {
     Tchat.create({
             content: tchat.content,
             attachment: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-            userid:tchat.userId
+            userId:tchat.userId
         }).then(tchat => {
                 res.status(201).json({ message: "Nouveau message créé !" })
             
