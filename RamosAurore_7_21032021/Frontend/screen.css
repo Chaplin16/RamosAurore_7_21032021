@@ -158,13 +158,13 @@ footer a:hover{
 .linkSend{
     position: relative;
     left: 0rem;
-    bottom: 20px;
-    background-image: url("images/send.png");
+    bottom: 5px;
+
 }
 
 .avatar_post{
     border-radius: 50% ;
-    width: 60px;
+    width: 63px;
     height: 60px;
 }
 
