@@ -20,42 +20,42 @@
             <div class="signup">
                 <div class="title_signup">
                     <h2>Inscription</h2>
-                    <button class="avatar"> 
-                        <a href="#">Votre photo de profil</a>
+                    <button class="avatar" id="avatar"> 
+                        <a href="#" dowload="#">Votre photo de profil</a>
                     </button>    
                 </div>
                 <p class="username"> 
                     <label for="username"> </label>
-                    <input class="input_formulaire" type="text" name="username" id="username" placeholder="Votre pseudo"/>
+                    <input class="input_formulaire" type="text" name="username" id="username" title="Veuillez n'écrire que des lettres" pattern ="[A-z-_çàâéèeîïù]{2,30}" placeholder="Votre pseudo"/>
                 </p>
                 <p class="email"> 
                     <label for="email"> </label>
-                    <input class="input_formulaire" type="text" name="email" id="email" placeholder="Votre email"/>
+                    <input class="input_formulaire" type="email" name="email" id="email" title="Veuillez écrire un mail valide" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/" placeholder="Votre email"/>
                 </p>
                 <p class="password"> 
                     <label for="password"> </label>
-                    <input class="input_formulaire" type="text" name="password" id="password" placeholder="Votre mot de passe"/>
+                    <input class="input_formulaire" type="text" name="password" id="password" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="Votre mot de passe"/>
                 </p>
                 <p class="job"> 
                     <label for="job"> </label>
-                    <input class="input_formulaire" type="text" name="job" id="job" placeholder="Votre poste"/>
+                    <input class="input_formulaire" type="text" name="job" id="job" pattern ="[A-z-_çàâéèeîïù]{2,30}" title="Veuillez entrer votre métier" placeholder="Votre poste"/>
                 </p>
                 <p>
-                    <input type="button" class="btn_enter" value="entrer">
+                    <input type="submit" id="btnSubmitNewUser" class="btn_enter" name="submit" value="Envoyer">
                 </p> 
             </div>
             <div class="login">
                 <h2 class="title_login">Connection</h2>
                 <p class="email"> 
                     <label for="email"> </label>
-                    <input class="input_formulaire" type="text" name="email" id="email" placeholder="Votre email"/>
+                    <input class="input_formulaire" type="email" name="email" id="email" title="Veuillez écrire un mail valide"  pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/" placeholder="Votre email"/>
                 </p>  
                 <p class="password"> 
                     <label for="email"> </label>
-                    <input class="input_formulaire" type="text" name="password" id="password" placeholder="Votre mot de passe"/>
+                    <input class="input_formulaire" type="text" name="password" id="password" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="Votre mot de passe"/>
                 </p>
                 <p>
-                    <input type="button" class="btn_enter" value="entrer">
+                    <input type="submit" id="btnSubmitMember" class="btn_enter" name="submit" value="Envoyer">
                 </p>  
             </div>
         </main>
@@ -78,7 +78,8 @@
         </footer>
 
       <!--mes scripts-->
-      <script src="js/index.js"></script>   
+      <script src="js/indexNewUser.js"></script>
+      <script src="js/indexMember.js"></script>  
     </body>
 
 </html>

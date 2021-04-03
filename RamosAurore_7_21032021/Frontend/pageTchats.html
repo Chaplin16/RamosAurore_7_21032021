@@ -27,9 +27,23 @@
                 </div>
             </section>
             <section class="post">
-                
-                <div class="myTchat" id="myTchat"> <!--partie HTML importée en pageTchats.js --> </div> 
-       
+                <div class="myTchat" id="myTchat"> <!--partie HTML importée en pageTchats.js --> 
+                    <button class="avatar_post"> 
+                        <a href="#">Avatar</a>
+                    </button>
+                    <label for="tchatMainUser"> </label>
+                    <input class="input_formulaire_post" 
+                            type="text" 
+                            name="tchatMainUser" 
+                            id="tchatMainUser" 
+                            placeholder="Quoi de neuf??"
+                        />
+                        <!--<a href="#" dowload="${tchat.attachment}>-->
+                    <img class="linkImage" src="images/trombone_40.png"/>
+                    
+                    <img class="linkSend" src="images/send.png">
+                    <!--<input type=submit id="btnTchat" class="linkSend" data-id="${tchat.id}" data-content="${tchat.content} data-image="${tchat.attachment}" data-name="${tchat.userId}" data-create="${tchat.createAt}" data-update="${tchat.updatedAt}">-->
+                </div>
                 <div class="otherTchats"> 
                     <button class="avatar_post"> 
                         <a href="#">Avatar</a>
