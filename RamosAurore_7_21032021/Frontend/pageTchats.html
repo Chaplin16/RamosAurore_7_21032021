@@ -22,21 +22,14 @@
                     <button class="avatar_post"> 
                         <a href="#">Avatar</a>
                     </button>
-                        <label for="username"> </label>
-                        <input class="input_formulaire_users" type="text" name="username" id="username"/>
+                    <label for="username"> </label>           
+                    <input class="input_formulaire_users" type="text" name="username" id="username"/>
                 </div>
             </section>
             <section class="post">
-                <!--la partie pour le message du user connecté-->
-                <div class="myTchat"> 
-                    <button class="avatar_post"> 
-                        <a href="#">Avatar</a>
-                    </button>
-                    <label for="tchatMainUser"> </label>
-                    <input class="input_formulaire_post" type="text" name="tchatMainUser" id="tchatMainUser" placeholder="Quoi de neuf??"
-                    />  
-                </div> 
-                <!--la partie pour les autres tchats-->
+                
+                <div class="myTchat" id="myTchat"> <!--partie HTML importée en pageTchats.js --> </div> 
+       
                 <div class="otherTchats"> 
                     <button class="avatar_post"> 
                         <a href="#">Avatar</a>
@@ -44,7 +37,7 @@
                     <label for="tchatUser"> </label>
                     <input class="input_formulaire_post" type="texterea" name="tchatUser" id="tchatUser"
                     />  
-                </div> 
+                </div>
             </section>
         </main>
 

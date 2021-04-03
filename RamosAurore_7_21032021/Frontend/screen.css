@@ -85,7 +85,8 @@ h2{
     width: 3rem;
     opacity: 0.8;
     transition: all 300ms;
-    box-shadow: 1px 1px var(--rouge);
+    box-shadow: 1px 1px #60768b;
+    border-radius: 5px;
 }
 
 .btn_enter:hover{
@@ -140,9 +141,25 @@ footer a:hover{
     border-radius:5px; 
     background-color: white;
 }
+.input_formulaire_post{
+    position: relative;
+}
 
 .post{
     width: 100%;
+}
+
+.linkImage{
+    position: absolute;
+    right:14%;
+    top: 7.7rem;
+}
+
+.linkSend{
+    position: relative;
+    left: 0rem;
+    bottom: 20px;
+    background-image: url("images/send.png");
 }
 
 .avatar_post{
@@ -155,6 +172,7 @@ footer a:hover{
     background-color: rgb(221, 215, 215);
     padding:2rem;
     border: 1px var(--rouge) solid;
+    border-radius: 5px;
 }
 
 .input_formulaire_users{
@@ -167,6 +185,7 @@ footer a:hover{
     padding: 1rem 0 3rem 1rem;
     margin-right: 1rem;
     background-color: rgb(221, 215, 215);
+    border-radius: 5px;
 }
 
 .otherTchats .input_formulaire_post{
