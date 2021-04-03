@@ -119,21 +119,26 @@ footer a:hover{
     width: 100%;
 }
 
-.myTchat,
-.otherTchats,
-.allUsers{
+.tchatUserConnect,
+.tchatsMembersAndComments,
+.allMembers{
     display: flex;
     column-gap: 2%;
     margin-bottom: 2rem;
 }
-.myTchat,
-.otherTchats{
+.tchatUserConnect,
+.tchatsMembersAndComments{
     width:100%;
 }
 
-.input_formulaire_post,
-.input_formulaire_users{
-    height: 2rem;
+.inputTchatUserConnect,
+.inputTchatMember {
+    width: 88%;
+    border: none;
+}
+
+.tchatUserConnect{
+    height: 3rem;
     border: 1px solid var(--turquoise);
     width: 100%;
     text-align: left;
@@ -141,7 +146,7 @@ footer a:hover{
     border-radius:5px; 
     background-color: white;
 }
-.input_formulaire_post{
+.tchatUserConnect{
     position: relative;
 }
 
@@ -151,46 +156,70 @@ footer a:hover{
 
 .linkImage{
     position: absolute;
-    right:14%;
-    top: 7.7rem;
+    right:10%;
+    top: 13px;
 }
 
 .linkSend{
     position: relative;
-    left: 0rem;
-    bottom: 5px;
-
+    right: 1rem;
+    top: 10px;
+    width: 50px;
+    height: 50px;
 }
 
-.avatar_post{
+.avatarConnect,
+.avatarMember{
     border-radius: 50% ;
     width: 63px;
-    height: 60px;
+    height: 60px;  
 }
 
-.users{
+.avatarConnect{
+    margin:5px; 
+}
+
+.avatarComment{
+    border-radius: 50%;
+    width: 40px;
+    height:40px;
+    margin: 0px 10px;
+}
+
+.members{
     background-color: rgb(221, 215, 215);
     padding:2rem;
     border: 1px var(--rouge) solid;
     border-radius: 5px;
 }
 
-.input_formulaire_users{
-    padding-right: 1rem;
-}
-
-.otherTchats{
+.tchatsMembersAndComments{
+    display: flex;
+    flex-direction: column;
     border: 1px  var(--rouge) solid;
     width: 90%;
     padding: 1rem 0 3rem 1rem;
     margin-right: 1rem;
     background-color: rgb(221, 215, 215);
     border-radius: 5px;
-}
-
-.otherTchats .input_formulaire_post{
     width:88%;
 }
-.myTchat{
+
+.inputTchatMember{
+    height: 3rem;
+}
+
+.tchatUserConnect{
     width: 90%;
+}
+
+.commentUserConnect{
+    height: 1.5rem;
+    width: 88%;
+}
+.commentSend{
+    position: absolute;
+    right: 8rem;
+    bottom:1rem;
+    width: 30px;
 }

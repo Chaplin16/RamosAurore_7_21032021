@@ -24,7 +24,7 @@ btnSubmitMember.addEventListener("click", function (event) { // envoie du formul
             let avatarConnect = data.contact.avatar
 
 //ouverture de la page de confirmation ave les parametres dans l url
-               window.location.assign("pageTchats.html"+ avatarConnect + "&user=" + usernameConnect )
+               window.location.assign("pageTchats.html?avatar="+ avatarConnect + "&user=" + usernameConnect )
         })
         //le retour en cas de non connection au serveur 
         .catch(function(err) {

@@ -1,7 +1,7 @@
 let config = "http://localhost:3000";
-let myTchat = document.getElementById('myTchat');
+let myTchat = document.getElementById('otherTchats');
 
-function showMessage(tchat){
+function showTchats(tchat){
     myTchat.innerHTML += ``
         //la partie pour le message du user connecté//
 }      
@@ -14,7 +14,7 @@ let allTchatsUsers = fetch(config)
     .then(function(listTchats) {
         for (let message of listMessages) {
             let tchat = new Tchats(message);
-            showMessage(tchat);
+            showTchats(tchat);
         }
     })
     .catch(function(err) { //le retour en cas de non connection au serveur 

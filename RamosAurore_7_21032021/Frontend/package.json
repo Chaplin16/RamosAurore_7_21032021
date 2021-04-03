@@ -1,0 +1,19 @@
+{
+  "name": "fronted",
+  "version": "1.0.0",
+  "description": "messagerie interne de l'entreprise Groupomania",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chaplin16/RamosAurore_7_21032021.git"
+  },
+  "author": "aurore RAMOS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chaplin16/RamosAurore_7_21032021/issues"
+  },
+  "homepage": "https://github.com/Chaplin16/RamosAurore_7_21032021#readme"
+}
