@@ -1,13 +1,30 @@
 let config = "http://localhost:3000";
-let myTchat = document.getElementById('otherTchats');
+let tchatsMembersAndComments = document.getElementById('tchatsMembersAndComments');
 
 function showTchats(tchat){
-    myTchat.innerHTML += ``
+    tchatsMembersAndComments.innerHTML += 
+    `<div class="allTchats"
+        <div class="tchatMember">
+            <button class="avatarMember"> 
+                <a href="#">Avatar</a>
+            </button>
+            <label for="allTchatMember"> </label>
+            <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember"/>  
+        </div>
+        <div class="commentUser">
+            <p>X Commentaires</p>
+            <button class="avatarComment"> 
+                <a href="#">Avatar</a>
+            </button>
+            <input class="commentUserConnect" type="texterea" name="commentUser" id="commentUserConnect"/>  
+            <img class="commentSend" src="images/fleche.png">
+        </div>
+    </div`
         //la partie pour le message du user connecté//
 }      
 
 
-let allTchatsUsers = fetch(config) 
+let allTchatsUsers = fetch(config + '/' + chat + '/' + allTchats)
     .then(function(response) {
         return response.json();
     }) 
