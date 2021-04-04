@@ -1,10 +1,10 @@
 let btnSubmitNewUser = document.getElementById("btnSubmitNewUser");
 
 btnSubmitNewUser.addEventListener("click", function (event) { // envoie du formulaire au click du bouton
-    let form = document.getElementById("form");
+    let formSignup = document.getElementById("formSignup");
     event.preventDefault();
 
-    if( form.reportValidity() == true) {//verification si le formulaire est correctement rempli
+    if( formSignup.reportValidity() == true) {//verification si le formulaire est correctement rempli
         let contact = { // je cree un objet avec les valeurs que je recupere par les id
             'username': document.getElementById("username").value,
             'email': document.getElementById("email").value,
@@ -12,16 +12,17 @@ btnSubmitNewUser.addEventListener("click", function (event) { // envoie du formu
             'job': document.getElementById("job").value,
             'avatar': document.getElementById("avatar").value,  
         }     
-        let sendInfo = JSON.stringify({ 
-            contact, 
-        })
+        let sendInfo = JSON.stringify( contact );
         //j'envoie des données au serveur    
-        fetch('http://localhost:3000/signup'), {
+        fetch('http://localhost:3000' +'/signup', {
             method: "post",
             headers: {"Content-Type": "application/json;charset=UTF-8"},
             mode:"cors",
             body: sendInfo            
-        }  
+        })
+        .then(function (response) {
+            return response.json()
+        }) 
         .then(function(data) { //j enregistre le retour  de l'api dans des variables
             let usernameConnect = data.contact.username;
             let avatarConnect = data.contact.avatar;
