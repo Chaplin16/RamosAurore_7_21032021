@@ -17,12 +17,20 @@ btnSubmitMember.addEventListener("click", function (event) { // envoie du formul
             mode:"cors",
             body: sendInfo            
         })  
-        .then(function(data) { //j enregistre le retour  de l'api dans des variables
-            let usernameConnect = data.contact.username;
-            let avatarConnect = data.contact.avatar
+        .then(function(response) { //j enregistre le retour  de l'api dans des variables
+            fetch('http://localhost:3000' + '/:email/userId', {
+                method: "get",
+                headers: {"Content-Type": "application/json;charset=UTF-8"},
+                mode:"cors",
+                body: contact.email            
+            }).then(function() {
+                let userId = user.id;
+                console.log(userId)
+                console.log("toto")
+            })
 
 //ouverture de la page de confirmation ave les parametres dans l url
-               window.location.assign("pageTchats.html?avatar="+ avatarConnect + "&user=" + usernameConnect )
+               window.location.assign("pageTchats.html?id=" + userId)
         })
         //le retour en cas de non connection au serveur 
         .catch(function(err) {

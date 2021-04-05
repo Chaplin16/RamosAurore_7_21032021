@@ -1,8 +1,8 @@
 :root{
-    --rouge:#e42525;
-    --gris-maquette: #e7e2e2;
-    --turquoise: #1ac9e0;
-    background-image: url("images/fond_turquoise.jpg");
+    --rouge:rgb(209, 81, 90);
+    --grey: #e7e2e2;
+    --bluePastel: rgb(173, 185, 208);
+    background-color: rgb(74,74,74);
 }
 
 html{
@@ -22,9 +22,10 @@ a:hover {
 .logo {
     display: flex;
     align-items: center;
-    background-color: var(--turquoise);
+    background-color: var(--bluePastel);
     margin:-5px;
     margin-bottom: 2rem;
+    border-bottom: 6px solid var(--rouge);
 }
 
 h1{
@@ -35,9 +36,7 @@ h1{
 .container{
     display: flex;
     flex-direction: row;
-    column-gap: 2rem;
-
-    align-items: center;
+    column-gap: 6rem;
     justify-content: center;
 }
 
@@ -49,7 +48,7 @@ h2{
 .input_formulaire {
     width: 100%;
     height: 2rem;
-    border: 1px solid var(--turquoise);
+    border: 1px solid var(--bluePastel);
     border-radius:5px; 
     text-align: center;
     font-size: 15px;   
@@ -57,21 +56,18 @@ h2{
 
 .signup,
 .login{
-    width:30%;
+    width:100%;
     border: 1px var(--rouge) solid;
     padding:2rem;
-    background-color: var(--gris-maquette);
+    background-color: var(--grey);
     border-radius: 5px;
 }
 
-.login{
-    align-self: baseline;
-}
 .avatar{
     width: 4rem;
     height: 4rem;
     border-radius: 15px;
-    box-shadow: 2px 2px var(--turquoise);
+    box-shadow: 2px 2px var(--bluePastel);
 }
 
 .title_signup{
@@ -80,7 +76,7 @@ h2{
 }
 
 .btn_enter {
-    background-color: var(--turquoise);
+    background-color: var(--bluePastel);
     height: 2rem;
     width: 3rem;
     opacity: 0.8;
@@ -93,6 +89,16 @@ h2{
     transform:scale(1.15);
 }
 
+.question{
+    color:var(--rouge)
+}
+.linkConnect{
+    color: var(--grey)
+}
+
+.linkConnect:hover{
+    color: var(--rouge)
+}
 .footer{
     display: flex;
     justify-content: center;
@@ -139,7 +145,7 @@ footer a:hover{
 
 .tchatUserConnect{
     height: 3rem;
-    border: 1px solid var(--turquoise);
+    border: 1px solid var(--bluePastel);
     width: 100%;
     text-align: left;
     font-size: 15px;   
@@ -193,7 +199,7 @@ footer a:hover{
     border-radius: 5px;
 }
 
-.tchatsMembersAndComments{
+.allTchats{
     display: flex;
     flex-direction: column;
     border: 1px  var(--rouge) solid;
@@ -218,8 +224,8 @@ footer a:hover{
     width: 88%;
 }
 .commentSend{
-    position: absolute;
-    right: 8rem;
-    bottom:1rem;
+    position: relative;
+    right: 2rem;
+    top:0.5rem;
     width: 30px;
 }

@@ -23,9 +23,9 @@ btnSubmitNewUser.addEventListener("click", function (event) { // envoie du formu
         .then(function (response) {
             return response.json()
         }) 
-        .then(function(data) { //j enregistre le retour  de l'api dans des variables
-            let usernameConnect = data.contact.username;
-            let avatarConnect = data.contact.avatar;
+        .then(function() { //j enregistre le retour  de l'api dans des variables
+            let id = contact.id;
+            let avatarConnect = contact.avatar;
 
 //ouverture de la page de confirmation ave les parametres dans l url
                window.location.assign("pageTchats.html?avatar="+ avatarConnect + "&username=" + usernameConnect )
