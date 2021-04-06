@@ -209,12 +209,11 @@ footer a:hover{
     display: flex;
     flex-direction: column;
     border: 1px  var(--rouge) solid;
-    width: 90%;
+    width: 100%;
     padding: 1rem 0 3rem 1rem;
     margin-right: 1rem;
     background-color: rgb(221, 215, 215);
     border-radius: 5px;
-    width:88%;
 }
 
 .inputTchatMember{
@@ -234,4 +233,8 @@ footer a:hover{
     right: 2rem;
     top:0.5rem;
     width: 30px;
+}
+
+.allTchatsMembers{
+    width: 88%;
 }
