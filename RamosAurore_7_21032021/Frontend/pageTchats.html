@@ -24,10 +24,11 @@
             </section>
             <section class="post">
                 <div class="tchatUserConnect" id="tchatUserConnect"> <!--partie HTML importée en pageTchats.js --> 
-                    <button class="avatarConnect"> 
-                        <a href="#">Avatar</a>
+                    <button class="avatarConnect" id="avatarConnect"> 
+                     <!--variable de l lavatar en js -->  
                     </button>
-                    <label for="userConnect"> </label>
+                    <p id=usernameConnect class="usernameConnect"></p>
+                    <label for="userConnect"></label>
                     <input class="inputTchatUserConnect" 
                             type="text" 
                             name="userConnect" 
@@ -50,8 +51,10 @@
         </footer>
 
         <!--mes scripts-->
+        <script src="js/pageUserConnected.js"></script>
         <script src="js/pageTchats.js"></script>   
         <script src="js/Tchats.js"></script> 
-
+        <script src="js/Users.js"></script>
     </body>
+
 </html>
