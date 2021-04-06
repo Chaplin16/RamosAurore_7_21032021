@@ -10,8 +10,9 @@ const multerAvatar = require('../middlewares/multerAvatar');
 router.post('/signup', userControllers.createAccount);
 router.post('/login', userControllers.login);
 
-router.get('/:id', auth, userControllers.getOneUser);
-router.get('/all', auth, userControllers.getAllUsers); 
+router.get('/:id', userControllers.getOneUser); //oter AUTH
+router.get('/all', auth, userControllers.getAllUsers);
+router.get('/:email/userId', auth, userControllers.getUserId);
 
 router.put('/:id/username/update', auth, userControllers.modifyUsername);
 router.put('/:id/avatar/update', auth, multerAvatar, userControllers.modifyUserAvatar);

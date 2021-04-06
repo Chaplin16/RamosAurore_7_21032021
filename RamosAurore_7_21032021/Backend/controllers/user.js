@@ -79,6 +79,12 @@ exports.login = (req, res, next) => {
             res.status(500).send({ error })
         );
 };
+// route pour recuperer un user via le mail
+exports.getUserId = (req, res, next) => {
+    User.findOne({ where: { email: req.params.email } })
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(404).json({ error }));
+};
 
 //route pour voir le profil d'un utilisateur
 exports.getOneUser = (req, res, next) => {
