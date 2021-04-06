@@ -42,7 +42,7 @@
                     <!--<input type=submit id="btnTchat" class="linkSend" data-id="${tchat.id}" data-content="${tchat.content} data-image="${tchat.attachment}" data-name="${tchat.userId}" data-create="${tchat.createAt}" data-update="${tchat.updatedAt}">-->
                 </div>
                 <div class="tchatsMembersAndComments" id="tchatsMembersAndComments"> 
-                    <div class="allThatsMembers" id="allTchatsMembers">
+                    <div class="allTchatsMembers" id="allTchatsMembers">
                           <!--HTML des tchats mis dans le JS-->
                     </div>
                     <div class="commentUser" id="commentsUsers">
@@ -56,10 +56,10 @@
         </footer>
 
         <!--mes scripts-->
+        <script src="js/models/Tchats.js"></script> 
+        <script src="js/models/Users.js"></script>
+        <script src="js/models/Comments.js"></script>
         <script src="js/pageTchats.js"></script>   
-        <script src="js/Tchats.js"></script> 
-        <script src="js/Users.js"></script>
-        <script src="js/Comments.js"></script>
     </body>
 
 </html>

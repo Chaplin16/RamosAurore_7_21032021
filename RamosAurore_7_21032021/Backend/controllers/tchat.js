@@ -10,7 +10,7 @@ exports.createTchat = (req, res, next) => {
     Tchat.create({
             content: tchat.content,
             attachment: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-            userId:tchat.userId
+            UserId:tchat.userId
         }).then(tchat => {
                 res.status(201).json({ message: "Nouveau message créé !" })
             
@@ -33,9 +33,13 @@ exports.getOneTchat = (req, res, next) => {
 
 //route pour voir tous les tchats
 exports.getAllTchats = (req, res, next) => {
-    Tchat.findAll()
-        .then(tchats => res.status(200).json(tchats))
-        .catch(error => res.status(404).json({ error }));
+    Tchat.findAll({ include: "User" })
+        .then(tchats => 
+            res.status(200).json(tchats)
+            )
+        .catch(error => 
+            res.status(404).json({ error })
+            );
 };
         
 //route pour supprimer un tchat

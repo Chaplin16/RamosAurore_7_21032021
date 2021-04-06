@@ -61,8 +61,7 @@ exports.login = (req, res, next) => {
                         return res.status(401).send({ error: 'Mot de passe incorrect !' });
                     } 
                     res.status(200).json({
-                        userId: user.id,
-                        isAdmin:user.isAdmin,
+                        user: user.toJSON(),
                         token: jsonwebtoken.sign( //fonction sign prend en argument
                             { 
                                 userId: user.id,
