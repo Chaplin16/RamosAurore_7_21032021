@@ -11,8 +11,7 @@ const Tchat = database.define('Tchat', {
             key: 'id'
         },
     }, */
-    content: DataTypes.STRING,
-    attachment: DataTypes.STRING,
+    content: DataTypes.STRING
 }, {
     Sequelize,
     modelName: 'Tchat',
