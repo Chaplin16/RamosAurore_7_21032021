@@ -16,7 +16,8 @@ const storage = multer.diskStorage({ //methode qui enregistre sur le disque
     callback(null, 'images');
     },
     filename: (req, file, callback) => { //creation du nouveau nom de fichier d image pour multer
-        const name = file.originalname.split(' ').join('_'); //on enleve les espaces
+        const name = file.originalname.split(' ').join('_').split('.')[0]; //on enleve les espaces
+        console.log(name)
         const extension = MIME_TYPES[file.mimetype];
         callback(null, name + Date.now() + '.' + extension);//nom de fichier suffisamment unique
     },
@@ -27,4 +28,4 @@ module.exports = multer({
     limits: { 
         fileSize: maxSize 
     }
-}).single('attachment');
+}).single('avatar');

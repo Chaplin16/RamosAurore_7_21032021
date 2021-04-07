@@ -4,10 +4,10 @@ const router = express.Router();
 //const auth = require('../middlewares/auth');
 const userControllers = require('../controllers/user');
 const auth = require('../middlewares/auth');
-const multerAvatar = require('../middlewares/multerAvatar');
+const multer = require('../middlewares/multer');
 
 
-router.post('/signup', userControllers.createAccount);
+router.post('/signup', multer, userControllers.createAccount);
 router.post('/login', userControllers.login);
 
 router.get('/getOne/:id', userControllers.getOneUser); //oter AUTH
@@ -15,7 +15,7 @@ router.get('/getAll', auth, userControllers.getAllUsers);
 router.get('/:email/userId', auth, userControllers.getUserId);
 
 router.put('/:id/username/update', auth, userControllers.modifyUsername);
-router.put('/:id/avatar/update', auth, multerAvatar, userControllers.modifyUserAvatar);
+router.put('/:id/avatar/update', auth, multer, userControllers.modifyUserAvatar);
 router.put('/:id/email/update', auth, userControllers.modifyUserEmail);
 router.put('/:id/password/update', auth, userControllers.modifyUserPassword);
 router.put('/:id/job/update', auth, userControllers.modifyUserJob);
