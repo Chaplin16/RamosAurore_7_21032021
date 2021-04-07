@@ -23,8 +23,7 @@ btnSubmitMember.addEventListener("click", function (event) { // envoie du formul
             .then(function (json) {
                 let user = new User(json.user);
                 user.save(json.token);
-            //ouverture de la page de confirmation ave les parametres dans l url    
-                
+            
             window.location.assign("pageTchats.html")
             }).catch(function (err) {
                 console.log('Retour info Api problem: ' + err.message);

@@ -9,7 +9,7 @@ class Tchats {
         this.updatedAt = tchat.updatedAt;
         this.user = tchat.User;
     }
-    display() {
+    displayTchats() {
       return  `<div class="allTchats" id="allTchats">
         <div class="tchatMember">
             <button class="avatarMember"> 

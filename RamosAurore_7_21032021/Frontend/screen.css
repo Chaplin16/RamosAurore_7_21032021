@@ -42,7 +42,8 @@ h1{
 
 h2{
     color:var(--rouge);
-    font-size: 1.3rem;
+    font-size: 1rem;
+    margin:1rem;
 }
 
 .input_formulaire {
@@ -132,10 +133,20 @@ footer a:hover{
     column-gap: 6rem;
     width: 100%;
 }
+.disconnect{
+    margin-left: 1rem;
+    margin-bottom:1rem;
 
+}
+
+.updateAvatar,
+.deleteAccount {
+    font-size: 0.8rem;
+    margin-left: 1rem;
+}
 .tchatUserConnect,
 .tchatsMembersAndComments,
-.allMembers{
+.profil{
     display: flex;
     column-gap: 2%;
     margin-bottom: 2rem;
@@ -193,6 +204,9 @@ footer a:hover{
     margin:5px; 
 }
 
+.avatarSize {
+    max-width: 60px;
+}
 .avatarComment{
     border-radius: 50%;
     width: 40px;
@@ -200,9 +214,9 @@ footer a:hover{
     margin: 0px 10px;
 }
 
-.members{
+.yourProfil{
     background-color: rgb(221, 215, 215);
-    padding:2rem;
+    width: 20%;
     border: 1px var(--rouge) solid;
     border-radius: 5px;
 }
