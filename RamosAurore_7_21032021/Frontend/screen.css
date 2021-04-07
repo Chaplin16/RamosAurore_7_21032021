@@ -1,8 +1,8 @@
 :root{
-    --rouge:rgb(209, 81, 90);
+    --rouge:#96434a;
     --grey: #e7e2e2;
-    --bluePastel: rgb(173, 185, 208);
-    background-color: rgb(74,74,74);
+    --bluePastel: rgb(40, 53, 78);
+    background-color: rgb(135,135,135);
 }
 
 html{
@@ -81,7 +81,8 @@ h2{
 }
 
 .btn_enter {
-    background-color: var(--bluePastel);
+    background-color: var(--rouge);
+    font-weight: 700;
     height: 2rem;
     width: 3rem;
     opacity: 0.8;
@@ -92,6 +93,7 @@ h2{
 
 .btn_enter:hover{
     transform:scale(1.15);
+    font-weight: bold;
 }
 
 .question{
