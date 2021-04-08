@@ -44,6 +44,7 @@ h2{
     color:var(--rouge);
     font-size: 1rem;
     margin:1rem;
+    margin-left:2rem;
 }
 
 .input_formulaire {
@@ -134,16 +135,19 @@ footer a:hover{
     width: 100%;
 }
 .disconnect{
-    margin-left: 1rem;
+    margin-left: 28%;;
     margin-bottom:1rem;
-
+}
+.disconnect:hover {
+    transform:scale(1.15);
+    font-weight: bold;
 }
 
-.updateAvatar,
-.deleteAccount {
-    font-size: 0.8rem;
-    margin-left: 1rem;
+.inputDisconnect{
+    background-color: var(--rouge);
+    font-weight: bold;  
 }
+
 .tchatUserConnect,
 .tchatsMembersAndComments,
 .profil{
@@ -156,9 +160,12 @@ footer a:hover{
     width:100%;
 }
 
+.tchatMember{
+    display: flex;
 
+}
 .inputTchatMember {
-    width: 88%;
+    width: 80%;
     border: none;
 }
 .inputTchatUserConnect{
@@ -215,29 +222,45 @@ footer a:hover{
     width: 63px;
     height: 60px;  
 }
-
+.avatarConnect,
 .usernameConnect{
-    margin-left: 40%;
+    margin-left: 30%;
 }
 
 .avatarSize {
     max-width: 60px;
     margin-top: 5px;
-    margin-left:15px;
+}
+.avatarProfil{
+    max-width: 90px;
+    margin-left: 20%;
 }
 
-.avatarComment{
-    border-radius: 50%;
-    width: 40px;
-    height:40px;
-    margin: 0px 10px;
+
+.updateAvatar,
+.updateProfil,
+.deleteAccount {
+    font-size: 0.8rem;
+    margin-left: 21%;
+}
+
+.updateAvatar:hover,
+.updateProfil:hover,
+.deleteAccount:hover{
+    color: var(--rouge);
+    font-weight: bold;
+}
+.avatarMember{
+    margin-top:-8px;
+    margin-right: 1rem;
 }
 
 .yourProfil{
     background-color: rgb(221, 215, 215);
-    width: 20%;
+    width: 23%;
     border: 1px var(--rouge) solid;
     border-radius: 5px;
+    height: 20%;
 }
 
 .allTchats{
@@ -247,12 +270,15 @@ footer a:hover{
     width: 100%;
     padding: 1rem 0 3rem 1rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
     background-color: rgb(221, 215, 215);
     border-radius: 5px;
 }
 
 .inputTchatMember{
     height: 3rem;
+    border-radius: 8px;
+    width: 87%;
 }
 
 .tchatUserConnect{

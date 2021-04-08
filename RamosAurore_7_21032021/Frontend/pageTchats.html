@@ -17,14 +17,15 @@
        </header>
         <main class="containerTchatsAndUsers">
             <section class= "yourProfil">
-                <h2>Votre profil</h2>
+                <h2 id="Hello"></h2>
                 <p>
-                    <a class="updateAvatar" href="#">Modifier son avatar</a>
+                    <a class="updateAvatar" id="updateAvatar" href="#">Modifier son avatar</a>
+                    <a class="updateProfil" id="updateProfil" href="#">Modifier son profil</a>
                     <a class="deleteAccount" id="deleteAccount" href="#">Supprimer son profil</a>
                 </p>
                 <div class="disconnect">
                     <a href="index.html"> 
-                        <input type="submit" value="Se déconnecter"> 
+                        <input type="submit" class="inputDisconnect" value="Se déconnecter"> 
                     </a>
                 </div>
             </section>
@@ -45,7 +46,7 @@
                     />
                         <!--<a href="#" dowload="${tchat.attachment}>-->
                    <!--<img class="linkImage" src="images/trombone_50.png"/>-->
-                    <input type="submit" class="linkSend" id="btnSubmitTchat" class="btn_enter_tchat" name="submit">
+                    <input type="submit" class="linkSend" id="btnSubmitTchat" name="submit">
                     
                 <!--   <input type=submit id="btnTchat" class="linkSend" data-id="${tchat.id}" data-content="${tchat.content} data-image="${tchat.attachment}" data-name="${tchat.userId}" data-create="${tchat.createAt}" data-update="${tchat.updatedAt}">--> 
                 </div>
@@ -67,7 +68,8 @@
         <script src="js/models/Tchats.js"></script> 
         <script src="js/models/Users.js"></script>
         <script src="js/models/Comments.js"></script>
-        <script src="js/pageTchats.js"></script>   
+        <script src="js/pageTchats.js"></script>
+        <script src="js/pageProfilUser.js"></script>   
     </body>
 
 </html>

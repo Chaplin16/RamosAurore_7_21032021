@@ -22,10 +22,7 @@ exports.getOneTchat = (req, res, next) => {
     Tchat.findOne({ 
         where: {
             id:req.params.id
-        },
-        // include: [{
-        //     models: User   
-        // }]   
+        } 
     }).then(tchat => res.status(200).json(tchat))
     .catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
 };

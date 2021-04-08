@@ -8,9 +8,9 @@ const tchatControllers = require('../controllers/tchat');
 router.post('/', tchatControllers.createTchat);
 
 router.get('/getOne/:id', auth, tchatControllers.getOneTchat);
-router.get('/getAll', auth, tchatControllers.getAllTchats);
+router.get('/getAll',  tchatControllers.getAllTchats);
 
-router.delete('/:id/delete', auth, tchatControllers.tchatDelete);
+router.delete('/:id/delete', tchatControllers.tchatDelete);
 
 
 module.exports = router;

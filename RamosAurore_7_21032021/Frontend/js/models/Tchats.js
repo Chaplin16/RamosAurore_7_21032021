@@ -12,7 +12,7 @@ class Tchats {
     displayTchats() {
       return  `<div class="allTchats" id="allTchats">
         <div class="tchatMember">
-            <div>
+            <div class="infoMember">
                 <p class="avatarMember"> 
                     <img class="avatarSize" src="${this.user.avatar}"/>
                 </p>
