@@ -12,10 +12,12 @@ class Tchats {
     displayTchats() {
       return  `<div class="allTchats" id="allTchats">
         <div class="tchatMember">
-            <button class="avatarMember"> 
-                <p>${this.user.avatar}</p>
-            </button>
-            <p id=usernameMember class="usernameMember">${this.user.username}</p>
+            <div>
+                <p class="avatarMember"> 
+                    <img class="avatarSize" src="${this.user.avatar}"/>
+                </p>
+                <p id=usernameMember class="usernameMember">${this.user.username}</p>
+            </div>
             <label for="allTchatMember"></label>
             <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember" value="${this.content}" /> 
         </div>

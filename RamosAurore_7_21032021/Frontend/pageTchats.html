@@ -30,10 +30,12 @@
             </section>
             <section class="post">
                 <div class="tchatUserConnect" id="tchatUserConnect"> <!--partie HTML importée en pageTchats.js --> 
-                    <p class="avatarConnect" id="avatarConnect"> 
-                     <!--variable de l lavatar en js -->  
-                    </p>
-                    <p id=usernameConnect class="usernameConnect"></p>
+                    <div class="connected"                  >
+                        <p class="avatarConnect" id="avatarConnect"> 
+                        <!--variable de l lavatar en js -->  
+                        </p>
+                        <p id=usernameConnect class="usernameConnect"></p>
+                    </div>    
                     <label for="userConnect"></label>
                     <input class="inputTchatUserConnect" 
                             type="text" 
@@ -43,9 +45,9 @@
                     />
                         <!--<a href="#" dowload="${tchat.attachment}>-->
                    <!--<img class="linkImage" src="images/trombone_50.png"/>-->
+                    <input type="submit" class="linkSend" id="btnSubmitTchat" class="btn_enter_tchat" name="submit">
                     
-                    <img class="linkSend" src="images/fleche_rouge.png">
-                    <!--<input type=submit id="btnTchat" class="linkSend" data-id="${tchat.id}" data-content="${tchat.content} data-image="${tchat.attachment}" data-name="${tchat.userId}" data-create="${tchat.createAt}" data-update="${tchat.updatedAt}">-->
+                <!--   <input type=submit id="btnTchat" class="linkSend" data-id="${tchat.id}" data-content="${tchat.content} data-image="${tchat.attachment}" data-name="${tchat.userId}" data-create="${tchat.createAt}" data-update="${tchat.updatedAt}">--> 
                 </div>
                 <div class="tchatsMembersAndComments" id="tchatsMembersAndComments"> 
                     <div class="allTchatsMembers" id="allTchatsMembers">

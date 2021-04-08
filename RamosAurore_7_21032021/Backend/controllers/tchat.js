@@ -32,8 +32,11 @@ exports.getOneTchat = (req, res, next) => {
 
 //route pour voir tous les tchats
 exports.getAllTchats = (req, res, next) => {
-    Tchat.findAll({ include: "User" })
+    Tchat.findAll({ 
+        include: "User"
+     })
         .then(tchats => 
+            
             res.status(200).json(tchats)
             )
         .catch(error => 

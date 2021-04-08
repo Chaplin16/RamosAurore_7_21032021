@@ -156,41 +156,57 @@ footer a:hover{
     width:100%;
 }
 
-.inputTchatUserConnect,
+
 .inputTchatMember {
     width: 88%;
     border: none;
 }
+.inputTchatUserConnect{
+    font-size: 0.9rem;
+    width:77%;
+    border: none;
+    margin:10px 0px;
+}
 
 .tchatUserConnect{
-    height: 3rem;
     border: 1px solid var(--bluePastel);
     width: 100%;
     text-align: left;
     font-size: 15px;   
     border-radius:5px; 
     background-color: white;
+    position: relative;  
 }
-.tchatUserConnect{
-    position: relative;
-}
+
 
 .post{
     width: 100%;
 }
 
-.linkImage{
+/* .linkImage{
     position: absolute;
     right:10%;
     top: 13px;
-}
+} */
 
 .linkSend{
     position: relative;
     right: 1rem;
-    top: 10px;
+    margin:auto;
     width: 50px;
     height: 50px;
+    background-image: url("images/fleche_rouge.png");
+    background-position: center;
+    font-size:0;
+    border: none;
+}
+
+.linkSend:hover{
+    border: 2px var(--bluePastel) solid;
+    border-radius: 5px;
+    transform:scale(1.15);
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .avatarConnect,
@@ -200,13 +216,16 @@ footer a:hover{
     height: 60px;  
 }
 
-.avatarConnect{
-    margin:5px; 
+.usernameConnect{
+    margin-left: 40%;
 }
 
 .avatarSize {
     max-width: 60px;
+    margin-top: 5px;
+    margin-left:15px;
 }
+
 .avatarComment{
     border-radius: 50%;
     width: 40px;
@@ -244,6 +263,7 @@ footer a:hover{
     height: 1.5rem;
     width: 88%;
 }
+
 .commentSend{
     position: relative;
     right: 2rem;
