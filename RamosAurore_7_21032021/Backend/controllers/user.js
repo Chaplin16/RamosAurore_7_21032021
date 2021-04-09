@@ -32,7 +32,7 @@ exports.createAccount = (req, res, next) => {
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,
-                    avatar: "images/avatar1.png", 
+                    avatar: "images/avatar1.png",
                     job: req.body.job
                 }).then(() => res.status(201).send({ message: "Nouvel utilisateur créé !" }))
                 .catch(error => res.status(400).json({ error: "éléments manquants" }));
@@ -114,8 +114,6 @@ exports.modifyProfil = (req, res, next) => {
         })
     }
 
-
-
 //route pour modifier le pseudo
 exports.modifyUsername = (req, res, next) => {
         User.findOne({ where: { id: req.params.id } })
@@ -135,19 +133,24 @@ exports.modifyUsername = (req, res, next) => {
 
 //route pour changer d'avatar NE SE MODIFIE PAS 
 exports.modifyUserAvatar = (req, res, next) => {
+    console.log(req.file)
+    if(req.file){
     User.findOne({ where: { id: req.params.id } })
-        .then(user => {
-             const avatar = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
-            user.update(
-                { avatar: avatar }) 
+    .then(user => {
+        const avatar = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+   
+            user.update({ avatar: avatar }) 
+                
                 .then(() => res.status(200).json({ message: 'avatar modifié !' }))
                 .catch(error => res.status(400).json({ error }));
         }) 
         .catch(error => 
             res.status(500).json({ error: 'Problème de serveur!!' })   
         );
+    }else {
+        console.log("erreur")
+    }
 };
-
 //route pour modifier l'email(avec securité)
 exports.modifyUserEmail = (req, res, next) => {
     const id = req.params.id
