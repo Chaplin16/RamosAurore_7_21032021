@@ -16,21 +16,27 @@ hello.innerHTML =`<span> Bonjour ${username}</span>
 btnUpdateAvatar.addEventListener('click', function(event) {
     let id = info.id;
     let token = info.token;
-    let newImage = document.getElementById('avatar').value;
+    const file = document.getElementById('avatar').files[0];
+    const formData = new FormData();
+    formData.append('avatar', file);
     event.preventDefault();
+    console.log(formData);
     fetch('http://localhost:3000' + '/' + id + '/avatar/update', {
-        method: "update",
+        method: "put",
         headers: { 
-            "Content-Type": "application/json;charset=UTF-8",
             "Authorization": `Bearer ${token}`
         },
-        mode: "cors",
-        body: newImage
-      })  .then(function(response) {
+        body: formData
+      }).then(function(response) {
         return response.json();
+      })
+        .then(response => {
+            window.location.reload()
         }) 
-        .then(function(data){
-        })    
+        .catch(err => {
+            console.log(err);
+            window.alert('Une erreur est survenue, veuillez réessayer plus tard. Si le problème persiste, contactez l administrateur du site');
+        })
 })
 
 //delete un user
