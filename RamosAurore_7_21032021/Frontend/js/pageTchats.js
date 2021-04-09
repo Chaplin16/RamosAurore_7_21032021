@@ -17,6 +17,8 @@ let username = info.username;
 avatarConnect.innerHTML = ` <img  class="avatarSize" src="${avatar}"/> `
 usernameConnect.innerHTML =`<span>${username}</span>`
 
+
+
 //valider un tchat de user connecté
 const tchatMember = document.getElementById('tchatMember');
 const btnSubmitTchat = document.getElementById('btnSubmitTchat');

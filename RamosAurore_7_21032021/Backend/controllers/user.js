@@ -29,10 +29,10 @@ exports.createAccount = (req, res, next) => {
         bcrypt.hash(req.body.password, 10) //hash le mot de passe, on execute 10 fois l algorithme de hachage
             .then(hash => {//on recupere le hash du MDP et on le met ds un objet pour l enregistrer dans la BDD
                 User.create({
-                    avatar: `images/avatarDefault.png` ,
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,
+                    avatar: "images/avatar1.png", 
                     job: req.body.job
                 }).then(() => res.status(201).send({ message: "Nouvel utilisateur créé !" }))
                 .catch(error => res.status(400).json({ error: "éléments manquants" }));
@@ -99,6 +99,22 @@ exports.getAllUsers = (req, res, next) => {
         .then(users => res.status(200).json(users))
         .catch(error => res.status(404).json({ error }));
 };
+
+//route pour modifier son profil 
+exports.modifyProfil = (req, res, next) => {
+        User.findOne({ where: req.params.id })
+            .then(user => {
+                const userModify = 
+            {   
+                ...JSON.parse(req.body.user)
+            }
+            User.updateOne({ id: req.params.id }, { ...userModify, id: req.params.id }) //verification de l id du user modificateur
+                .then(() => res.status(200).json({ message: 'informations de user modifiées !' }))
+                .catch(error => res.status(400).json({ error }));
+        })
+    }
+
+
 
 //route pour modifier le pseudo
 exports.modifyUsername = (req, res, next) => {

@@ -6,6 +6,7 @@ class User {
         this.id = user.id;
         this.username = user.username;
         this.avatar = user.avatar; 
+        this.job = user.job;
         this.isAdmin = user.isAdmin;
         this.createdAt = user.createAt;
         this.updatedAt = user.updatedAt;

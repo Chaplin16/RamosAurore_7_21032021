@@ -9,6 +9,7 @@ btnSubmitNewUser.addEventListener("click", function (event) { // envoie du formu
             'username': document.getElementById("username").value,
             'email': document.getElementById("email").value,
             'password': document.getElementById("password").value,
+
             'job': document.getElementById("job").value
         }     
         let sendInfo = JSON.stringify( contact );
