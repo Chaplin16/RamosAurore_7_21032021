@@ -5,6 +5,7 @@ class User {
     constructor(user) {
         this.id = user.id;
         this.username = user.username;
+        this.email = user.email;
         this.avatar = user.avatar; 
         this.job = user.job;
         this.isAdmin = user.isAdmin;

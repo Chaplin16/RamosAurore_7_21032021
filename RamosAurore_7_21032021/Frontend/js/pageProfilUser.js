@@ -30,18 +30,16 @@ btnUpdateAvatar.addEventListener('click', function(event) {
       })
         .then( function(data) {         
             const info = JSON.parse(sessionStorage.getItem("user"));
-            let avatarNew = datagit add µ
+            let avatarNew = data
             info.avatar = avatarNew
             sessionStorage.setItem("user", JSON.stringify(info));
             window.location.reload();
         }) 
-        .catch(err => {
-            console.log(err);
+        .catch(function(error) {
+            console.log(error);
             window.alert('Une erreur est survenue, veuillez réessayer plus tard. Si le problème persiste, contactez l administrateur du site');
         })
-})
-
-
+});
 
 //delete un user
 btnDeleteProfil.addEventListener('click', function (event) {
@@ -67,4 +65,4 @@ btnDeleteProfil.addEventListener('click', function (event) {
             })
     }
     return false
-})
+});

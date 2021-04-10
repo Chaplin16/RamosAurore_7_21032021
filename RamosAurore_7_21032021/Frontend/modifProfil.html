@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content=" messagerie instantannée de groupomania, pasge d inscription">
+        <meta name="description" content=" messagerie instantannée de groupomania, pasge de modification des données">
         <link rel="stylesheet" href="screen.css">
-        <title>accueil Groupomania</title>
+        <title>ModificationProfilUser</title>
     </head>
 
     <body>
@@ -17,38 +17,34 @@
                 <h1>Groupomania</h1>
         </header>
         <main class="container">
-                <form action="http://localhost:3000/signup" method="post" name="form"  id="formSignup">
+                <form action="http://localhost:3000" method="post" name="form"  id="formSignup">
                     <div class="signup">
                         <div class="title_signup">
-                            <h2>Inscription</h2>    
+                            <h2>Modification de vos données</h2>     
                         </div>
                         <p class="username"> 
                             <label for="username"> </label>
-                            <input class="input_formulaire" type="text" name="username" id="username" title="Veuillez n'écrire que des lettres" pattern ="[A-z-_çàâéèeîïù]{2,30}" placeholder="Votre pseudo" required/>
+                            <input class="input_formulaire" type="text" name="username" id="modifUsername" title="Veuillez n'écrire que des lettres" pattern ="[A-z-_çàâéèeîïù]{2,30}" placeholder="Votre pseudo" required/>
                         </p>
                         <p class="email"> 
                             <label for="email"> </label>
-                            <input class="input_formulaire" type="email" name="email" id="email" title="Veuillez écrire un mail valide" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$" placeholder="Votre email" required/>
+                            <input class="input_formulaire" type="email" name="email" id="modifEmail" title="Veuillez écrire un mail valide" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$" placeholder="Votre email" required/>
                         </p>
                         <p class="password"> 
                             <label for="password"> </label>
-                            <input class="input_formulaire" type="password" name="password" id="password" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="Votre mot de passe" required/>
+                            <input class="input_formulaire" type="password" name="password" id="modifPassword" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="Votre mot de passe" required/>
                         </p>
                         <p class="job"> 
                             <label for="job"> </label>
-                            <input class="input_formulaire" type="text" name="job" id="job" pattern ="[A-z-_ çàâéèeîïù]{2,30}" title="Veuillez entrer votre métier" placeholder="Votre poste"/>
+                            <input class="input_formulaire" type="text" name="job" id="modifJob" pattern ="[A-z-_ çàâéèeîïù]{2,30}" title="Veuillez entrer votre métier" placeholder="Votre poste"/>
                         </p>
                         <p>
-                            <input type="submit" id="btnSubmitNewUser" class="btn_enter" name="submit" value="Envoyer">
+                            <input type="submit" id="btnSubmitModif" class="btn_enter" name="submit" value="Envoyer">
                         </p> 
                     </div>
                 </form>
             </div>
-            <div class="containerLinkConnect">
-                <p class="question"> Déjà inscrit?<br>
-                    <a class="linkConnect" href= "connect.html">Connectez-vous</a>
-                </p>
-            </div>
+           
         </main>
         <footer>
             <div class="footer">
@@ -69,7 +65,7 @@
         </footer>
 
       <!--mes scripts-->
-      <script type="text/javascript" src="js/indexNewUser.js"></script>
+      <script type="text/javascript" src="js/modifProfil.js"></script>
 
       
     </body>

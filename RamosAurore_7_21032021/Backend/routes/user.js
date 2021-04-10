@@ -10,9 +10,8 @@ const multer = require('../middlewares/multer');
 router.post('/signup', multer, userControllers.createAccount);
 router.post('/login',  userControllers.login);
 
-router.get('/getOne/:id', auth, userControllers.getOneUser); //oter AUTH
+router.get('/getOne/:id', userControllers.getOneUser); //oter AUTH
 router.get('/getAll', auth, userControllers.getAllUsers);
-router.get('/:email/userId', auth, userControllers.getUserId);
 
 router.put('/:id/profil/update', userControllers.modifyProfil);
 router.put('/:id/username/update', userControllers.modifyUsername);

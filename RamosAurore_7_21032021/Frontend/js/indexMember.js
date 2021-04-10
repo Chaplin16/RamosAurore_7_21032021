@@ -26,7 +26,7 @@ btnSubmitMember.addEventListener("click", function (event) { // envoie du formul
             
             window.location.assign("pageTchats.html")
             }).catch(function (err) {
-                console.log('Retour info Api problem: ' + err.message);
+                console.log('Il n y a personne d identifier avec ce mail' + err.message);
             })
             //le retour en cas de non connection au serveur 
             .catch(function (err) {
