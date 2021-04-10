@@ -28,19 +28,12 @@ btnUpdateAvatar.addEventListener('click', function(event) {
       }).then(function(response) {
         return response.json();
       })
-        .then( function(data) {
-            let avatarNew = data
-          
-            sessionStorage.setItem("avatar", JSON.stringify(avatarNew));  
-            console.log(avatar)  
-              console.log(avatarNew)
-            helloAvatar.innerHTML = 
-            `<p>
-               <img class="avatarSize" src=${avatarNew}/>
-            </p>`;     
-        window.location.reload();
-            //location.reload()
-
+        .then( function(data) {         
+            const info = JSON.parse(sessionStorage.getItem("user"));
+            let avatarNew = datagit add µ
+            info.avatar = avatarNew
+            sessionStorage.setItem("user", JSON.stringify(info));
+            window.location.reload();
         }) 
         .catch(err => {
             console.log(err);

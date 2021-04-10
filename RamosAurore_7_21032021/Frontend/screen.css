@@ -242,13 +242,16 @@ footer a:hover{
 .avatarSize {
     max-width: 60px;
     margin-top: 5px;
+
 }
 .avatarProfil{
     max-width: 90px;
     margin-left: 20%;
 }
 
-
+.helloAvatar{
+    margin-left: 35%;
+}
 .updateAvatar,
 .updateProfil,
 .deleteAccount {
