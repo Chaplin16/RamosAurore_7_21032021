@@ -131,7 +131,7 @@ exports.modifyUsername = (req, res, next) => {
             );
 };
 
-//route pour changer d'avatar NE SE MODIFIE PAS 
+//route pour changer d'avatar  
 exports.modifyUserAvatar = (req, res, next) => {
     console.log(req.file)
     if(req.file){
@@ -141,7 +141,7 @@ exports.modifyUserAvatar = (req, res, next) => {
    
             user.update({ avatar: avatar }) 
                 
-                .then(() => res.status(200).json({ message: 'avatar modifié !' }))
+                .then(() => res.status(200).json( avatar))
                 .catch(error => res.status(400).json({ error }));
         }) 
         .catch(error => 

@@ -20,7 +20,9 @@ class Tchats {
             </div>
             <label for="allTchatMember"></label>
             <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember" value="${this.content}" /> 
-        </div>
-    </div>`
+            <img data-id="${this.id}" role= "button" class ="trash" src="images/trash.png" alt="image d'une poubelle"> 
+            </div>
+    </div>`;
+
     }
 }

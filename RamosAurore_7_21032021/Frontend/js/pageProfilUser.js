@@ -1,18 +1,16 @@
-
-
 const hello = document.getElementById('Hello');
+const helloAvatar = document.getElementById('helloAvatar');
 const btnUpdateAvatar = document.getElementById('updateAvatar');
 const btnUpdateProfil = document.getElementById('updateProfil');
 const btnDeleteProfil = document.getElementById('deleteAccount');
 
-hello.innerHTML =`<span> Bonjour ${username}</span>
-                <p>
-                <img class="avatarSize" src="${avatar}"/>
-                </p>
-                `;
 
-//modifier un profil
+hello.innerHTML =`<span> Bonjour ${username}</span>`;
+helloAvatar.innerHTML =`<p>
+                            <img class="avatarSize" src="${avatar}"/>
+                        </p>`;
 
+//modifier l avatar 
 btnUpdateAvatar.addEventListener('click', function(event) {
     let id = info.id;
     let token = info.token;
@@ -20,7 +18,7 @@ btnUpdateAvatar.addEventListener('click', function(event) {
     const formData = new FormData();
     formData.append('avatar', file);
     event.preventDefault();
-    console.log(formData);
+
     fetch('http://localhost:3000' + '/' + id + '/avatar/update', {
         method: "put",
         headers: { 
@@ -30,14 +28,27 @@ btnUpdateAvatar.addEventListener('click', function(event) {
       }).then(function(response) {
         return response.json();
       })
-        .then(response => {
-            window.location.reload()
+        .then( function(data) {
+            let avatarNew = data
+          
+            sessionStorage.setItem("avatar", JSON.stringify(avatarNew));  
+            console.log(avatar)  
+              console.log(avatarNew)
+            helloAvatar.innerHTML = 
+            `<p>
+               <img class="avatarSize" src=${avatarNew}/>
+            </p>`;     
+        window.location.reload();
+            //location.reload()
+
         }) 
         .catch(err => {
             console.log(err);
             window.alert('Une erreur est survenue, veuillez réessayer plus tard. Si le problème persiste, contactez l administrateur du site');
         })
 })
+
+
 
 //delete un user
 btnDeleteProfil.addEventListener('click', function (event) {

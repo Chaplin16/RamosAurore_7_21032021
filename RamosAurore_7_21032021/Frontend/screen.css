@@ -312,3 +312,8 @@ footer a:hover{
 .allTchatsMembers{
     width: 88%;
 }
+
+.trash {
+    width: 1rem;
+    height: 1rem;
+}
