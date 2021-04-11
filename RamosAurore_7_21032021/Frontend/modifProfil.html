@@ -17,26 +17,26 @@
                 <h1>Groupomania</h1>
         </header>
         <main class="container">
-                <form action="http://localhost:3000" method="post" name="form"  id="formSignup">
+                <form action="http://localhost:3000" method="post" name="form"  id="formModifUser">
                     <div class="signup">
                         <div class="title_signup">
                             <h2>Modification de vos données</h2>     
                         </div>
                         <p class="username"> 
                             <label for="username"> </label>
-                            <input class="input_formulaire" type="text" name="username" id="modifUsername" title="Veuillez n'écrire que des lettres" pattern ="[A-z-_çàâéèeîïù]{2,30}" placeholder="Votre pseudo" required/>
+                            <input class="input_formulaire" type="text" name="username" id="modifUsername" title="Veuillez n'écrire que des lettres" pattern ="[A-z-_çàâéèeîïù]{2,30}" value="" required/>
                         </p>
                         <p class="email"> 
                             <label for="email"> </label>
-                            <input class="input_formulaire" type="email" name="email" id="modifEmail" title="Veuillez écrire un mail valide" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$" placeholder="Votre email" required/>
+                            <input class="input_formulaire" type="email" name="email" id="modifEmail" title="Veuillez écrire un mail valide" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$" required/>
                         </p>
                         <p class="password"> 
                             <label for="password"> </label>
-                            <input class="input_formulaire" type="password" name="password" id="modifPassword" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="Votre mot de passe" required/>
+                            <input class="input_formulaire" type="password" name="password" id="modifPassword" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" required/>
                         </p>
                         <p class="job"> 
                             <label for="job"> </label>
-                            <input class="input_formulaire" type="text" name="job" id="modifJob" pattern ="[A-z-_ çàâéèeîïù]{2,30}" title="Veuillez entrer votre métier" placeholder="Votre poste"/>
+                            <input class="input_formulaire" type="text" name="job" id="modifJob" pattern ="[A-z-_ çàâéèeîïù]{2,30}" title="Veuillez entrer votre métier" />
                         </p>
                         <p>
                             <input type="submit" id="btnSubmitModif" class="btn_enter" name="submit" value="Envoyer">
