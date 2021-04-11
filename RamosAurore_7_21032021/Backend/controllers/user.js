@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken'); //creation de token et verification
 const passwordValidator = require('password-validator');
 const multer = require('../middlewares/multer');
+const maskData = require('maskdata');
 //const maskData = require('maskdata'); //masque email dans BDD
 
 
@@ -22,7 +23,6 @@ schema
 //enregistrement des nouveaux utilisateurs dans BDD
 //regex et hachage du mot de passe
 exports.createAccount = (req, res, next) => {
-    console.log(req.body)
     if (!schema.validate(req.body.password)) {
         res.status(400).json({ error: "le mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 minuscule" });
     } else {
@@ -79,12 +79,6 @@ exports.login = (req, res, next) => {
             res.status(500).send({ error })
         );
 };
-// route pour recuperer un user via le mail
-exports.getUserId = (req, res, next) => {
-    User.findOne({ where: { email: req.params.email } })
-        .then(user => res.status(200).json(user))
-        .catch(error => res.status(404).json({ error }));
-};
 
 //route pour voir le profil d'un utilisateur
 exports.getOneUser = (req, res, next) => {
@@ -102,38 +96,46 @@ exports.getAllUsers = (req, res, next) => {
 
 //route pour modifier son profil 
 exports.modifyProfil = (req, res, next) => {
-        User.findOne({ where: req.params.id })
+    if(req.body){
+        User.findOne({ where: { id: req.params.id } })
             .then(user => {
-                const userModify = 
-            {   
-                ...JSON.parse(req.body.user)
-            }
-            User.updateOne({ id: req.params.id }, { ...userModify, id: req.params.id }) //verification de l id du user modificateur
-                .then(() => res.status(200).json({ message: 'informations de user modifiées !' }))
-                .catch(error => res.status(400).json({ error }));
+                const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/;
+                if (!regexEmail.test(req.body.email)) {
+                    res.status(401).json({ error: "Rentrez un mail valide" })
+                    return false
+                }
+                if (!schema.validate(req.body.password)) {
+                    res.status(400).json({ error: "Votre mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 lettre minuscule" });
+                    return false
+                } else {
+                    bcrypt.hash(req.body.password, 10)
+                        .then(hash => {
+                            user.update({ password: hash })
+                                .then(() =>
+                                    res.status(200).json({ message: 'Votre mot de passe est modifié!' }))
+                                .catch(error =>
+                                    res.status(400).json({ error }));
+                        })              
+                } 
+                user.update({
+                    username: req.body.username,
+                    email: req.body.email,
+                    job: req.body.job
+                })
+
+            .then(() => res.status(200).json({ 
+                message: user 
+            }))
+            .catch(error => res.status(400).json({ 
+                error 
+            }));
+            
         })
     }
-
-//route pour modifier le pseudo
-exports.modifyUsername = (req, res, next) => {
-        User.findOne({ where: { id: req.params.id } })
-            .then(username => {
-                username.update(
-                    { username: req.body.username }
-                )
-                    .then(() =>
-                        res.status(200).json({ message: 'Votre pseudo est modifié!' }))
-                    .catch(error =>
-                        res.status(400).json({ error }));
-            })
-            .catch(error =>
-                res.status(500).json({ error: 'Problème de serveur!!' })
-            );
-};
+}
 
 //route pour changer d'avatar  
 exports.modifyUserAvatar = (req, res, next) => {
-    console.log(req.file)
     if(req.file){
     User.findOne({ where: { id: req.params.id } })
     .then(user => {
@@ -148,68 +150,8 @@ exports.modifyUserAvatar = (req, res, next) => {
             res.status(500).json({ error: 'Problème de serveur!!' })   
         );
     }else {
-        console.log("erreur")
+        console.log("erreur lors de la modification de l'avatar")
     }
-};
-//route pour modifier l'email(avec securité)
-exports.modifyUserEmail = (req, res, next) => {
-    const id = req.params.id
-    User.findOne({ where: { id: req.params.id } })
-        .then(email => {
-            const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/;
-            if (!regexEmail.test(req.body.email)) {
-                res.status(401).json({ error: "Rentrez un mail valide" })
-                return false
-            }
-            email.update({ email: req.body.email })
-                .then(() =>
-                    res.status(200).json({ message: 'Votre email est modifié!' }))
-                .catch(error =>
-                    res.status(400).json({ error }));
-        })
-        .catch(error =>
-            res.status(500).json({ error: 'Problème de serveur!!' })
-        );
-};
-
-//route pour modifier le mot de passe(avec securité)
-exports.modifyUserPassword = (req, res, next) => {
-    const id = req.params.id
-    User.findOne({ where: { id: id } })
-        .then(password => {
-            if (!schema.validate(req.body.password)) {
-                res.status(400).json({ error: "Votre mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 lettre minuscule" });
-            } else {
-                bcrypt.hash(req.body.password, 10)
-                    .then(hash => {
-                        password.update({ password: hash })
-                            .then(() =>
-                                res.status(200).json({ message: 'Votre mot de passe est modifié!' }))
-                            .catch(error =>
-                                res.status(400).json({ error }));
-                    })
-               
-            } 
-        })       
-        .catch(error =>
-            res.status(500).json({ error: 'Problème de serveur!!' })
-        );
-};
-
-//route pour modifier le mot de passe(avec securité)
-exports.modifyUserJob = (req, res, next) => {
-    const id = req.params.id
-    User.findOne({ where: { id: id } })
-        .then(job => {
-                job.update({ job: req.body.job })
-                    .then(() =>
-                        res.status(200).json({ message: 'Votre métier est modifié!' }))
-                    .catch(error =>
-                        res.status(400).json({ error }));    
-        })
-        .catch(error =>
-            res.status(500).json({ error: 'Problème de serveur!!' })
-        );
 };
 
 // route pour supprimer le compte de l'utilisateur

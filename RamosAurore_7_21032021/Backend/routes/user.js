@@ -14,11 +14,7 @@ router.get('/getOne/:id', userControllers.getOneUser); //oter AUTH
 router.get('/getAll', auth, userControllers.getAllUsers);
 
 router.put('/:id/profil/update', userControllers.modifyProfil);
-router.put('/:id/username/update', userControllers.modifyUsername);
 router.put('/:id/avatar/update', multer, userControllers.modifyUserAvatar);
-router.put('/:id/email/update', auth, userControllers.modifyUserEmail);
-router.put('/:id/password/update', auth, userControllers.modifyUserPassword);
-router.put('/:id/job/update', auth, userControllers.modifyUserJob);
 
 router.delete('/:id/delete', auth, userControllers.userDelete);
 
