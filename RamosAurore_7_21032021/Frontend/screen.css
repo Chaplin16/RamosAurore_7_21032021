@@ -318,7 +318,18 @@ footer a:hover{
 }
 
 .trash {
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
+.pageUp{
+position: fixed;
+bottom : 10px;
+right: 20px;
+
+}
+
+.btnUp{
+    width: 1.7rem;
+    height: 1.7rem;
+}
