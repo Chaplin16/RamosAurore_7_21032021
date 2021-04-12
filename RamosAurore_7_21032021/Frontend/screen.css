@@ -185,6 +185,7 @@ footer a:hover{
     width:77%;
     border: none;
     margin:10px 0px;
+    padding-left: 10px;
 }
 
 .tchatUserConnect{
@@ -242,6 +243,7 @@ footer a:hover{
 .avatarSize {
     max-width: 60px;
     margin-top: 5px;
+    margin-right: 1rem;
 
 }
 .avatarProfil{
@@ -284,7 +286,7 @@ footer a:hover{
     flex-direction: column;
     border: 1px  var(--rouge) solid;
     width: 100%;
-    padding: 1rem 0 3rem 1rem;
+    padding: 1rem 1rem 0 1rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
     background-color: rgb(221, 215, 215);
@@ -295,6 +297,7 @@ footer a:hover{
     height: 3rem;
     border-radius: 8px;
     width: 87%;
+    padding-left: 10px;
 }
 
 .tchatUserConnect{
@@ -304,14 +307,36 @@ footer a:hover{
 .commentUserConnect{
     height: 1.5rem;
     width: 88%;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
 }
+
+.commentUser {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin-left: 10%;
+    margin-top: -2rem;
+
+
+}
+.unique {
+    float:left;
+    color: var(--rouge);
+    font-size: 0.8rem;
+}
+
 
 .commentSend{
     position: relative;
-    right: 2rem;
-    top:0.5rem;
-    width: 30px;
+    width: 1.5rem;
+    height: 1.5rem;
+    right:2rem;
+
+    border: none;
 }
+
 
 .allTchatsMembers{
     width: 88%;
@@ -320,6 +345,13 @@ footer a:hover{
 .trash {
     width: 1.5rem;
     height: 1.5rem;
+    cursor: pointer;
+    background-position: center;
+    font-size:0;
+    object-fit: cover;
+    border: none;
+    border-radius: 5px;
+    margin-left:7px;
 }
 
 .pageUp{

@@ -10,7 +10,7 @@ router.post('/', tchatControllers.createTchat);
 router.get('/getOne/:id', auth, tchatControllers.getOneTchat);
 router.get('/getAll',  tchatControllers.getAllTchats);
 
-router.delete('/:id/delete', tchatControllers.tchatDelete);
+router.delete('/:id/delete', auth, tchatControllers.tchatDelete);
 
 
 module.exports = router;

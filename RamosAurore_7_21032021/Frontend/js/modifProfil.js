@@ -13,9 +13,9 @@ let email = info.email;
 let job = info.job;
 let token = info.token;
 
-(modifUsername.value).innerHTML = `"${username}"`   //NE FONCTIONNE PAS 
-modifEmail.innerHTML = `value="${email}"`
-modifJob.innerHTML = `value="${job}"`
+modifUsername.value = `${username}`   
+modifEmail.value =`${email}`
+modifJob.value = `${job}`
 
 fetch('http://localhost:3000' + '/getOne/' + id, {
     method: "get",
@@ -26,6 +26,7 @@ fetch('http://localhost:3000' + '/getOne/' + id, {
 }).then(function(data){
     
     let password = data.password;
+    modifPassword.value = password
     
 }).catch(function(err) { 
     console.log('api problem: ' + err.message);

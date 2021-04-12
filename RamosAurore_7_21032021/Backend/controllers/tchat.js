@@ -9,9 +9,12 @@ exports.createTchat = (req, res, next) => {
     const tchat = req.body;
     Tchat.create({
             content: tchat.content,
-            UserId:tchat.userId
+            UserId:tchat.userId,
         }).then(tchat => {
-                res.status(201).json({ message: "Nouveau message créé !" })
+                res.status(201).json({ 
+                    message: tchat 
+                })
+    
             
         })
         .catch(error => res.status(404).json({ error:"erreur dans la requête" }));

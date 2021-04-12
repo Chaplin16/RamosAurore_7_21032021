@@ -7,7 +7,7 @@ exports.createComment = (req, res, next) => {
         idUser:comment.tchatId,
         comment:comment.comment
     }).then(comment => {
-        res.status(201).json({ message: "Nouveau commentaire créé !" })
+        res.status(201).json({ message: comment })
     }).catch(error => res.status(404).json({ error:"erreur dans la requête" }));
 };
 
