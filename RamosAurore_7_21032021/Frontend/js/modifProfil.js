@@ -26,7 +26,7 @@ fetch('http://localhost:3000' + '/getOne/' + id, {
 }).then(function(data){
     
     let password = data.password;
-    modifPassword.value = password
+    
     
 }).catch(function(err) { 
     console.log('api problem: ' + err.message);

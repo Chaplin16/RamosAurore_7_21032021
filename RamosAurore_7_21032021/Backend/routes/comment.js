@@ -5,7 +5,7 @@ const auth = require('../middlewares/auth');
 const commentControllers = require('../controllers/comment');
 
 
-router.post('/', auth, commentControllers.createComment);
+router.post('/',  commentControllers.createComment);
 router.get('/:id', auth, commentControllers.getComment);
 router.delete('/:id/delete', auth, commentControllers.deleteComment);
 

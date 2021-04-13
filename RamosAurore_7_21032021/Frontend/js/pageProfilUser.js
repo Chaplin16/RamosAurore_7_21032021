@@ -1,6 +1,6 @@
 const hello = document.getElementById('Hello');
 const helloAvatar = document.getElementById('helloAvatar');
-const btnUpdateAvatar = document.getElementById('updateAvatar');
+const btnAvatar = document.getElementById('avatar');
 const btnUpdateProfil = document.getElementById('updateProfil');
 const btnDeleteProfil = document.getElementById('deleteAccount');
 
@@ -11,7 +11,8 @@ helloAvatar.innerHTML =`<p>
                         </p>`;
 
 //modifier l avatar 
-btnUpdateAvatar.addEventListener('click', function(event) {
+btnAvatar.addEventListener('change', function(event) {
+    
     let id = info.id;
     let token = info.token;
     const file = document.getElementById('avatar').files[0];

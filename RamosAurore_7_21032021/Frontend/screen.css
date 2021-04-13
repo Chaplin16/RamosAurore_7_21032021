@@ -180,6 +180,7 @@ footer a:hover{
     width: 80%;
     border: none;
 }
+
 .inputTchatUserConnect{
     font-size: 0.9rem;
     width:77%;
@@ -253,15 +254,20 @@ footer a:hover{
 
 .helloAvatar{
     margin-left: 35%;
-
 }
-.updateAvatar,
+
 .updateProfil,
 .deleteAccount {
     font-size: 0.8rem;
-    margin-left: 21%;
+    margin-left: 16%;
+}
+.updateAvatar{
+    border: 3px solid var(--rouge);
+    padding:0.1rem;
+    border-radius:5px;
 }
 
+.label:hover,
 .updateAvatar:hover,
 .updateProfil:hover,
 .deleteAccount:hover{
@@ -280,8 +286,11 @@ footer a:hover{
     border-radius: 5px;
     height: 20%;
 }
-
-.allTchats{
+.label {
+    font-size: 0.8rem;
+    margin-left:2rem;
+}
+.oneTchat{
     display: flex;
     flex-direction: column;
     border: 1px  var(--rouge) solid;
@@ -333,8 +342,8 @@ footer a:hover{
     width: 1.5rem;
     height: 1.5rem;
     right:2rem;
-
     border: none;
+    cursor: pointer;
 }
 
 
@@ -364,4 +373,8 @@ right: 20px;
 .btnUp{
     width: 1.7rem;
     height: 1.7rem;
+}
+
+.trash[data-enable="false"] {
+    display:none;
 }

@@ -33,7 +33,10 @@ exports.getOneTchat = (req, res, next) => {
 //route pour voir tous les tchats
 exports.getAllTchats = (req, res, next) => {
     Tchat.findAll({ 
-        include: "User"
+        include: "User",
+        order:[[
+            "createdAt", "DESC"
+        ]]
      })
         .then(tchats => 
             
@@ -46,9 +49,13 @@ exports.getAllTchats = (req, res, next) => {
         
 //route pour supprimer un tchat
 exports.tchatDelete = (req, res, next) => {
-    const id = req.params.id;
-        if(Tchat.userId == req.token.id || req.token.isAdmin){
-            Tchat.destroy({ where: { id: id } })
+    Tchat.findOne({ 
+        where: {
+            id:req.params.id
+        }
+    }).then(tchat => {
+        if(tchat.UserId == req.token.userId || req.token.isAdmin){
+            Tchat.destroy({ where: { id: req.params.id } })
             .then(() => 
                 res.status(200).json({ 
                     message: 'Votre message est supprimé !' 
@@ -57,5 +64,9 @@ exports.tchatDelete = (req, res, next) => {
                 res.status(400).json({ 
                     error 
             }))
+        }else {
+            res.status(401).json({ "message":"Vous n'avez pas les droits pour supprimer ce tchat" }) 
         }    
+    })
+        
 };
