@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idUser: {
+      IdUser: {
         allowNull: false,
         onDelete: 'CASCADE',
         type: Sequelize.INTEGER,

@@ -4,17 +4,17 @@
 class Comments {
     constructor(comment) {
         this.id = comment.id;
-        this.userId = comment.tchatId;
         this.comment = comment.comment;
-        this.user = comment.User;
+        this.tchatId = comment.tchatId;
+        this.userId = comment.User;
     }
-    displayComment() {
+    displayComment(user) {
         `<p class="unique">Commentaires</p>   
-        <div class="commentUser">
+        <div class="commentUser" data-id="${this.id}">
             <p class="avatarComment"> 
                     <img class="avatarSize" src="${this.user.avatar}"/>
             </p>
-            <input class="commentUserConnect" type="texterea" name="commentUser" id="commentUserConnect" value="${this.comment}/>      
+            <input class="comment" type="texterea" name="commentUser" value="${this.comment}/>      
         </div>`
     }
 }

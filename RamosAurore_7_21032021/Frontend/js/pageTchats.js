@@ -6,7 +6,6 @@ const usernameConnect = document.getElementById('usernameConnect');
 
 //avatar, nom et tchat des autres utilisateurs
 const allTchatsMembers = document.getElementById('allTchatsMembers');
-const commentsUsers = document.getElementById('commentsUsers');
 
 // profil de l utilisateur connecté
 const deleteAccount = document.getElementById('deleteAccount');
@@ -18,7 +17,7 @@ avatarConnect.innerHTML = ` <img  class="avatarSize" src="${avatar}"/> `
 usernameConnect.innerHTML = `<span>${username}</span>`
 
 
-//valider un tchat de user connecté
+//valider un tchat du user connecté
 const tchatMember = document.getElementById('tchatMember');
 const btnSubmitTchat = document.getElementById('btnSubmitTchat');
 
@@ -70,46 +69,52 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             btn.addEventListener('click', function (event) {
                 let tchatId = this.dataset.id;
                 deleteTchat(tchatId)
+                window.location.reload();
             })
         }
+      // envoyer un commentaire sur le tchat commenté
         const btnSendComment = document.querySelectorAll(`.commentSend`);
-        const commentUser = document.querySelectorAll('commentUserConnect').value
+        const comments = document.querySelectorAll('.comment');
         for (let btn of btnSendComment) {
             btn.addEventListener('click', function (event) {
-                let comment = {
-                'commentId': this.dataset.id,
-                'commentUser' : commentUser
+                let commentAll = {
+                'userId': this.dataset.id,
+                'comment' : document.querySelector('.commentUserConnect').value,
+                'TchatId': this.dataset.postid
             }
-            let sendComment = JSON.stringify(comment)
+            let sendComment = JSON.stringify(commentAll)
             sendCommentUser(sendComment);
             })    
         }    
-
-      //envoyer un commentaire par le user connecté/identifié  
-      function sendCommentUser(sendComment) {
-        fetch('http://localhost:3000' + '/comment', {
-            method: "post",
-            headers: {"Content-Type": "application/json;charset=UTF-8"},
-            mode:"cors",
-            body: sendComment           
-        })  .then(function(response) {
-            return response.json();
-        }) 
-        .then(function(listComments){
-            for(let message of listComments) {
-                let comment = new Comments(message);
-                commentsUsers.innerHTML += comment.displayComment();
-            }
-        })
-        .catch(function(err) { //le retour en cas de non connection au serveur 
-            console.log('api problem: ' + err.message);
-        })
-      
-      }
-    })
-    .catch(function (err) { //le retour en cas de non connection au serveur 
+})
+.catch(function (err) { //le retour en cas de non connection au serveur 
         console.log('Fetch problem: ' + err.message);
 })
+
+//envoyer un commentaire par le user connecté/identifié  
+function sendCommentUser(sendComment) {
+    fetch('http://localhost:3000' + '/comment/', {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": `Bearer ${info.token}`
+    },mode:"cors",
+        body: sendComment           
+    })  .then(function(response) {
+        return response.json();
+    }) 
+    .then(function(comments){
+
+        for(let comment of comments) {
+            let comment = new Comments(message);
+            comments.innerHTML += comment.displayComment(info);
+        }
+    })
+    .catch(function(err) { //le retour en cas de non connection au serveur 
+        console.log('api problem: ' + err.message);
+    })
+          
+}
 
 //fonction pour supprimer le tchat par le user connecté
 function deleteTchat(tchatId) {
@@ -120,7 +125,7 @@ function deleteTchat(tchatId) {
             "Authorization": `Bearer ${info.token}`
         },
         mode: "cors",
-    }).then(async function (response) {
+    }).then(async function(response) {
         let data = await response.json();
             if (response.status == 200) {
                 return data;
@@ -129,10 +134,10 @@ function deleteTchat(tchatId) {
             }       
     }).then(function () {
         document.querySelector(`.Tchats[data-id="${tchatId}"]`).remove();
+        document.window.reload();
 
     }).catch(function (err) { //le retour en cas de non connection au serveur 
         alert(err);
         console.log('Fetch problem: ' + err);
     })
 }
-

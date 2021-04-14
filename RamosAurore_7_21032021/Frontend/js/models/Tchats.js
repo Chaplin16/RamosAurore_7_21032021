@@ -29,8 +29,8 @@ class Tchats {
             <p class="avatarComment"> 
                 <img class="avatarSize" src="${user.avatar}"/>
             </p>
-            <input class="commentUserConnect" type="texterea" name="commentUser" id="commentUserConnect" placeholder="Réagissez!"/>  
-            <img role="button" class="commentSend" data-id="${user.id}" name="submit" src="images/fleche_rouge.png" alt="touche pour envoyer un commentaire">       
+            <input class="commentUserConnect" type="texterea" name="commentUser" placeholder="Réagissez!"/>  
+            <img role="button" class="commentSend" data-id="${user.id}" data-postid="${this.id}"name="submit" src="images/fleche_rouge.png" alt="touche pour envoyer un commentaire">       
         </div>`;
 
     }
