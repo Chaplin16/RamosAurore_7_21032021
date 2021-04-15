@@ -6,7 +6,7 @@ const usernameConnect = document.getElementById('usernameConnect');
 
 //avatar, nom et tchat des autres utilisateurs
 const allTchatsMembers = document.getElementById('allTchatsMembers');
-
+let commentUserMade = document.querySelectorAll('commentUserMade');
 // profil de l utilisateur connecté
 const deleteAccount = document.getElementById('deleteAccount');
 
@@ -14,13 +14,11 @@ let avatar = info.avatar;
 let username = info.username;
 
 avatarConnect.innerHTML = ` <img  class="avatarSize" src="${avatar}"/> `
-usernameConnect.innerHTML = `<span>${username}</span>`
 
-
-//valider un tchat du user connecté
 const tchatMember = document.getElementById('tchatMember');
 const btnSubmitTchat = document.getElementById('btnSubmitTchat');
 
+//valider un tchat du user connecté
 btnSubmitTchat.addEventListener("click", function (event) {
     event.preventDefault();
     let message = {
@@ -73,17 +71,18 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             })
         }
       // envoyer un commentaire sur le tchat commenté
+
         const btnSendComment = document.querySelectorAll(`.commentSend`);
-        const comments = document.querySelectorAll('.comment');
         for (let btn of btnSendComment) {
             btn.addEventListener('click', function (event) {
                 let commentAll = {
                 'userId': this.dataset.id,
-                'comment' : document.querySelector('.commentUserConnect').value,
-                'TchatId': this.dataset.postid
+                'TchatId': this.dataset.postid,
+                'comment' : document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value,
             }
             let sendComment = JSON.stringify(commentAll)
             sendCommentUser(sendComment);
+
             })    
         }    
 })
@@ -103,13 +102,17 @@ function sendCommentUser(sendComment) {
     })  .then(function(response) {
         return response.json();
     }) 
-    .then(function(comments){
-
-        for(let comment of comments) {
-            let comment = new Comments(message);
-            comments.innerHTML += comment.displayComment(info);
+    .then(function(data){
+        let TchatId = data.message.TchatId;
+        //let commentUserMade = document.querySelector(`.commentUserMade`);
+        for(let post in data) {
+        let comment = new Comments(data)
+        let tchatParent = document.querySelector(`.oneTchat[data-id="${TchatId}"]`);
+        let placeComment = document.querySelector(`.commentUserMade[data-id="${TchatId}"]`);
+        //tchatParent += commentUserMade.innerHTML += comment.displayComment(info);
+        tchatParent += placeComment.innerHTML += comment.displayComment(info);
         }
-    })
+    })    
     .catch(function(err) { //le retour en cas de non connection au serveur 
         console.log('api problem: ' + err.message);
     })
@@ -133,8 +136,9 @@ function deleteTchat(tchatId) {
                 throw data.message;
             }       
     }).then(function () {
-        document.querySelector(`.Tchats[data-id="${tchatId}"]`).remove();
-        document.window.reload();
+        let userDelete = document.querySelector(`.Tchats[data-id="${tchatId}"]`);
+        delete userDelete;
+        
 
     }).catch(function (err) { //le retour en cas de non connection au serveur 
         alert(err);

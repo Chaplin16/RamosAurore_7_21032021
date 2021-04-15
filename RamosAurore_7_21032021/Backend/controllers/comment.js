@@ -2,14 +2,14 @@ const {User, Tchat, Comment} = require('../models/index');
 
 
 exports.createComment = (req, res, next) => {
-    const comment = req.body.comment;
+    const comment = req.body;
     Comment.create({
         userId:comment.userId,
         TchatId:comment.TchatId,
         comment:comment.comment
     }).then(comment => { 
         res.status(201).json({ 
-            message: comment 
+            message : comment
         })
     }).catch(error => res.status(404).json({ error:"erreur dans la requête" }));
 };
