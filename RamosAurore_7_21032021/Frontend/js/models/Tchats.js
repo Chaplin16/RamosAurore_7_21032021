@@ -1,4 +1,3 @@
-
 //objet constructor 
 
 //je cree un objet avec le constructor Tchats
@@ -25,7 +24,7 @@ class Tchats {
             <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion"  /> 
         </div>
         <p class="unique">Commentaires</p>  
-        <p class="commentUserMade" data-id="${this.id}"></p>  
+        <p class="commentUserMade"></p>  
         <div class="commentUser">
             <p class="avatarComment"> 
                 <img class="avatarSize" src="${user.avatar}"/>

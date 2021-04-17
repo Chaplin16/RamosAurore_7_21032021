@@ -14,10 +14,26 @@ exports.createComment = (req, res, next) => {
     }).catch(error => res.status(404).json({ error:"erreur dans la requête" }));
 };
 
+exports.getOneComment = (req, res, next) => {
+    Comment.findOne({ 
+        where: {
+            id:req.params.id
+        } 
+    }).then(tchat => res.status(200).json(tchat))
+    .catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
+};
 
-exports.getComment = (req, res, next) => {
-    Comment.findAll()
-        .then(tchats => res.status(200).json(comments))
+
+exports.getAllComments = (req, res, next) => {
+    Comment.findAll({
+        order:[[
+            "createdAt", "DESC"
+        ]]
+    })
+        .then(comments => 
+            res.status(200).json(
+                comments
+            ))
         .catch(error => res.status(404).json( error ));
 }
 
