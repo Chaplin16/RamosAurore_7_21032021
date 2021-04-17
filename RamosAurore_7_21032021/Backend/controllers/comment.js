@@ -4,7 +4,7 @@ const {User, Tchat, Comment} = require('../models/index');
 exports.createComment = (req, res, next) => {
     const comment = req.body;
     Comment.create({
-        userId:comment.userId,
+        UserId:comment.UserId,
         TchatId:comment.TchatId,
         comment:comment.comment
     }).then(comment => { 
@@ -19,13 +19,18 @@ exports.getOneComment = (req, res, next) => {
         where: {
             id:req.params.id
         } 
-    }).then(tchat => res.status(200).json(tchat))
-    .catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
+    }).then(comment => 
+        res.status(200).json(
+            comment
+    )).catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
 };
 
 
 exports.getAllComments = (req, res, next) => {
     Comment.findAll({
+        include: [
+            { model: User }
+         ] ,
         order:[[
             "createdAt", "DESC"
         ]]

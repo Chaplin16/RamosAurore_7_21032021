@@ -33,7 +33,10 @@ exports.getOneTchat = (req, res, next) => {
 //route pour voir tous les tchats
 exports.getAllTchats = (req, res, next) => {
     Tchat.findAll({ 
-        include: "User",
+        include: [ 
+            { model: User} ,
+            { model : Comment }
+        ],
         order:[[
             "createdAt", "DESC"
         ]]

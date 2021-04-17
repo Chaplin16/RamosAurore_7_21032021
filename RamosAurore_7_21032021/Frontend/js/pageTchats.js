@@ -62,6 +62,7 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             allTchatsMembers.innerHTML += tchat.displayTchats(info);
         }
         getAllComments();
+        
       //supprimer un tchat par le user createur du tchat  
         const listBtnTrash = document.querySelectorAll(`.trash`);
         for (let btn of listBtnTrash) {
@@ -76,7 +77,7 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
         for (let btn of btnSendComment) {
             btn.addEventListener('click', function (event) {
                 let commentAll = {
-                'userId': this.dataset.id,
+                'UserId': this.dataset.id,
                 'TchatId': this.dataset.postid,
                 'comment' : document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value,
             }
@@ -85,7 +86,7 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             
             })    
         }  
-
+ 
 })
 .catch(function (err) { //le retour en cas de non connection au serveur 
         console.log('Fetch problem: ' + err.message);
@@ -104,18 +105,8 @@ function sendCommentUser(sendComment) {
         return response.json();
     }) 
     .then(function(data){
-        getOneComment(data);
+         getOneComment(data);
         console.log('commentaire crée)')
-       
-        // let TchatId = data.message.TchatId;
-        // //let commentUserMade = document.querySelector(`.commentUserMade`);
-        // for(let post in data) {
-        // let comment = new Comments(data)
-        // let tchatParent = document.querySelector(`.oneTchat[data-id="${TchatId}"]`);
-        // let placeComment = document.querySelector(`.commentUserMade[data-id="${TchatId}"]`);
-        //tchatParent += commentUserMade.innerHTML += comment.displayComment(info);
-        // tchatParent += placeComment.innerHTML += comment.displayComment(info);
-    // }
     })    
     .catch(function(err) { //le retour en cas de non connection au serveur 
         console.log('api problem: ' + err.message);
@@ -163,13 +154,13 @@ function getAllComments(){
     }).then(function(listData){
         for (let data of listData) {
             let comment = new Comments(data)
-
             let tchatParent = document.querySelector(`.oneTchat[data-id="${comment.TchatId}"]`);
-            let placeComment = document.querySelector(`.commentUserMade`);
+            let placeComment = tchatParent.querySelector(`.commentUserMade`);
             tchatParent = placeComment.innerHTML += comment.displayComment();
-
+            
         }
     })
+      
 }
 
 function getOneComment(data) {
@@ -190,6 +181,7 @@ function getOneComment(data) {
         let tchatParent = document.querySelector(`.oneTchat[data-id="${TchatId}"]`);
         let placeComment = document.querySelector(`.commentUserMade`);
         tchatParent = placeComment.innerHTML += comment.displayComment(info);
+      
         
     })
 }
