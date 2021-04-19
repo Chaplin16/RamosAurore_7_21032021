@@ -13,7 +13,7 @@ router.post('/login',  userControllers.login);
 router.get('/getOne/:id', userControllers.getOneUser); //oter AUTH
 router.get('/getAll', auth, userControllers.getAllUsers);///
 
-router.put('/:id/profil/update', userControllers.modifyProfil);
+router.put('/:id/profil/update',auth, userControllers.modifyProfil);
 router.put('/:id/avatar/update', multer, userControllers.modifyUserAvatar);
 router.put('/:id/password/update', auth, userControllers.modifyUserPassword);
 

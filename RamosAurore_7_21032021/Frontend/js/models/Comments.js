@@ -5,7 +5,7 @@ class Comments {
     constructor(comment) {
         this.id = comment.id;
         this.TchatId = comment.TchatId;
-        this.User = comment.User.avatar;
+        this.User = comment.User;
         this.comment = comment.comment;
     
     }
@@ -13,10 +13,13 @@ class Comments {
     displayComment() { 
         return `<div class="commentUser" data-id="${this.id}">
                     <p class="avatarComment"> 
-                            <img class="avatarSize" src="${this.User}"/>
+                            <img class="avatarSize" src="${this.User.avatar}"/>
                     </p>
-                    <input class="comment" type="texterea" name="comment" value="${this.comment}"/>
-                    <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion"  />       
+                    <div class="pseudoAndText">
+                        <p class="pseudo">${this.User.username}</p>
+                        <input class="comment" type="texterea" name="comment" value="${this.comment}"/>
+                    </div>
+                    <img role="button" class="trashComment" data-id="${this.id}" onclick="deleteComment(${this.id})" name="submit" src="images/trash.png" alt="supprimer le commentaire"  />       
                 </div>`
     }
 }

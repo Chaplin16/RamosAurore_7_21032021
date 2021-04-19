@@ -6,7 +6,8 @@ const Comment = require('../models/comment');
  Tchat.belongsTo(User);   
  Tchat.hasMany(Comment, { onDelete: 'cascade' });
  Comment.belongsTo(User);
-
+ User.hasMany(Tchat, { onDelete: 'cascade' });
+ 
 async function loadModel() {
     await  User.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', null)
     await User.sync({alter:true});

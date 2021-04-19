@@ -45,9 +45,6 @@ h1{
     justify-content: flex-end;
     column-gap: 2rem;
 }
-.containerLinkConnect{
-    align-items:baseline;
-}
 
 h2{
     color:var(--rouge);

@@ -3,7 +3,7 @@ const helloAvatar = document.getElementById('helloAvatar');
 const btnAvatar = document.getElementById('avatar');
 const btnUpdateProfil = document.getElementById('updateProfil');
 const btnDeleteProfil = document.getElementById('deleteAccount');
-
+const inputDisconnect = document.getElementById('inputDisconnect');
 
 hello.innerHTML =`<span> Bonjour ${username}</span>`;
 helloAvatar.innerHTML =`<p>
@@ -67,3 +67,12 @@ btnDeleteProfil.addEventListener('click', function (event) {
     }
     return false
 });
+
+//se deconnecter de l application
+inputDisconnect.addEventListener('click', function(event) {
+    event.preventDefault();
+    info.id;
+    info.token;
+    sessionStorage.clear(info);
+    window.location = "index.html";
+})
