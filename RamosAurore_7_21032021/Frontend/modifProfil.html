@@ -16,60 +16,75 @@
                 </p>
                 <h1>Groupomania</h1>
         </header>
-        <main class="container">
-                <form action="http://localhost:3000" method="post" name="form"  id="formModifUser">
-                    <div class="signup">
-                        <div class="title_signup">
-                            <h2>Modification de vos données</h2>     
-                        </div>
-                        <p class="username"> 
-                            <label for="username"> </label>
-                            <input class="input_formulaire" type="text" name="username" id="modifUsername" title="Veuillez n'écrire que des lettres" pattern ="[A-z-_çàâéèeîïù]{2,30}" value="" required/>
-                        </p>
-                        <p class="email"> 
-                            <label for="email"> </label>
-                            <input class="input_formulaire" type="email" name="email" id="modifEmail" title="Veuillez écrire un mail valide" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$" required/>
-                        </p>
-                        <p class="password"> 
-                            <label for="password"> </label>
-                            <input class="input_formulaire" type="password" name="password" id="modifPassword" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="Veuillez inscrire votre mot de passe" required/>
-                        </p>
-                        <p class="job"> 
-                            <label for="job"> </label>
-                            <input class="input_formulaire" type="text" name="job" id="modifJob" pattern ="[A-z-_ çàâéèeîïù]{2,30}" title="Veuillez entrer votre métier" />
-                        </p>
-                        <p>
-                            <input type="submit" id="btnSubmitModif" class="btn_enter" name="submit" value="Envoyer">
-                        </p> 
+        <main class="containerModif">
+            <form action="http://localhost:3000" method="post" name="form"  id="formModifUser">
+                <div class="changeData">
+                    <div class="title_signup">
+                        <h2>Modification de vos données</h2>     
                     </div>
-                </form>
-            </div>
-                       <div class="containerLinkConnect">
-                <p class="question"><br>
-                    <a class="linkConnect" href= "pageTchats.html">Revenir sur le <br>forum de discussion</a>
+                    <p class="username"> 
+                        <label for="username"> </label>
+                        <input class="input_formulaire" type="text" name="username" id="modifUsername" title="Veuillez n'écrire que des lettres" pattern ="[A-z-_çàâéèeîïù]{2,30}" value="" />
+                    </p>
+                    <p class="email"> 
+                        <label for="email"> </label>
+                        <input class="input_formulaire" type="email" name="email" id="modifEmail" title="Veuillez écrire un mail valide" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$" />
+                    </p>
+                    <p class="job">  
+                        <label for="job"> </label>
+                        <input class="input_formulaire" type="text" name="job" id="modifJob" pattern ="[A-z-_ çàâéèeîïù]{2,30}" title="Veuillez entrer votre métier" />
+                    </p>
+                    <p>
+                        <input type="submit" id="btnSubmitModif" class="btn_enter" name="submit" value="Envoyer">
+                    </p> 
+                </div>
+            </form>
+        </div>
+        <form action="http://localhost:3000" method="post" name="formModifPassword"  id="formModifPassword">
+            <div class="changePassword">
+                <div class="title_changePassword">
+                    <h2>Modification de votre mot de passe</h2>     
+                </div>
+                    <p class="password"> 
+                    <label for="password"> </label>
+                    <input class="input_formulaire" type="password" name="lastPassword" id="lastPassword" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="ancien mot de passe" />
                 </p>
-            </div>
-        </main>
-        <footer>
-            <div class="footer">
-                <p class="copyright">
-                    <img src="images/copyright_25.png" alt="copyright">
-                    2021 GROUPOMANIA. Tous droits réservés
+                <p class="password"> 
+                    <label for="password"> </label>
+                    <input class="input_formulaire" type="password" name="newPassword" id="newPassword" title="Votre mot de passe doit contenir 8 caractères dont 1chiffre, une minuscule et une majuscule(pas de caractère spéciaux" placeholder="nouveau mot de passe" />
                 </p>
+                
                 <p>
-                    <a href ="#">A propos</a>
-                </p>
-                <p>
-                    <a href ="#">Fonctionnalités</a>
-                </p>
-                <p>
-                    <a href ="#">Nous contacter</a>
-                </p>
+                    <input type="submit" id="btnModifPassword" class="btn_enter" name="submitModiPassword" value="Envoyer">
+                </p> 
             </div>
-        </footer>
+        </form>
+        <div class="containerLinkConnect">
+            <p class="question"><br>
+                <a class="linkConnect" href= "pageTchats.html">Revenir sur le <br>forum de discussion</a>
+            </p>
+        </div>
+    </main>
+    <footer>
+        <div class="footer">
+            <p class="copyright">
+                <img src="images/copyright_25.png" alt="copyright">
+                2021 GROUPOMANIA. Tous droits réservés
+            </p>
+            <p>
+                <a href ="#">A propos</a>
+            </p>
+            <p>
+                <a href ="#">Fonctionnalités</a>
+            </p>
+            <p>
+                <a href ="#">Nous contacter</a>
+            </p>
+        </div>
+    </footer>
 
       <!--mes scripts-->
-      <script type="text/javascript" src="js/modifProfil.js"></script>
+    <script type="text/javascript" src="js/modifProfil.js"></script>
 
       
     </body>

@@ -39,6 +39,15 @@ h1{
     column-gap: 6rem;
     justify-content: center;
 }
+.containerModif{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    column-gap: 2rem;
+}
+.containerLinkConnect{
+    align-items:baseline;
+}
 
 h2{
     color:var(--rouge);
@@ -63,6 +72,18 @@ h2{
     padding:2rem;
     background-color: var(--grey);
     border-radius: 5px;
+}
+
+.changeData,
+.changePassword {
+    border: 1px var(--rouge) solid;
+    padding:2rem;
+    background-color: var(--grey);
+    border-radius: 5px;
+}
+
+.changePassword{
+    width: 50%;
 }
 
 .btnAvatar input[type=file] {
@@ -96,7 +117,7 @@ cursor: pointer;
     justify-content: space-between;
 }
 
-.btn_enter {
+.btn_enter{
     background-color: var(--rouge);
     font-weight: 700;
     height: 2rem;
@@ -117,10 +138,11 @@ cursor: pointer;
 }
 .linkConnect{
     color: var(--grey)
+
 }
 
 .linkConnect:hover{
-    color: var(--rouge)
+    color: var(--rouge);
 }
 
 .footer{
@@ -329,16 +351,31 @@ footer a:hover{
     padding-bottom:1rem;
 }
 
-.comment,
+
 .commentUserConnect{
     height: 1.5rem;
     width: 85%;
     border: none;
     border-radius: 5px;
     padding-left: 10px;
-
 }
 
+.comment{
+    height: 1.5rem;
+    width: 97%;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.pseudo{
+    color:var(--rouge);
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+.pseudoAndText{
+    width: 100%;
+}
 .commentUser {
     display: flex;
     align-items: center;
@@ -374,7 +411,7 @@ footer a:hover{
     width: 88%;
 }
 
-.trash {
+.trash{
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
@@ -384,6 +421,16 @@ footer a:hover{
     border: none;
     border-radius: 5px;
     margin-left:7px;
+}
+
+.trashComment {
+    position: relative;
+    width: 1.2rem;
+    height: 1.2rem;
+    right:1.9rem;
+    top:0.55rem;
+    border: none;
+    cursor: pointer;
 }
 
 .pageUp{
@@ -398,6 +445,6 @@ right: 20px;
     height: 1.7rem;
 }
 
-.trash[data-enable="false"] {
+.trash[data-enable="false"]{
     display:none;
 }

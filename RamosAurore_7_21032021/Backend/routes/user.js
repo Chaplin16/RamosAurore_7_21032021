@@ -15,6 +15,7 @@ router.get('/getAll', auth, userControllers.getAllUsers);///
 
 router.put('/:id/profil/update', userControllers.modifyProfil);
 router.put('/:id/avatar/update', multer, userControllers.modifyUserAvatar);
+router.put('/:id/password/update', auth, userControllers.modifyUserPassword);
 
 router.delete('/:id/delete', auth, userControllers.userDelete);
 

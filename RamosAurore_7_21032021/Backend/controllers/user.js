@@ -104,19 +104,6 @@ exports.modifyProfil = (req, res, next) => {
                     res.status(401).json({ error: "Rentrez un mail valide" })
                     return false
                 }
-                if (!schema.validate(req.body.password)) {
-                    res.status(400).json({ error: "Votre mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 lettre minuscule" });
-                    return false
-                } else {
-                    bcrypt.hash(req.body.password, 10)
-                        .then(hash => {
-                            user.update({ password: hash })
-                                .then(() =>
-                                    res.status(200).json({ message: 'Votre mot de passe est modifié!' }))
-                                .catch(error =>
-                                    res.status(400).json({ error }));
-                        })              
-                } 
                 user.update({
                     username: req.body.username,
                     email: req.body.email,
@@ -154,6 +141,36 @@ exports.modifyUserAvatar = (req, res, next) => {
     }
 };
 
+//route pour changer le mot de passe
+exports.modifyUserPassword = (req, res, next) => {
+    if(req.body){
+        User.findOne({ where: { id: req.params.id } })
+            .then(user => {
+                bcrypt.compare(req.body.password, user.password) // on compare le mdp qui est envoye dans la requete avec le mdp hashé qui est dans la BDD,
+                    .then(valid => {
+                        if (!valid) {
+                            return res.status(401).send({ error: 'Mot de passe incorrect !' });
+                        }else {
+                            if (!schema.validate(req.body.newPassword)) {
+                                res.status(400).json({ error: "Votre mot de passe doit contenir au moins 8 caractères dont 1chiffre, 1 lettre majuscule et 1 lettre minuscule" });
+                                
+                            } else {
+                                bcrypt.hash(req.body.newPassword, 10) //hash le mot de passe, on execute 10 fois l algorithme de hachage
+                                .then(hash => {   
+                                    user.update({ password: hash })
+                                        .then(() =>
+                                            res.status(200).json({ message: 'Votre mot de passe est modifié!' }))
+                                        .catch(error =>
+                                            res.status(400).json({ error }) );
+                                }).catch(error => res.status(400).json({ error }) );              
+                            } 
+                        }
+                    }).catch(error => res.status(400).json({ error }) );  
+
+              
+            }).catch(error => res.status(400).json({ error }) );  
+    }
+}
 // route pour supprimer le compte de l'utilisateur
 exports.userDelete = (req, res, next) => {
     const id = req.params.id

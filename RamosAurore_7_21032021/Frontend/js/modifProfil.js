@@ -2,9 +2,10 @@ const info = JSON.parse(sessionStorage.getItem("user"));
 
 const modifUsername = document.getElementById('modifUsername');
 const modifEmail = document.getElementById('modifEmail'); 
-const modifPassword = document.getElementById('modifPassword');
+
 const modifJob = document.getElementById('modifJob');
 const btnSubmitModif = document.getElementById('btnSubmitModif');
+
 
 //je recupere info du sessionStorage
 let id = info.id;
@@ -17,21 +18,7 @@ modifUsername.value = `${username}`
 modifEmail.value =`${email}`
 modifJob.value = `${job}`
 
-fetch('http://localhost:3000' + '/getOne/' + id, {
-    method: "get",
-    headers: {"Content-Type": "application/json;charset=UTF-8"},
-    mode:"cors",
-}).then(function(response) {
-    return response.json();
-}).then(function(data){
-    
-    let password = data.password;
-    
-    
-}).catch(function(err) { 
-    console.log('api problem: ' + err.message);
-});
-
+//modifier les données du profil(nom, mail, job)
 btnSubmitModif.addEventListener('click', function(event) {
     let formModifUser = document.getElementById('formModifUser');
     event.preventDefault();
@@ -40,7 +27,6 @@ btnSubmitModif.addEventListener('click', function(event) {
         let newProfil = { // je cree un objet avec les valeurs que je recupere par les id
             'username': modifUsername.value,
             'email': modifEmail.value,
-            'password': modifPassword.value,
             'job': modifJob.value
         }
         let newProfilUser = JSON.stringify( newProfil );
@@ -72,4 +58,39 @@ btnSubmitModif.addEventListener('click', function(event) {
             console.log('Retour info Api problem: ' + err.message);
         })
     }
+})
+
+//modifier le mot de passe
+const lastPassword = document.getElementById('lastPassword');
+const newPassword = document.getElementById('newPassword');
+const btnModifPassword = document.getElementById('btnModifPassword');
+
+btnModifPassword.addEventListener('click', function(event) {
+    let formModifPassword = document.getElementById('formModifPassword');
+    event.preventDefault();
+    id = info.id;
+    let passwordChange = {
+    'password' : lastPassword.value,
+    'newPassword' : newPassword.value
+    }
+    let password = JSON.stringify(passwordChange)
+    fetch('http://localhost:3000' + '/' + id + '/password/update', {
+        method: "put",
+        headers: { 
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": `Bearer ${info.token}`
+        },
+        mode:"cors",
+        body: password           
+    })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(){
+            alert('votre mot de passe a bien été modifié!')
+            window.location.reload();
+        })
+        .catch(function(err) { 
+        console.log('api problem: ' + err.message);
+        });
 })
