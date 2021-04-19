@@ -126,6 +126,14 @@ exports.modifyUserAvatar = (req, res, next) => {
     if(req.file){
     User.findOne({ where: { id: req.params.id } })
     .then(user => {
+        const filename = user.avatar.split('/images/')[1];
+            firesystem.unlink(`images/${filename}`, (error => {
+                if(error) 
+                    {console.log(error)}
+                else {
+                    console.log("image effacée");
+                }
+            })) 
         const avatar = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
    
             user.update({ avatar: avatar }) 

@@ -20,7 +20,7 @@ const btnSubmitTchat = document.getElementById('btnSubmitTchat');
 
 //valider un tchat du user connecté
 btnSubmitTchat.addEventListener("click", function (event) {
-    
+    event.preventDefault();
     let message = {
         'content': document.getElementById('inputTchatUserConnect').value,
         'userId': info.id
@@ -85,16 +85,6 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             sendCommentUser(sendComment);
             })    
         }  
-    //supprimer un commentaire par celui qui l a ecrit
-
-        // const btnTrashComment = document.getElementsByClassName(`trashComment`);
-        // for (let btnTrash of btnTrashComment){
-        //     btnTrash.addEventListener('click', function(event) {
-        //         let id = this.dataset.id;
-        //         deleteComment(id);
-        //         window.location.reload();
-        //     })
-        // }
 })
 .catch(function (err) { //le retour en cas de non connection au serveur 
         console.log('Fetch problem: ' + err.message);
