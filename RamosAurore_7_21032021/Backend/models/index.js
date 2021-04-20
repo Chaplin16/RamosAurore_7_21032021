@@ -3,10 +3,11 @@ const Tchat = require('../models/tchat');
 const Comment = require('../models/comment');
 
  //User.hasMany(Tchat, { onDelete: 'cascade' });
- Tchat.belongsTo(User);   
- Tchat.hasMany(Comment, { onDelete: 'cascade' });
- Comment.belongsTo(User);
- User.hasMany(Tchat, { onDelete: 'cascade' });
+ Tchat.belongsTo(User, { onDelete: 'cascade', hooks:true });   
+ Tchat.hasMany(Comment, { onDelete: 'cascade', hooks:true });
+ Comment.belongsTo(User, { onDelete: 'cascade', hooks:true });
+ User.hasMany(Tchat, { onDelete: 'cascade', hooks:true });
+
  
 async function loadModel() {
     await  User.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', null)

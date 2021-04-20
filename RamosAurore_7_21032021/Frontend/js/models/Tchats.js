@@ -21,7 +21,7 @@ class Tchats {
             </div>
             <label for="allTchatMember"></label>
             <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember" value="${this.content}"  /> 
-            <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion"  /> 
+            <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion" data-enable="${user.id == this.user.id}" /> 
         </div>
         <p class="unique">Commentaires</p>  
         <p class="commentUserMade"></p>  
@@ -30,7 +30,7 @@ class Tchats {
                 <img class="avatarSize" src="${user.avatar}"/>
             </p>
             <input class="commentUserConnect" data-id="${this.id}" type="texterea" name="commentUser" placeholder="Réagissez!"/>  
-            <img role="button" class="commentSend" data-id="${user.id}" data-postid="${this.id}" name="submit" src="images/fleche_rouge.png" alt="touche pour envoyer un commentaire"/>       
+            <img role="button" class="commentSend" data-id="${user.id}" data-postid="${this.id}" data-enable="${user.id == this.user.id}" name="submit" src="images/fleche_rouge.png" alt="touche pour envoyer un commentaire"/>       
         </div>
     </div>`;
 

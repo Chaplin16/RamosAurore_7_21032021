@@ -5,10 +5,12 @@ const btnUpdateProfil = document.getElementById('updateProfil');
 const btnDeleteProfil = document.getElementById('deleteAccount');
 const inputDisconnect = document.getElementById('inputDisconnect');
 
-hello.innerHTML =`<span> Bonjour ${username}</span>`;
+if(info != null){
+hello.innerHTML =`<span> Bonjour ${info.username}</span>`;
 helloAvatar.innerHTML =`<p>
-                            <img class="avatarSize" src="${avatar}"/>
+                            <img class="avatarSize" src="${info.avatar}"/>
                         </p>`;
+}
 
 //modifier l avatar 
 btnAvatar.addEventListener('change', function(event) {

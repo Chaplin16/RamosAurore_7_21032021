@@ -19,7 +19,7 @@ class Comments {
                         <p class="pseudo">${this.User.username}</p>
                         <input class="comment" type="texterea" name="comment" value="${this.comment}"/>
                     </div>
-                    <img role="button" class="trashComment" data-id="${this.id}" onclick="deleteComment(${this.id})" name="submit" src="images/trash.png" alt="supprimer le commentaire"  />       
+                    <img role="button" class="trashComment" data-id="${this.id}" name="submit" src="images/trash.png" alt="supprimer le commentaire"  />       
                 </div>`
     }
 }
