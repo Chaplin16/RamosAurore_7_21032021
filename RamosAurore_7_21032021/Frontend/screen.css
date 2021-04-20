@@ -424,7 +424,7 @@ footer a:hover{
     position: relative;
     width: 1.2rem;
     height: 1.2rem;
-    right:1.9rem;
+    right:2.1rem;
     top:0.55rem;
     border: none;
     cursor: pointer;
@@ -442,6 +442,7 @@ right: 20px;
     height: 1.7rem;
 }
 
+.trashComment[data-enable= "false"],
 .trash[data-enable="false"]{
     display:none;
 }

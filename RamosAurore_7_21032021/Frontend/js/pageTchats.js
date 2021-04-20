@@ -10,10 +10,9 @@ const commentUserMade = document.querySelectorAll('commentUserMade');
 // profil de l utilisateur connecté
 const deleteAccount = document.getElementById('deleteAccount');
 
-let avatar = info.avatar;
-let username = info.username;
-
-avatarConnect.innerHTML = ` <img  class="avatarSize" src="${avatar}"/> `
+if(info != null) {
+avatarConnect.innerHTML = ` <img  class="avatarSize" src="${info.avatar}"/> `
+}
 
 const tchatMember = document.getElementById('tchatMember');
 const btnSubmitTchat = document.getElementById('btnSubmitTchat');
@@ -41,7 +40,8 @@ btnSubmitTchat.addEventListener("click", function (event) {
                 userId: data.message.UserId
             }
             sessionStorage.setItem("tchat", JSON.stringify(tchat));
-            window.location.reload();
+            location.reload();
+            
         })
         .catch(function (err) { //le retour en cas de non connection au serveur 
             console.log('api problem: ' + err.message);
@@ -54,7 +54,11 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
     headers: { "Content-Type": "application/json;charset=UTF-8" },
     mode: "cors"
 }).then(function (response) {
-    return response.json();
+    if(response.status == 401){
+        window.location.assign('index.html');
+    }else{
+        return response.json();
+    }
 }).then(function (listTchats) {
     //afficher tous les tchats
         for (let message of listTchats) {
@@ -69,7 +73,7 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             btn.addEventListener('click', function (event) {
                 let tchatId = this.dataset.id;
                 deleteTchat(tchatId);
-                window.location.reload();
+                
             })
         }
     //envoyer un commentaire sur le tchat commenté
@@ -84,7 +88,9 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             let sendComment = JSON.stringify(commentAll)
             sendCommentUser(sendComment);
             })    
-        }  
+        } 
+        
+     
 })
 .catch(function (err) { //le retour en cas de non connection au serveur 
         console.log('Fetch problem: ' + err.message);
@@ -154,12 +160,13 @@ function getAllComments(){
             tchatParent = placeComment.innerHTML += comment.displayComment();
             
         }
+        bindDeleteComment();
     })
       
 }
 
 //fonction pour supprimer le tchat par le user connecté
-function deleteTchat(tchatId) {
+ function deleteTchat(tchatId) {
     fetch('http://localhost:3000' + '/tchat/' + tchatId + '/delete', {
         method: "delete",
         headers: {
@@ -175,8 +182,8 @@ function deleteTchat(tchatId) {
                 throw data.message;
             }       
     }).then(function () {
-        let userDelete = document.querySelector(`.Tchats[data-id="${tchatId}"]`);
-        delete userDelete;
+        document.querySelector(`.oneTchat[data-id="${tchatId}"]`).remove();
+        
         
 
     }).catch(function (err) { //le retour en cas de non connection au serveur 
@@ -197,10 +204,20 @@ function deleteComment(id) {
     }).then(function (response) {
         return response.json();
     }).then(function () {
-        let commentDelete = document.querySelector(`.trashComment[data-id="${id}"]`);
-        delete commentDelete; 
-        window.location.reload();
+     document.querySelector(`.commentUser[data-id="${id}"]`).remove();
     }).catch(function (err) { //le retour en cas de non connection au serveur 
         console.log('Fetch problem: ' + err);
     })  
+}
+
+//supprimer un tchat par le user qui a écrit le tchat  
+function bindDeleteComment(){
+        const btnTrashComment = document.querySelectorAll(`.trashComment`);
+        for (let btn of btnTrashComment) {
+            btn.addEventListener('click', function (event) {
+                let id = this.dataset.id;
+                deleteComment(id);
+                
+            })
+        }
 }
