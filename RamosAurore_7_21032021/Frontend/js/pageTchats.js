@@ -210,7 +210,7 @@ function deleteComment(id) {
     })  
 }
 
-//supprimer un tchat par le user qui a écrit le tchat  
+//supprimer un commentaire par le user qui a écrit le tchat  
 function bindDeleteComment(){
         const btnTrashComment = document.querySelectorAll(`.trashComment`);
         for (let btn of btnTrashComment) {
