@@ -17,6 +17,10 @@ module.exports = {
           key: 'id'
         }
       },
+      attachment: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       content: {
         type: Sequelize.STRING
       },

@@ -2,7 +2,8 @@
 const {Sequelize,DataTypes, database} = require('./connexion');
 
 const Tchat = database.define('Tchat', {
-    content: DataTypes.STRING
+    content: DataTypes.STRING,
+    attachment: DataTypes.STRING
     }, {
     Sequelize,
     modelName: 'Tchat',

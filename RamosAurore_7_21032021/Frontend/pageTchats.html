@@ -40,14 +40,21 @@
                         </p>
 
                     </div>    
-                    <label for="userConnect"></label>
-                    <input class="inputTchatUserConnect" 
-                            type="text" 
-                            name="userConnect" 
-                            id="inputTchatUserConnect" 
-                            placeholder="Quoi de neuf??"
-                    />   
-                    <input type="submit" class="linkSend" id="btnSubmitTchat" name="submit">       
+                    <div class="inputImgAndText">
+                        <label for="userConnect"></label>
+                        <input class="inputTchatUserConnect" 
+                                type="text" 
+                                name="userConnect" 
+                                id="inputTchatUserConnect" 
+                                placeholder="Quoi de neuf??"
+                        />
+                        <p class="linkImg" id="linkImg"></p>
+                    </div>  
+                    <div class="btnImgAndSend">
+                        <label class="label" for="selectImg"></label>
+                        <input type="file" id="selectImg" name="selectImg" class="selectImg" />   
+                        <input type="submit" class="linkSend" id="btnSubmitTchat" name="submit"> 
+                    </div>  
                 </div>
                 <div class="tchatsMembersAndComments" id="tchatsMembersAndComments"> 
                     <div class="allTchatsMembers" id="allTchatsMembers">

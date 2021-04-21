@@ -5,6 +5,7 @@ class Tchats {
     constructor(tchat) {
         this.id = tchat.id;
         this.content = tchat.content;
+        this.attachment = tchat.attachment;
         this.createdAt = tchat.createAt;
         this.updatedAt = tchat.updatedAt;
         this.user = tchat.User;
@@ -21,6 +22,7 @@ class Tchats {
             </div>
             <label for="allTchatMember"></label>
             <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember" value="${this.content}"  /> 
+            <p> img src="${this.attachment}" alt="image de l'utilisateur"</p>
             <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion" data-enable="${user.id == this.user.id}" /> 
         </div>
         <p class="unique">Commentaires</p>  

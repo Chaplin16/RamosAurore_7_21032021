@@ -1,6 +1,7 @@
 const {User, Tchat, Comment} = require('../models/index');
 const firesystem = require('fs');
 const multer = require('../middlewares/multer');
+const multerTchat = require('../middlewares/multerTchat');
 const auth = require('../middlewares/auth');
 
 
@@ -10,12 +11,11 @@ exports.createTchat = (req, res, next) => {
     Tchat.create({
             content: tchat.content,
             UserId:tchat.userId,
+            attachment: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         }).then(tchat => {
                 res.status(201).json({ 
                     message: tchat 
-                })
-    
-            
+                })            
         })
         .catch(error => res.status(404).json({ error:"erreur dans la requête" }));
 };

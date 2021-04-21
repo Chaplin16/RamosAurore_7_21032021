@@ -17,29 +17,40 @@ avatarConnect.innerHTML = ` <img  class="avatarSize" src="${info.avatar}"/> `
 const tchatMember = document.getElementById('tchatMember');
 const btnSubmitTchat = document.getElementById('btnSubmitTchat');
 
+const selectImg = document.getElementById('selectImg');
+const linkImg = document.getElementById('linkImg');
+selectImg.addEventListener('change', function(event) {
+    info.id;
+    info.token;
+    const file = document.getElementById('selectImg').files[0];
+    linkImg.innerHTML = `<span>fichier joint: ${file.name}</span>`;
+})
 //valider un tchat du user connecté
 btnSubmitTchat.addEventListener("click", function (event) {
+    const file = document.getElementById('selectImg').files[0];
     event.preventDefault();
-    let message = {
-        'content': document.getElementById('inputTchatUserConnect').value,
-        'userId': info.id
-    }
-    let sendMessage = JSON.stringify(message)
+
+    const formData = new FormData();
+    formData.append('attachment', file)
+    formData.append('userId', info.id)
+    formData.append('content', document.getElementById('inputTchatUserConnect').value)
+    formData.append('attachment', file.name)
+    
+    event.preventDefault();
+
 
     fetch('http://localhost:3000' + '/tchat/', {
         method: "post",
-        headers: { "Content-Type": "application/json;charset=UTF-8" },
+        headers: { 
+            "Authorization": `Bearer ${info.token}` 
+        },
         mode: "cors",
-        body: sendMessage
+        body: formData
     }).then(function (response) {
         return response.json();
     })
-        .then(function (data) {
-            let tchat = {
-                tchatId: data.message.id,
-                userId: data.message.UserId
-            }
-            sessionStorage.setItem("tchat", JSON.stringify(tchat));
+        .then(function () {
+            console.log("affichage du tchat avec image")
             location.reload();
             
         })
