@@ -34,7 +34,7 @@ btnSubmitTchat.addEventListener("click", function (event) {
     formData.append('attachment', file)
     formData.append('userId', info.id)
     formData.append('content', document.getElementById('inputTchatUserConnect').value)
-    formData.append('attachment', file.name)
+
     
     event.preventDefault();
 
@@ -62,7 +62,10 @@ btnSubmitTchat.addEventListener("click", function (event) {
 //faire apparaitre tous les tchats/tous les commentaires au chargement de la page
 fetch('http://localhost:3000' + '/tchat/getAll', {
     method: "get",
-    headers: { "Content-Type": "application/json;charset=UTF-8" },
+    headers: { 
+        "Content-Type": "application/json;charset=UTF-8",
+        "Authorization": `Bearer ${info.token}`
+    },
     mode: "cors"
 }).then(function (response) {
     if(response.status == 401){
