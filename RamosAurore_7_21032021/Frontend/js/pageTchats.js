@@ -11,7 +11,7 @@ const commentUserMade = document.querySelectorAll('commentUserMade');
 const deleteAccount = document.getElementById('deleteAccount');
 
 if(info != null) {
-avatarConnect.innerHTML = ` <img  class="avatarSize" src="${info.avatar}"/> `
+avatarConnect.innerHTML = ` <img  class="avatarSize" src="${info.avatar}" alt="avatar de l'utilisateur connecté"/> `
 }
 
 const tchatMember = document.getElementById('tchatMember');
@@ -150,8 +150,6 @@ function getOneComment(data) {
         let tchatParent = document.querySelector(`.oneTchat[data-id="${TchatId}"]`);
         let placeComment = tchatParent.querySelector(`.commentUserMade`);
         tchatParent = placeComment.innerHTML += comment.displayComment(info);
-        location.reload();  
-        
     })
 }
 

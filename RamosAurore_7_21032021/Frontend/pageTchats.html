@@ -17,9 +17,9 @@
        </header>
         <main class="containerTchatsAndUsers">
             <section class= "yourProfil">
-                <h2 id="Hello"></h2>
+                <h2 id="Hello" class="profil"></h2>
                 <p class="helloAvatar" id="helloAvatar"></p>
-           
+                <!--partie HTML importée dans pageProfilUser.js -->
                 <p>
                     <label class="label" for="avatar">Modifier votre avatar</label>
                     <input type="file" id="avatar" name="avatar" class="avatar" style="display:none" />
@@ -27,21 +27,20 @@
                     <a class="deleteAccount" id="deleteAccount" href="#">Supprimer votre profil</a>
                 </p>
                 <div class="disconnect">
-                    
                     <input type="submit" class="inputDisconnect" id="inputDisconnect" value="Se déconnecter"> 
                    
                 </div>
             </section>
             <section class="post">
                 <div class="tchatUserConnect" id="tchatUserConnect">
-                    <div class="connected"                  >
+                    <h2 class="connected"                  >
                         <p class="avatarConnect" id="avatarConnect"> 
                             <!--partie HTML importée dans pageTchats.js -->   
                         </p>
 
-                    </div>    
+                    </h2>    
                     <div class="inputImgAndText">
-                        <label for="userConnect"></label>
+                        <label for="inputTchatUserConnect">Votre texte</label>
                         <input class="inputTchatUserConnect" 
                                 type="text" 
                                 name="userConnect" 
@@ -51,9 +50,9 @@
                         <p class="linkImg" id="linkImg"></p>
                     </div>  
                     <div class="btnImgAndSend">
-                        <label class="label" for="selectImg"></label>
+                        <label for="selectImg">selectionner une image</label>
                         <input type="file" id="selectImg" name="selectImg" class="selectImg" />   
-                        <input type="submit" class="linkSend" id="btnSubmitTchat" name="submit"> 
+                        <input type="submit" class="linkSend" id="btnSubmitTchat" name="submit" value="button"> 
                     </div>  
                 </div>
                 <div class="tchatsMembersAndComments" id="tchatsMembersAndComments"> 
@@ -63,7 +62,7 @@
                 </div>
             </section>
             <div class="pageUp">
-                <a href="#top"><img class="btnUp"src="images/btnUp.png"/></a>
+                <a href="#top"><img class="btnUp" src="images/btnUp.png" alt="bouton pour remonter en haut de la page"/></a>
             </div>
         </main>
 

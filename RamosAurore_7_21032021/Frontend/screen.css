@@ -1,6 +1,6 @@
 :root{
-    --rouge:#96434a;
-    --grey: #e7e2e2;
+    --rouge:#cd5c5c;
+    --grey: #e2e0e0;
     --bluePastel: rgb(40, 53, 78);
     background-color: rgb(135,135,135);
 }
@@ -21,7 +21,6 @@ a:hover {
 
 .logo {
     display: flex;
-    align-items: center;
     background-color: var(--bluePastel);
     margin:-5px;
     margin-bottom: 2rem;
@@ -29,9 +28,10 @@ a:hover {
 }
 
 h1{
-    font-size:150%;
+    display: flex;
     color: var(--rouge);
 }
+
 
 .container{
     display: flex;
@@ -46,11 +46,10 @@ h1{
     column-gap: 2rem;
 }
 
-h2{
+.profil{
     color:var(--rouge);
     font-size: 1rem;
-    margin:1rem;
-    margin-left:2rem;
+    margin-left: 15%;
 }
 
 .input_formulaire {
@@ -62,6 +61,14 @@ h2{
     font-size: 15px;   
 }
 
+label{
+    font-size: 0;
+}
+
+.label{
+    font-size:0.8rem;
+    margin-left:16%;
+}
 .signup,
 .login{
     width:100%;
@@ -109,11 +116,6 @@ cursor: pointer;
     padding-left:10px;
 }
 
-.title_signup{
-    display: flex;
-    justify-content: space-between;
-}
-
 .btn_enter{
     background-color: var(--rouge);
     font-weight: 700;
@@ -131,10 +133,11 @@ cursor: pointer;
 }
 
 .question{
-    color:var(--rouge)
+    color:var(--bluePastel);
+    font-weight: bold;
 }
 .linkConnect{
-    color: var(--grey)
+    color: var(--bluePastel);
 
 }
 
@@ -195,11 +198,7 @@ footer a:hover{
 
 .tchatMember{
     display: flex;
-
-}
-.inputTchatMember {
-    width: 80%;
-    border: none;
+    margin-top:1rem;
 }
 
 .inputTchatUserConnect{
@@ -223,6 +222,7 @@ footer a:hover{
 
 .usernameMember{
     margin-bottom: 0.5rem;
+    color: var(--bluePastel);
 } 
 
 .post{
@@ -334,16 +334,13 @@ footer a:hover{
 }
 
 .yourProfil{
-    background-color: rgb(221, 215, 215);
+    background-color: var(--grey);
     width: 23%;
     border: 1px var(--rouge) solid;
     border-radius: 5px;
     height: 20%;
 }
-.label {
-    font-size: 0.8rem;
-    margin-left:2rem;
-}
+
 .oneTchat{
     display: flex;
     flex-direction: column;
@@ -352,15 +349,16 @@ footer a:hover{
     padding: 1rem 1rem 0 1rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
-    background-color: rgb(221, 215, 215);
+    background-color: var(--grey);
     border-radius: 5px;
 }
 
 .inputTchatMember{
     height: 3rem;
     border-radius: 8px;
-    width: 97%;
+    width: 95%;
     padding-left: 10px;
+    border: none;
 }
 
 .commentUserConnect{
@@ -373,14 +371,14 @@ footer a:hover{
 
 .comment{
     height: 1.5rem;
-    width: 95%;
+    width:95%;
     border: none;
     border-radius: 5px;
     padding-left: 10px;
 }
 .pseudo{
     color:var(--rouge);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin-bottom: 3px;
     margin-top: 0;
 }
@@ -400,9 +398,10 @@ footer a:hover{
 .unique {
     float:left;
     color: var(--rouge);
-    font-size: 0.8rem;
-    margin-top: 0;
-    margin-bottom:0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom:0.5rem;
 }
 
 .commentUserMade{
@@ -460,10 +459,12 @@ right: 20px;
     display:none;
 }
 .inputWithImg{
-    width:100%;
+    width:85%;
+    margin-left:1.5rem;
 }
 
 .imgUser{
     max-width:100%;
     max-height:10rem;
 }
+

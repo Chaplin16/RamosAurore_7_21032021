@@ -8,7 +8,7 @@ const inputDisconnect = document.getElementById('inputDisconnect');
 if(info != null){
 hello.innerHTML =`<span> Bonjour ${info.username}</span>`;
 helloAvatar.innerHTML =`<p>
-                            <img class="avatarSize" src="${info.avatar}"/>
+                            <img class="avatarSize" src="${info.avatar}" alt="avatar de l'utilisateur connecté"/>
                         </p>`;
 }
 
