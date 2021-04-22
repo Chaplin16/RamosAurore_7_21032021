@@ -20,9 +20,13 @@ class Tchats {
                 </p>
                 <p id="usernameMember" class="usernameMember">${this.user.username}</p>
             </div>
-            <label for="allTchatMember"></label>
-            <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember" value="${this.content}"  /> 
-            <p> img src="${this.attachment}" alt="image de l'utilisateur"</p>
+            <div class="inputWithImg">
+                <label for="allTchatMember"></label>
+                <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember" value="${this.content}"  /> 
+                <p> 
+                    <img class="imgUser" src="${this.attachment}" alt="image de l'utilisateur">
+                </p>
+            </div>
             <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion" data-enable="${user.id == this.user.id}" /> 
         </div>
         <p class="unique">Commentaires</p>  

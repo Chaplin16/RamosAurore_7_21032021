@@ -218,7 +218,7 @@ footer a:hover{
     background-color: white;
     position: relative; 
     width: 87%;
-
+    min-height: 2%;
 }
 
 .usernameMember{
@@ -359,7 +359,7 @@ footer a:hover{
 .inputTchatMember{
     height: 3rem;
     border-radius: 8px;
-    width: 87%;
+    width: 97%;
     padding-left: 10px;
 }
 
@@ -373,7 +373,7 @@ footer a:hover{
 
 .comment{
     height: 1.5rem;
-    width: 97%;
+    width: 95%;
     border: none;
     border-radius: 5px;
     padding-left: 10px;
@@ -430,15 +430,14 @@ footer a:hover{
     font-size:0;
     object-fit: cover;
     border: none;
-    border-radius: 5px;
-    margin-left:7px;
+    border-radius: 5px;  
 }
 
 .trashComment {
     position: relative;
     width: 1.2rem;
     height: 1.2rem;
-    right:2.1rem;
+    right:3.2rem;
     top:0.55rem;
     border: none;
     cursor: pointer;
@@ -459,4 +458,12 @@ right: 20px;
 .trashComment[data-enable= "false"],
 .trash[data-enable="false"]{
     display:none;
+}
+.inputWithImg{
+    width:100%;
+}
+
+.imgUser{
+    max-width:100%;
+    max-height:10rem;
 }
