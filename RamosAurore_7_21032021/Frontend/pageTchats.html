@@ -20,14 +20,14 @@
                 <h2 id="Hello" class="profil"></h2>
                 <p class="helloAvatar" id="helloAvatar"></p>
                 <!--partie HTML importée dans pageProfilUser.js -->
-                <p>
-                    <label class="label" for="avatar">Modifier votre avatar</label>
+                <p class="select">
+                    <label class="updateProfil" for="avatar">Modifier votre avatar</label>
                     <input type="file" id="avatar" name="avatar" class="avatar" style="display:none" />
                     <a class="updateProfil" id="updateProfil" href="modifProfil.html">Modifier votre profil</a>
                     <a class="deleteAccount" id="deleteAccount" href="#">Supprimer votre profil</a>
                 </p>
                 <div class="disconnect">
-                    <input type="submit" class="inputDisconnect" id="inputDisconnect" value="Se déconnecter"> 
+                    <input type="submit" class="inputDisconnect" id="inputDisconnect" value="Deconnexion"> 
                    
                 </div>
             </section>
@@ -41,12 +41,14 @@
                     </h2>    
                     <div class="inputImgAndText">
                         <label for="inputTchatUserConnect">Votre texte</label>
-                        <input class="inputTchatUserConnect" 
+                        <textarea class="inputTchatUserConnect" 
                                 type="text" 
                                 name="userConnect" 
                                 id="inputTchatUserConnect" 
                                 placeholder="Quoi de neuf??"
-                        />
+                                minlength="3"
+                                maxlength="200">
+                        </textarea>
                         <p class="linkImg" id="linkImg"></p>
                     </div>  
                     <div class="btnImgAndSend">
