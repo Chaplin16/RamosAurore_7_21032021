@@ -19,6 +19,7 @@ const btnSubmitTchat = document.getElementById('btnSubmitTchat');
 
 const selectImg = document.getElementById('selectImg');
 const linkImg = document.getElementById('linkImg');
+const inpuTchat = document.getElementById('inputTchatUserConnect').value
 selectImg.addEventListener('change', function(event) {
     info.id;
     info.token;
@@ -50,9 +51,9 @@ btnSubmitTchat.addEventListener("click", function (event) {
         return response.json();
     })
         .then(function () {
-            console.log("affichage du tchat avec image")
-            location.reload();
-            
+            inpuTchat.innerHTML=`" "`;
+            window.location.reload()
+            console.log("affichage du tchat avec ou sans image")
         })
         .catch(function (err) { //le retour en cas de non connection au serveur 
             console.log('api problem: ' + err.message);
