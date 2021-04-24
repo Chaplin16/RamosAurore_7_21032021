@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content=" messagerie instantannée de groupomania">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="screen.css">
         <title>Tchats</title>
     </head>
@@ -41,19 +42,19 @@
                     </h2>    
                     <div class="inputImgAndText">
                         <label for="inputTchatUserConnect">Votre texte</label>
-                        <textarea class="inputTchatUserConnect" 
+                        <input class="inputTchatUserConnect" 
                                 type="text" 
                                 name="userConnect" 
                                 id="inputTchatUserConnect" 
                                 placeholder="Quoi de neuf??"
-                                minlength="3"
+                                minlength="1"
                                 maxlength="200">
-                        </textarea>
+                        </input>
                         <p class="linkImg" id="linkImg"></p>
                     </div>  
                     <div class="btnImgAndSend">
-                        <label for="selectImg">selectionner une image</label>
-                        <input type="file" id="selectImg" name="selectImg" class="selectImg" />   
+                        <label for="selectImg" class="selectImg">selectionner une image</label>
+                        <input type="file" id="selectImg" name="selectImg" style="display:none" />   
                         <input type="submit" class="linkSend" id="btnSubmitTchat" name="submit" value="button"> 
                     </div>  
                 </div>
@@ -69,6 +70,23 @@
         </main>
 
         <footer>
+            <div class="footer">
+                <p class="copyright">
+                    <img src="images/copyright_25.png" alt="copyright">
+                    2021 GROUPOMANIA. Tous droits réservés
+                </p>
+                <div class="linkFooter">
+                    <p>
+                        <a href ="#">A propos</a>
+                    </p>
+                    <p>
+                        <a href ="#">Fonctionnalités</a>
+                    </p>
+                    <p>
+                        <a href ="#">Nous contacter</a>
+                    </p>
+                </div>
+            </div>
         </footer>
 
         <!--mes scripts-->
