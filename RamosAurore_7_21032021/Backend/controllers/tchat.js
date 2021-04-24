@@ -4,7 +4,7 @@ const multer = require('../middlewares/multer');
 const multerTchat = require('../middlewares/multerTchat');
 const auth = require('../middlewares/auth');
 
-////////////////////
+
 //route pour creer un tchat
 exports.createTchat = (req, res, next) => {
     const tchat = req.body;
@@ -19,18 +19,18 @@ exports.createTchat = (req, res, next) => {
                     })            
             })
             .catch(error => res.status(404).json({ error:"erreur dans la requête" }));
-        }else {
-            if(req.body){
-               Tchat.create({
-                    content: tchat.content,
-                    UserId:tchat.userId,
-                }).then(tchat => {
-                        res.status(201).json({ 
-                            message: tchat 
-                        })            
-                })
-                .catch(error => res.status(404).json({ error:"erreur dans la requête" })); 
-            }    
+    }else {
+        delete (req.body.attachment)
+            Tchat.create({
+                content: req.body.content,
+                UserId:req.body.userId,
+            }).then(tchat => {
+                    res.status(201).json({ 
+                        message: tchat 
+                    })            
+            })
+            .catch(error => res.status(404).json({ error:"erreur dans la requête" })); 
+               
         }
 }
 

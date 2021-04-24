@@ -22,7 +22,7 @@ class Tchats {
             </div>
             <div class="inputWithImg">
                 <label for="tchatMember">une discussion
-                    <input class="inputTchatMember" type="texterea" name="allTchatMember" id="tchatMember" value="${this.content}"  /> 
+                    <textarea class="inputTchatMember" type="textarea" name="allTchatMember" id="tchatMember" >${this.content}</textarea> 
                     <p> 
                         <img class="imgUser" src="${this.attachment}" alt="image de l'utilisateur">
                     </p>

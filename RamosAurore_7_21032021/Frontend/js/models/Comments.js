@@ -18,7 +18,7 @@ class Comments {
                     <div class="pseudoAndText">
                         <h4 class="pseudo">${this.User.username}</h4>
                         <label for="comment">Commentaire d'un utilisateur
-                            <input class="comment" type="texterea" id="comment" name="comment" value="${this.comment}"/>
+                            <textarea class="comment" type="textarea" id="comment" name="comment" >${this.comment}</textarea>
                         </label>
                     </div>
                     <img role="button" class="trashComment" data-id="${this.id}" data-enable="${info.id == this.User.id}" name="submit" src="images/trash.png" alt="supprimer le commentaire"  />       

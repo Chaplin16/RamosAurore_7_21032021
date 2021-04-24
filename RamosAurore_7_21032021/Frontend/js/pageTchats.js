@@ -19,23 +19,36 @@ const btnSubmitTchat = document.getElementById('btnSubmitTchat');
 
 const selectImg = document.getElementById('selectImg');
 const linkImg = document.getElementById('linkImg');
-const inpuTchat = document.getElementById('inputTchatUserConnect').value
+
 selectImg.addEventListener('change', function(event) {
     info.id;
     info.token;
     const file = document.getElementById('selectImg').files[0];
-    linkImg.innerHTML = `<span>fichier joint: ${file.name}</span>`;
+    linkImg.innerHTML = `
+                <span>fichier joint: ${file.name}</span>
+                <img class="deleteImg" src="images/deleteImg.png"/>`
+
+    const deleteImg = document.querySelector('.deleteImg');
+    deleteImg.addEventListener("click", function (event) {
+        linkImg.remove();         
+    })
 })
+
 //valider un tchat du user connecté
 btnSubmitTchat.addEventListener("click", function (event) {
     const file = document.getElementById('selectImg').files[0];
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('attachment', file)
-    formData.append('userId', info.id)
-    formData.append('content', document.getElementById('inputTchatUserConnect').value)
-
+    
+    if(file != null){
+        formData.append('attachment', file)
+        formData.append('userId', info.id)
+        formData.append('content', document.getElementById('inputTchatUserConnect').value)
+    } else{
+        formData.append('userId', info.id)
+        formData.append('content', document.getElementById('inputTchatUserConnect').value)
+    }
     
     event.preventDefault();
 
@@ -50,11 +63,13 @@ btnSubmitTchat.addEventListener("click", function (event) {
     }).then(function (response) {
         return response.json();
     })
-        .then(function () {
-            inpuTchat.innerHTML=`" "`;
-            window.location.reload()
+        .then(function (data) {
             console.log("affichage du tchat avec ou sans image")
-        })
+            let toDelete = document.getElementById('inputTchatUserConnect').value;
+            delete toDelete;
+            location.reload();
+           
+        }) 
         .catch(function (err) { //le retour en cas de non connection au serveur 
             console.log('api problem: ' + err.message);
         })
@@ -77,8 +92,14 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
 }).then(function (listTchats) {
     //afficher tous les tchats
         for (let message of listTchats) {
+
             let tchat = new Tchats(message);
+            
             allTchatsMembers.innerHTML += tchat.displayTchats(info);
+            // if(message.attachment === null) {
+            //     const imgUser = document.querySelectorAll(`.pImgUser`);
+            //     delete imgUser; 
+            //}
         }
         getAllComments();
         
@@ -103,9 +124,7 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
             let sendComment = JSON.stringify(commentAll)
             sendCommentUser(sendComment);
             })    
-        } 
-        
-     
+        }          
 })
 .catch(function (err) { //le retour en cas de non connection au serveur 
         console.log('Fetch problem: ' + err.message);
