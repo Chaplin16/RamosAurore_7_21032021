@@ -20,7 +20,6 @@ exports.createTchat = (req, res, next) => {
             })
             .catch(error => res.status(404).json({ error:"erreur dans la requête" }));
     }else {
-        delete (req.body.attachment)
             Tchat.create({
                 content: req.body.content,
                 UserId:req.body.userId,
@@ -72,6 +71,14 @@ exports.tchatDelete = (req, res, next) => {
         }
     }).then(tchat => {
         if(tchat.UserId == req.token.userId || req.token.isAdmin){
+            const filename = tchat.attachment.split('/images/')[1];
+            firesystem.unlink(`images/${filename}`, (error => {
+                if(error) 
+                    {console.log(error)}
+                else {
+                    console.log("image effacée");
+                }
+            })) 
             Tchat.destroy({ where: { id: req.params.id } })
             .then(() => 
                 res.status(200).json({ 

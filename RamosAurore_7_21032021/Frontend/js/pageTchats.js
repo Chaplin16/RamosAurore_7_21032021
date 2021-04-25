@@ -19,6 +19,8 @@ const btnSubmitTchat = document.getElementById('btnSubmitTchat');
 
 const selectImg = document.getElementById('selectImg');
 const linkImg = document.getElementById('linkImg');
+const imgUser =  document.getElementsByClassName('imgUser');
+
 
 selectImg.addEventListener('change', function(event) {
     info.id;
@@ -30,7 +32,9 @@ selectImg.addEventListener('change', function(event) {
 
     const deleteImg = document.querySelector('.deleteImg');
     deleteImg.addEventListener("click", function (event) {
-        linkImg.remove();         
+        linkImg.remove();  
+        delete file;
+
     })
 })
 
@@ -39,16 +43,16 @@ btnSubmitTchat.addEventListener("click", function (event) {
     const file = document.getElementById('selectImg').files[0];
     event.preventDefault();
 
-    const formData = new FormData();
-    
-    if(file != null){
-        formData.append('attachment', file)
-        formData.append('userId', info.id)
-        formData.append('content', document.getElementById('inputTchatUserConnect').value)
-    } else{
-        formData.append('userId', info.id)
-        formData.append('content', document.getElementById('inputTchatUserConnect').value)
-    }
+    const formData = new FormData();   
+    const regexContent = /[^<>]{2,250}$/;
+        if(!regexContent.test(document.getElementById('inputTchatUserConnect').value)){
+            alert( "votre discussion doit contenir entre 2 et 250 caractères sans chevron")
+            return false
+        }
+    formData.append('content', document.getElementById('inputTchatUserConnect').value)
+    formData.append('attachment', file)
+    formData.append('userId', info.id)
+
     
     event.preventDefault();
 
@@ -92,15 +96,10 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
 }).then(function (listTchats) {
     //afficher tous les tchats
         for (let message of listTchats) {
-
-            let tchat = new Tchats(message);
-            
+            let tchat = new Tchats(message);           
             allTchatsMembers.innerHTML += tchat.displayTchats(info);
-            // if(message.attachment === null) {
-            //     const imgUser = document.querySelectorAll(`.pImgUser`);
-            //     delete imgUser; 
-            //}
         }
+        
         getAllComments();
         
     //supprimer un tchat par le user qui a écrit le tchat  
@@ -116,11 +115,17 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
         const btnSendComment = document.querySelectorAll(`.commentSend`);
         for (let btn of btnSendComment) {
             btn.addEventListener('click', function (event) {
+                const regexComment = /[^<>]{2,250}$/;
+                if(!regexComment.test(document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value)){
+                    alert( "votre commentaire doit contenir enrte 2 et 250 caractères sans chevron")
+                    return false
+                }
                 let commentAll = {
                 'UserId': this.dataset.id,
                 'TchatId': this.dataset.postid,
                 'comment' : document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value,
             }
+
             let sendComment = JSON.stringify(commentAll)
             sendCommentUser(sendComment);
             })    
