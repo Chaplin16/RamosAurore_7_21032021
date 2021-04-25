@@ -125,7 +125,6 @@ cursor: pointer;
     background-color: var(--rouge);
     font-weight: 700;
     height: 2rem;
-    width: 3rem;
     margin-top:1rem;
     opacity: 0.8;
     transition: all 300ms;
@@ -199,12 +198,6 @@ footer a:hover{
     margin-bottom: 2rem;
 }
 
-textarea{
-    font-family: 'Merriweather', serif;
-    font-size: 0.7rem;
-    padding-top: 7px;
-}
-
 .tchatsMembersAndComments{
     width:100%;
 }
@@ -216,13 +209,19 @@ textarea{
 
 .inputTchatUserConnect{
     font-size: 1rem;
-    width:100%;
+    width:98%;
     border: none;
     margin-top:20px;
     padding-left: 10px;
 }
 
 
+input[type="text" i]:focus {
+    margin-top:0.5rem;
+    padding: 0.5rem 0.5rem;
+    border: var(--rouge);
+    background-color: var(--grey);
+}
 
 .tchatUserConnect{
     border: 1px solid var(--bluePastel);
@@ -230,14 +229,13 @@ textarea{
     font-size: 15px;   
     border-radius:5px; 
     background-color: white;
-    position: relative; 
     width: 87%;
 }
 
 .usernameMember{
     margin-bottom: 0.5rem;
     color: var(--bluePastel);
-    font-size: 1rem;;
+    font-size: 1rem;
 } 
 
 .post{
@@ -275,7 +273,7 @@ textarea{
 .btnImgAndSend{
     display: flex;
     margin: auto;
-    column-gap: 1rem;
+    column-gap: 0.6rem;
     margin-right: 1rem;
 }
 
@@ -307,12 +305,10 @@ textarea{
 }
 
 .avatarConnect{
-    margin-bottom: 5px;
     margin-top:5px;
 }
 .avatarSize {
     max-width: 60px;
-    margin-top: 5px;
     margin-right: 1rem;
 }
 
@@ -378,11 +374,16 @@ textarea{
 }
 
 .inputTchatMember{
-    height: 3rem;
+    background-color: #fff;
     border-radius: 8px;
     width: 95%;
     padding-left: 10px;
     border: none;
+    cursor: not-allowed;
+    padding:0.5rem;
+    margin-top:0;
+    font-size:0.8rem;
+    font-weight: 500;
 }
 
 .commentUserConnect{
@@ -395,12 +396,15 @@ textarea{
 }
 
 .comment{
-    height: 1.5rem;
     width:95%;
-    border: none;
+    background-color: #fff;
     border-radius: 5px;
     padding-left: 10px;
+    cursor: not-allowed;
+    padding:0.5rem;
+    font-size: 0.8rem;
 }
+
 .pseudo{
     color:var(--rouge);
     font-size: 0.8rem;
@@ -425,8 +429,8 @@ textarea{
     color: var(--rouge);
     font-size: 0.9rem;
     font-weight: bold;
-    margin-top: 1.5rem;
     margin-bottom:0.5rem;
+    margin-top:0;
 }
 
 .commentUserMade{
@@ -632,7 +636,7 @@ h2 span{
     }
     
     .yourProfil{
-        width: 58%;
+        width: 50%;
         margin:auto;
         display: flex;
         flex-direction: row;
@@ -674,16 +678,16 @@ h2 span{
     
 }  
 
-@media all and (max-width: 499px) {
+@media all and (max-width: 550px) {
     .yourProfil{
-    width:80%;
-}
-.btnImgAndSend{
-    margin-right: 0;
-    column-gap: 0.2rem;
-}
-.linkSend{
-    width:35px;
+        width:60%;
+    }
+    .btnImgAndSend{
+        margin-right: 0;
+        column-gap: 0.2rem;
+    }
+    .linkSend{
+        width:35px;
 
-}
+    }
 }

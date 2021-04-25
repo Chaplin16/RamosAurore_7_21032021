@@ -44,7 +44,7 @@ btnSubmitTchat.addEventListener("click", function (event) {
     event.preventDefault();
 
     const formData = new FormData();   
-    const regexContent = /[^<>]{2,250}$/;
+    const regexContent = /[^><]{2,250}$/;
         if(!regexContent.test(document.getElementById('inputTchatUserConnect').value)){
             alert( "votre discussion doit contenir entre 2 et 250 caractères sans chevron")
             return false
