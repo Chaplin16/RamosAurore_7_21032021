@@ -8,7 +8,7 @@ const multerTchat = require('../middlewares/multerTchat');
 // ROUTES TCHAT
 router.post('/', auth, multerTchat, tchatControllers.createTchat);
 
-router.get('/getOne/:id', auth, tchatControllers.getOneTchat);
+router.get('/getTchats/:UserId', auth, tchatControllers.getTchats);
 router.get('/getAll', auth, tchatControllers.getAllTchats);
 
 router.delete('/:id/delete', auth, tchatControllers.tchatDelete);

@@ -524,6 +524,13 @@ right: 20px;
     margin-bottom: 1rem;
     
 }
+
+.memberUsersConnected.active{
+    border: 2px solid var(--rouge);
+    border-radius: 15px;
+    background-color: #fff;
+}
+
 @media all and (min-width: 901px) {
 /* index.html and connect.html */
 .linkFooter{

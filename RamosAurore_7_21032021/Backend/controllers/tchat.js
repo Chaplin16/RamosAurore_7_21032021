@@ -34,12 +34,21 @@ exports.createTchat = (req, res, next) => {
 }
 
 //route pour voir un tchat
-exports.getOneTchat = (req, res, next) => {
-    Tchat.findOne({ 
-        where: {
-            id:req.params.id
-        } 
-    }).then(tchat => res.status(200).json(tchat))
+exports.getTchats = (req, res, next) => {
+    Tchat.findAll({ 
+         where: {
+             UserId: req.params.UserId
+         },
+        include: [ 
+            { model: User} ,
+            { model : Comment }
+        ],
+        order:[[
+            "createdAt", "DESC"
+        ]]
+       
+    
+    }).then(tchats => res.status(200).json(tchats))
     .catch(error => res.status(404).json({ error:"erreur dans la requête" }));;
 };
 

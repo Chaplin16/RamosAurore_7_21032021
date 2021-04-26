@@ -1,3 +1,5 @@
+//const { getOneTchat } = require("../../Backend/controllers/tchat");
+
 const info = JSON.parse(sessionStorage.getItem("user"));
 const tchat = JSON.parse(sessionStorage.getItem("tchat"));
 //avatar et nom du user connecté
@@ -25,15 +27,15 @@ const imgUser =  document.getElementsByClassName('imgUser');
 selectImg.addEventListener('change', function(event) {
     info.id;
     info.token;
-    const file = document.getElementById('selectImg').files[0];
+    const file = document.getElementById('selectImg');
     linkImg.innerHTML = `
                 <span>fichier joint: ${file.name}</span>
                 <img class="deleteImg" src="images/deleteImg.png"/>`
 
     const deleteImg = document.querySelector('.deleteImg');
-    deleteImg.addEventListener("click", function (event) {
+        deleteImg.addEventListener("click", function (event) {
         linkImg.remove();  
-        delete file;
+        file.value="";
 
     })
 })
@@ -80,62 +82,64 @@ btnSubmitTchat.addEventListener("click", function (event) {
 })
 
 //faire apparaitre tous les tchats/tous les commentaires au chargement de la page
-fetch('http://localhost:3000' + '/tchat/getAll', {
-    method: "get",
-    headers: { 
-        "Content-Type": "application/json;charset=UTF-8",
-        "Authorization": `Bearer ${info.token}`
-    },
-    mode: "cors"
-}).then(function (response) {
-    if(response.status == 401){
-        window.location.assign('index.html');
-    }else{
-        return response.json();
-    }
-}).then(function (listTchats) {
-    //afficher tous les tchats
-        for (let message of listTchats) {
-            let tchat = new Tchats(message);           
-            allTchatsMembers.innerHTML += tchat.displayTchats(info);
+function displayAllTchat(){
+    fetch('http://localhost:3000' + '/tchat/getAll', {
+        method: "get",
+        headers: { 
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": `Bearer ${info.token}`
+        },
+        mode: "cors"
+    }).then(function (response) {
+        if(response.status == 401){
+            window.location.assign('index.html');
+        }else{
+            return response.json();
         }
-        
-        getAllComments();
-        getAllUsers();
-        
-    //supprimer un tchat par le user qui a écrit le tchat  
-        const listBtnTrash = document.querySelectorAll(`.trash`);
-        for (let btn of listBtnTrash) {
-            btn.addEventListener('click', function (event) {
-                let tchatId = this.dataset.id;
-                deleteTchat(tchatId);
-                
-            })
-        }
-    //envoyer un commentaire sur le tchat commenté
-        const btnSendComment = document.querySelectorAll(`.commentSend`);
-        for (let btn of btnSendComment) {
-            btn.addEventListener('click', function (event) {
-                const regexComment = /[^<>]{2,250}$/;
-                if(!regexComment.test(document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value)){
-                    alert( "votre commentaire doit contenir enrte 2 et 250 caractères sans chevron")
-                    return false
-                }
-                let commentAll = {
-                'UserId': this.dataset.id,
-                'TchatId': this.dataset.postid,
-                'comment' : document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value,
+    }).then(function (listTchats) {
+        //afficher tous les tchats
+            allTchatsMembers.innerHTML ="";
+            for (let message of listTchats) {
+                let tchat = new Tchats(message);           
+                allTchatsMembers.innerHTML += tchat.displayTchats(info);
             }
+            
+            getAllComments();
+            getAllUsers();
+        
+        //supprimer un tchat par le user qui a écrit le tchat  
+            const listBtnTrash = document.querySelectorAll(`.trash`);
+            for (let btn of listBtnTrash) {
+                btn.addEventListener('click', function (event) {
+                    let tchatId = this.dataset.id;
+                    deleteTchat(tchatId);
+                    
+                })
+            }
+        //envoyer un commentaire sur le tchat commenté
+            const btnSendComment = document.querySelectorAll(`.commentSend`);
+            for (let btn of btnSendComment) {
+                btn.addEventListener('click', function (event) {
+                    const regexComment = /[^<>]{2,250}$/;
+                    if(!regexComment.test(document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value)){
+                        alert( "votre commentaire doit contenir enrte 2 et 250 caractères sans chevron")
+                        return false
+                    }
+                    let commentAll = {
+                    'UserId': this.dataset.id,
+                    'TchatId': this.dataset.postid,
+                    'comment' : document.querySelector(`.commentUserConnect[data-id="${this.dataset.postid}"]`).value,
+                }
 
-            let sendComment = JSON.stringify(commentAll)
-            sendCommentUser(sendComment);
-            })    
-        }          
-})
-.catch(function (err) { //le retour en cas de non connection au serveur 
-        console.log('Fetch problem: ' + err.message);
-})
-
+                let sendComment = JSON.stringify(commentAll)
+                sendCommentUser(sendComment);
+                })    
+            }          
+    })
+    .catch(function (err) { //le retour en cas de non connection au serveur 
+            console.log('Fetch problem: ' + err.message);
+    })
+}
 //envoyer un commentaire par le user connecté/identifié  
 function sendCommentUser(sendComment) {
     fetch('http://localhost:3000' + '/comment/', {
@@ -204,6 +208,7 @@ function getAllComments(){
 }
 
 //fonction pour voir touts les users
+let member = document.querySelector('.member');
 function getAllUsers(){
     fetch('http://localhost:3000' + '/' + 'getAllUsers', {
     method: "get",
@@ -215,15 +220,37 @@ function getAllUsers(){
     }).then(function (response) {
         return response.json();
     }).then(function(listData){
+        member.innerHTML = "";
         for (let data of listData) {
             let username = data.username;
             let avatar = data.avatar;
-            let member = document.querySelector('.member');
-            member.innerHTML += `<div class="memberUsersConnected"> 
+            let id = data.id;
+            
+            member.innerHTML += `<div class="memberUsersConnected" data-id="${id}"> 
                                     <img  class="avatarSize" src="${avatar}" alt="avatar d'un membre'"/>
                                     <p class="pseudo">${username}</p>
-                                </div>
-            `
+                                </div>`
+        }
+        member.innerHTML += `<div class="memberUsersConnected"> 
+        <img  class="avatarSize" src="images/deleteImg.png" alt="avatar d'un membre'"/>
+        <p class="pseudo">retirer le filtre</p>
+    </div>`
+        // afficher les tchats d'un seul utilisateur
+        const getTchat = document.querySelectorAll(`.memberUsersConnected`);
+        for (let btn of getTchat) {
+
+            btn.addEventListener('click', function(event) {       
+                for(let btn of getTchat){
+                    btn.className = "memberUsersConnected";
+                }
+                if(this.dataset.id != null){
+                    this.className += " active";
+                    let UserId = this.dataset.id;
+                    getOneTchat(UserId); 
+                }else{
+                    displayAllTchat();
+                }
+            })
         }
     })
 }
@@ -284,3 +311,27 @@ function bindDeleteComment(){
             })
         }
 }
+//function pour afficher un tchat 
+
+function getOneTchat(UserId) {
+    info.token;
+    fetch('http://localhost:3000' + '/tchat' + '/getTchats' + '/'+ UserId, {
+        method: "get",
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": `Bearer ${info.token}`
+    },mode:"cors",
+    }).then(function (response) {
+    return response.json();
+    }).then(function(listData){
+        allTchatsMembers.innerHTML ="";
+        for (let message of listData) {
+            let tchat = new Tchats(message);           
+            allTchatsMembers.innerHTML += tchat.displayTchats(info);
+        }
+
+    })
+}
+        
+
+displayAllTchat();
