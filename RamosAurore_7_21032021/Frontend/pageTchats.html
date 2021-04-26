@@ -17,19 +17,25 @@
             <h1>Groupomania</h1>
        </header>
         <main class="containerTchatsAndUsers">
-            <section class= "yourProfil">
-                <h2 id="Hello" class="profil"></h2>
-                <p class="helloAvatar" id="helloAvatar"></p>
-                <!--partie HTML importée dans pageProfilUser.js -->
-                <p class="select">
-                    <label class="updateProfil" for="avatar">Modifier votre avatar</label>
-                    <input type="file" id="avatar" name="avatar" class="avatar" style="display:none" />
-                    <a class="updateProfil" id="updateProfil" href="modifProfil.html">Modifier votre profil</a>
-                    <a class="deleteAccount" id="deleteAccount" href="#">Supprimer votre profil</a>
-                </p>
-                <div class="disconnect">
-                    <input type="submit" class="inputDisconnect" id="inputDisconnect" value="Deconnexion"> 
-                   
+            <section class="users">
+                <div class= "yourProfil">
+                    <h2 id="Hello" class="profil"></h2>
+                    <p class="helloAvatar" id="helloAvatar"></p>
+                    <!--partie HTML importée dans pageProfilUser.js -->
+                    <p class="select">
+                        <label class="updateProfil" for="avatar">Modifier votre avatar</label>
+                        <input type="file" id="avatar" name="avatar" class="avatar" style="display:none" />
+                        <a class="updateProfil" id="updateProfil" href="modifProfil.html">Modifier votre profil</a>
+                        <a class="deleteAccount" id="deleteAccount" href="#">Supprimer votre profil</a>
+                    </p>
+                    <div class="disconnect">
+                        <input type="submit" class="inputDisconnect" id="inputDisconnect" value="Deconnexion"> 
+                    
+                    </div>
+                </div>
+                <div>
+                    <h2 id="Member" class="member">Membre</h2>
+                    <!--partie HTML importée dans pageTchats.js -->
                 </div>
             </section>
             <section class="post">

@@ -354,11 +354,8 @@ input[type="text" i]:focus {
 
 .yourProfil{
     background-color: var(--grey);
-    width: 26%;
     border: 1px var(--rouge) solid;
     border-radius: 5px;
-    height: 20%;
-    min-width: 8rem;
 }
 
 .oneTchat{
@@ -503,7 +500,30 @@ right: 20px;
     align-items: center;
 }
 
+.member{
+    border:1px solid var(--rouge);
+    background-color: var(--grey);
+    width: 60%;
+    border: 1px var(--rouge) solid;
+    border-radius: 5px;
+    height: 20%;
+    min-width: 11rem;
+    padding-top:1rem;
+    padding-left: 1rem; 
+}
 
+.users{
+    width: 26%;
+}
+
+.memberUsersConnected{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+    
+}
 @media all and (min-width: 901px) {
 /* index.html and connect.html */
 .linkFooter{
@@ -514,91 +534,108 @@ right: 20px;
 .containerTchatsAndUsers{
     column-gap: 2rem;
 }
+.member{
+    min-width:10rem; 
+
+    
+}
+.memberUsersConnected{
+    margin-left:0.3rem;
+}
 
 }
 
 @media all  and (max-width: 900px) {
 /* index.html and connect.html */
-.footer{
-    display:block;
-}
+    .footer{
+        display:block;
+    }
 
-.copyright{
-    margin-left: 10%;
-}
+    .copyright{
+        margin-left: 10%;
+    }
 
-.linkFooter{
+    .linkFooter{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /* page de discussion (between 699px and 900)*/
+    .containerTchatsAndUsers{
+        column-gap: 1rem;
+    }
+
+    .tchatUserConnect{
+        width:99%;
+    }
+    .allTchatsMembers{
+        width: 90%;
+    }
+    .oneTchat{
+        margin-right:0;
+    }
+    .updateProfil,
+    .deleteAccount{
+        font-size: 0.7rem;
+    }
+    .infoMember{
     display: flex;
-    justify-content: space-around;
-}
+    align-items: top;
+    max-width: 45px;
+    }
 
-/* page de discussion (between 699px and 900)*/
-.containerTchatsAndUsers{
-    column-gap: 1rem;
-}
+    .tchatMember{
+        display: block;
+        width: 100%;
+        font-size: 0.8rem;
+        margin-top:0;
+        margin-bottom: 0;
+    }
 
+    .inputWithImg{
+        width:100%;
+        margin-left: 0;
+    }
+    .inputTchatMember{
+        width: 98%;
+    }
+    .trash{
+        height: auto;
+    }
 
-.tchatUserConnect{
-    width:99%;
-}
-.allTchatsMembers{
-    width: 90%;
-}
-.oneTchat{
-    margin-right:0;
-}
-.updateProfil,
-.deleteAccount{
-    font-size: 0.7rem;
-}
-.infoMember{
- display: flex;
- align-items: top;
- max-width: 45px;
-}
+    .unique{
+        margin-top:0;
+        font-size: 0.8rem;
+    }
 
-h2 span{
-    font-size:0.8rem;
-}
-.tchatMember{
-    display: block;
-    width: 100%;
-    font-size: 0.8rem;
-    margin-top:0;
-    margin-bottom: 0;
-}
+    .commentUser,
+    .commentUserConnect,
+    .commentUserMade{
+        margin-left: 0;
+        width:100%;
+    }
 
-.inputWithImg{
-    width:100%;
-    margin-left: 0;
-}
-.inputTchatMember{
-    width: 98%;
-}
-.trash{
-    height: auto;
+    .commentSend,
+    .trashComment{
+        right: -0.5rem;
+    }
 
+    .member{
+        margin-top:2rem;
+        padding-left:0.5rem;
+        min-width:95%;
+    }
 
-}
-
-.unique{
-    margin-top:0;
-    font-size: 0.8rem;
-}
-
-.commentUser,
-.commentUserConnect,
-.commentUserMade{
-
-     margin-left: 0;
-     width:100%;
-}
-
-.commentSend,
-.trashComment{
-    right: -0.5rem;
-}
-    
+    .memberUsersConnected{
+        margin-left:0;
+        width:auto;
+    }
+    .users .pseudo{
+       font-size:0.7rem;
+    } 
+     .users .avatarSize{
+         max-width:50px;
+     }
 }
 
 @media all and (max-width: 699px) {
@@ -620,8 +657,7 @@ h2 span{
     .footer{
         display: block;
         margin-left: 0.8rem;
-    }
-    
+    }  
     /* page de discussion (max-width: 699px)*/
     .logo{
         margin-bottom: 1rem;
@@ -636,12 +672,20 @@ h2 span{
     }
     
     .yourProfil{
-        width: 50%;
         margin:auto;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         margin-bottom: 1rem;
+        width:50%;
+    }
+
+    .member{
+        display: none;
+    }
+
+    .users{
+        width: 100%
     }
     .updateProfil,
     .deleteAccount{
@@ -674,8 +718,7 @@ h2 span{
     }
     .deleteAccount{
         margin-left:10px;
-    }
-    
+    }  
 }  
 
 @media all and (max-width: 550px) {

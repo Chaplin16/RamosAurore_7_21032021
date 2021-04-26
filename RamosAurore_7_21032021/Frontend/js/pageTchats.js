@@ -101,6 +101,7 @@ fetch('http://localhost:3000' + '/tchat/getAll', {
         }
         
         getAllComments();
+        getAllUsers();
         
     //supprimer un tchat par le user qui a écrit le tchat  
         const listBtnTrash = document.querySelectorAll(`.trash`);
@@ -200,6 +201,31 @@ function getAllComments(){
         bindDeleteComment();
     })
       
+}
+
+//fonction pour voir touts les users
+function getAllUsers(){
+    fetch('http://localhost:3000' + '/' + 'getAllUsers', {
+    method: "get",
+    headers: { 
+        "Content-Type": "application/json;charset=UTF-8",
+        "Authorization": `Bearer ${info.token}`
+    },
+    mode: "cors"
+    }).then(function (response) {
+        return response.json();
+    }).then(function(listData){
+        for (let data of listData) {
+            let username = data.username;
+            let avatar = data.avatar;
+            let member = document.querySelector('.member');
+            member.innerHTML += `<div class="memberUsersConnected"> 
+                                    <img  class="avatarSize" src="${avatar}" alt="avatar d'un membre'"/>
+                                    <p class="pseudo">${username}</p>
+                                </div>
+            `
+        }
+    })
 }
 
 //fonction pour supprimer le tchat par le user connecté

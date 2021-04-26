@@ -11,7 +11,7 @@ router.post('/signup', multer, userControllers.createAccount);
 router.post('/login',  userControllers.login);
 
 //router.get('/getOne/:id', userControllers.getOneUser); //oter AUTH
-router.get('/getAll', auth, userControllers.getAllUsers);///
+router.get('/getAllUsers', auth, userControllers.getAllUsers);
 
 router.put('/:id/profil/update',auth, userControllers.modifyProfil);
 router.put('/:id/avatar/update', auth, multer, userControllers.modifyUserAvatar);
