@@ -54,10 +54,8 @@ btnSubmitTchat.addEventListener("click", function (event) {
     formData.append('content', document.getElementById('inputTchatUserConnect').value)
     formData.append('attachment', file)
     formData.append('userId', info.id)
-
     
     event.preventDefault();
-
 
     fetch('http://localhost:3000' + '/tchat/', {
         method: "post",
@@ -68,15 +66,13 @@ btnSubmitTchat.addEventListener("click", function (event) {
         body: formData
     }).then(function (response) {
         return response.json();
-    })
-        .then(function (data) {
+    }).then(function (data) {
             console.log("affichage du tchat avec ou sans image")
             let toDelete = document.getElementById('inputTchatUserConnect').value;
             delete toDelete;
             location.reload();
            
-        }) 
-        .catch(function (err) { //le retour en cas de non connection au serveur 
+    }).catch(function (err) { //le retour en cas de non connection au serveur 
             console.log('api problem: ' + err.message);
         })
 })
@@ -135,8 +131,7 @@ function displayAllTchat(){
                 sendCommentUser(sendComment);
                 })    
             }          
-    })
-    .catch(function (err) { //le retour en cas de non connection au serveur 
+    }).catch(function (err) { //le retour en cas de non connection au serveur 
             console.log('Fetch problem: ' + err.message);
     })
 }
@@ -153,8 +148,9 @@ function sendCommentUser(sendComment) {
         return response.json();
     }) 
     .then(function(data){
-         getOneComment(data);
-        console.log('commentaire crée)')
+        getOneComment(data);
+        document.querySelector(`.commentUserConnect`).innerHTML=" ";
+
     })    
     .catch(function(err) { //le retour en cas de non connection au serveur 
         console.log('api problem: ' + err.message);
@@ -180,6 +176,9 @@ function getOneComment(data) {
         let tchatParent = document.querySelector(`.oneTchat[data-id="${TchatId}"]`);
         let placeComment = tchatParent.querySelector(`.commentUserMade`);
         tchatParent = placeComment.innerHTML += comment.displayComment(info);
+    }).catch(function (err) { //le retour en cas de non connection au serveur 
+        alert(err);
+        console.log('Fetch problem: ' + err);
     })
 }
 
@@ -252,6 +251,9 @@ function getAllUsers(){
                 }
             })
         }
+    }).catch(function (err) { //le retour en cas de non connection au serveur 
+        alert(err);
+        console.log('Fetch problem: ' + err);
     })
 }
 
@@ -273,9 +275,6 @@ function getAllUsers(){
             }       
     }).then(function () {
         document.querySelector(`.oneTchat[data-id="${tchatId}"]`).remove();
-        
-        
-
     }).catch(function (err) { //le retour en cas de non connection au serveur 
         alert(err);
         console.log('Fetch problem: ' + err);
@@ -330,6 +329,9 @@ function getOneTchat(UserId) {
             allTchatsMembers.innerHTML += tchat.displayTchats(info);
         }
 
+    }).catch(function (err) { //le retour en cas de non connection au serveur 
+        alert(err);
+        console.log('Fetch problem: ' + err);
     })
 }
         

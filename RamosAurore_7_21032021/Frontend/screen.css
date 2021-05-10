@@ -1,7 +1,7 @@
 :root{
     --rouge:#cd5c5c;
     --grey: #e2e0e0;
-    --bluePastel: rgb(40, 53, 78);
+    --bluePastel: #28354e;
     background-color: rgb(135,135,135);
 }
 
@@ -211,7 +211,7 @@ footer a:hover{
     font-size: 1rem;
     width:98%;
     border: none;
-    margin-top:20px;
+    margin-top: 5%;
     padding-left: 10px;
 }
 
@@ -299,13 +299,16 @@ input[type="text" i]:focus {
     width: 63px;
     height: 60px;  
 }
-.avatarConnect,
+#connected{
+ display:none;
+}
+    
 .usernameConnect{
     margin-left: 30%;
 }
 
-.avatarConnect{
-    margin-top:5px;
+.avatarConnect img{
+    padding-left: 1rem;
 }
 .avatarSize {
     max-width: 60px;

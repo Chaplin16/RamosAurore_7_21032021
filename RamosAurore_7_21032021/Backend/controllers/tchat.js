@@ -24,7 +24,7 @@ exports.createTchat = (req, res, next) => {
                 content: req.body.content,
                 UserId:req.body.userId,
             }).then(tchat => {
-                    res.status(201).json({ 
+                    res.status(201).jsn({ 
                         message: tchat 
                     })            
             })

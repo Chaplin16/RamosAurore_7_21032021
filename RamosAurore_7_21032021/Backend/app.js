@@ -18,7 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
-  //remplace body-parser deprecié
+//remplace body-parser deprecié
 app.use(express.urlencoded({extended: true})); //remplace bodyParser.json() deprecié depuis 2014
 app.use(express.json());
 
