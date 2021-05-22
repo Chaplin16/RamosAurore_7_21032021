@@ -1,6 +1,7 @@
 let btnSubmitMember = document.getElementById("btnSubmitMember");
 
-btnSubmitMember.addEventListener("click", function (event) { // envoie du formulaire au click du bouton
+//connection par user deja membre
+btnSubmitMember.addEventListener("click", function (event) { 
     let formLogin = document.getElementById("formLogin");
     event.preventDefault();
 

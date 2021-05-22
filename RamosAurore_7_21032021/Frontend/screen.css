@@ -15,8 +15,7 @@ a{
     text-decoration: none;
 }
 
-a:hover {
-  
+a:hover {  
     color: inherit;
 }
 
@@ -33,18 +32,19 @@ h1{
     color: var(--rouge);
 }
 
-
 .container{
     display: flex;
     flex-direction: row;
     column-gap: 6rem;
     justify-content: center;
 }
+
 .containerModif{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    column-gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 2rem;
+    align-items: center;
 }
 
 .profil{
@@ -57,6 +57,7 @@ h2{
     color:var(--rouge);
     font-size: 1rem; 
 }
+
 .input_formulaire {
     width: 100%;
     height: 2rem;
@@ -74,6 +75,7 @@ label{
     font-size:0.8rem;
     margin-left:16%;
 }
+
 .signup,
 .login{
     width:100%;
@@ -93,6 +95,7 @@ label{
 
 .changePassword{
     width: 50%;
+    margin:auto;
 }
 
 .btnAvatar input[type=file] {
@@ -102,15 +105,15 @@ label{
     position: absolute;
     font-size: 90px;
 }
-.btnUpload{
-background-color: #fff;
-border: 1px solid var(--bluePastel);
-color: #000;
-padding: 15px;
-border-radius: 10px;
-font-size: 18px;
 
-cursor: pointer;
+.btnUpload{
+    background-color: #fff;
+    border: 1px solid var(--bluePastel);
+    color: #000;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .usernameConnect {
@@ -138,12 +141,20 @@ cursor: pointer;
 }
 
 .question{
-    color:var(--bluePastel);
+    text-align: center;
+    align-items: center;
     font-weight: bold;
+    padding-top: 1rem;
 }
-.linkConnect{
-    color: var(--bluePastel);
 
+.question img{
+    color: var(--rouge);
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.linkConnect{
+    color: #fff;
 }
 
 .linkConnect:hover{
@@ -154,11 +165,11 @@ cursor: pointer;
     display: flex;
     justify-content: center;
     column-gap: 2rem;
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 2rem;
     color:var(--bluePastel);
-
 }
+
 .copyright{
     display: flex;
     align-items: center;
@@ -173,14 +184,14 @@ footer a:hover{
 .containerTchatsAndUsers{
     display: flex;
     justify-content: left;
-
     width: 100%;
 }
-.disconnect{
-    
+
+.disconnect{    
     text-align: center;
     margin-bottom:1rem;
 }
+
 .disconnect:hover {
     transform:scale(1.15);
     font-weight: bold;
@@ -211,14 +222,11 @@ footer a:hover{
     font-size: 1rem;
     width:98%;
     border: none;
-    margin-top: 5%;
+    padding-top: 1rem;
     padding-left: 10px;
 }
 
-
 input[type="text" i]:focus {
-    margin-top:0.5rem;
-    padding: 0.5rem 0.5rem;
     border: var(--rouge);
     background-color: var(--grey);
 }
@@ -254,7 +262,7 @@ input[type="text" i]:focus {
 
 .linkSend:hover{
     border: 2px var(--bluePastel) solid;
-    border-radius: 5px;
+    border-radius: 8px;
     transform:scale(1.15);
     font-weight: bold;
     cursor: pointer;
@@ -299,6 +307,7 @@ input[type="text" i]:focus {
     width: 63px;
     height: 60px;  
 }
+
 #connected{
  display:none;
 }
@@ -310,6 +319,7 @@ input[type="text" i]:focus {
 .avatarConnect img{
     padding-left: 1rem;
 }
+
 .avatarSize {
     max-width: 60px;
     margin-right: 1rem;
@@ -331,13 +341,7 @@ input[type="text" i]:focus {
 .updateProfil,
 .deleteAccount {
     font-size: 0.8rem;
-
 }
-/* .updateAvatar{
-    border: 3px solid var(--rouge);
-    padding:0.1rem;
-    border-radius:5px;
-} */
 
 .label:hover,
 .updateProfil:hover,
@@ -345,6 +349,7 @@ input[type="text" i]:focus {
     color: var(--rouge);
     font-weight: bold;
 }
+
 .avatarMember{
     margin-top:-8px;
     margin-right: 1rem;
@@ -411,9 +416,11 @@ input[type="text" i]:focus {
     margin-bottom: 3px;
     margin-top: 0;
 }
+
 .pseudoAndText{
     width: 100%;
 }
+
 .commentUser {
     display: flex;
     align-items: center;
@@ -421,9 +428,8 @@ input[type="text" i]:focus {
     margin-left: 10%;
     margin-top: 0rem;
     margin-bottom:1rem;
-
-
 }
+
 .unique {
     float:left;
     color: var(--rouge);
@@ -436,6 +442,7 @@ input[type="text" i]:focus {
 .commentUserMade{
     margin: 0;
 }
+
 .commentSend{
     position: relative;
     width: 1.5rem;
@@ -444,7 +451,6 @@ input[type="text" i]:focus {
     border: none;
     cursor: pointer;
 }
-
 
 .allTchatsMembers{
     width: 88%;
@@ -472,10 +478,9 @@ input[type="text" i]:focus {
 }
 
 .pageUp{
-position: fixed;
-bottom : 10px;
-right: 20px;
-
+    position: fixed;
+    bottom : 10px;
+    right: 20px;
 }
 
 .btnUp{
@@ -524,8 +529,7 @@ right: 20px;
     align-items: center;
     margin-left: 1rem;
     margin-top:1rem;
-    margin-bottom: 1rem;
-    
+    margin-bottom: 1rem;    
 }
 
 .memberUsersConnected.active{
@@ -534,25 +538,34 @@ right: 20px;
     background-color: #fff;
 }
 
+@media all and (min-width: 1580px) {
+    .inputTchatUserConnect{
+        padding-top: 1.5rem;
+    }
+}
+
 @media all and (min-width: 901px) {
 /* index.html and connect.html */
-.linkFooter{
-    display: flex;
-    column-gap: 1rem;
-
-}
-.containerTchatsAndUsers{
-    column-gap: 2rem;
-}
-.member{
-    min-width:10rem; 
-
+    .linkFooter{
+        display: flex;
+        column-gap: 1rem;
+    }
+    .containerTchatsAndUsers{
+        column-gap: 2rem;
+    }
+    .member{
+        min-width:10rem;     
+    }
+    .memberUsersConnected{
+        margin-left:0.3rem;
+    }
     
-}
-.memberUsersConnected{
-    margin-left:0.3rem;
-}
-
+    .inputTchatUserConnect{
+        margin-top: 0rem;
+    }  
+    .containerModif{
+        flex-direction: row;
+    }
 }
 
 @media all  and (max-width: 900px) {
@@ -578,16 +591,20 @@ right: 20px;
     .tchatUserConnect{
         width:99%;
     }
+
     .allTchatsMembers{
         width: 90%;
     }
+
     .oneTchat{
         margin-right:0;
     }
+
     .updateProfil,
     .deleteAccount{
         font-size: 0.7rem;
     }
+
     .infoMember{
     display: flex;
     align-items: top;
@@ -606,9 +623,11 @@ right: 20px;
         width:100%;
         margin-left: 0;
     }
+
     .inputTchatMember{
         width: 98%;
     }
+    
     .trash{
         height: auto;
     }
@@ -740,7 +759,8 @@ right: 20px;
         column-gap: 0.2rem;
     }
     .linkSend{
-        width:35px;
-
+        width: 40px;
+        margin-right: 5px;
+        border-radius: 8px;
     }
 }

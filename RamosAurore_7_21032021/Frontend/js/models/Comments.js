@@ -6,10 +6,8 @@ class Comments {
         this.id = comment.id;
         this.TchatId = comment.TchatId;
         this.User = comment.User;
-        this.comment = comment.comment;
-    
+        this.comment = comment.comment;    
     }
-
     displayComment() { 
         return `<div class="commentUser" data-id="${this.id}">
                     <p class="avatarComment"> 

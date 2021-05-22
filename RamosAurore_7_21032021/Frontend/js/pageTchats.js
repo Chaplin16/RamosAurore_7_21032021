@@ -1,20 +1,19 @@
-//const { getOneTchat } = require("../../Backend/controllers/tchat");
 
 const info = JSON.parse(sessionStorage.getItem("user"));
 const tchat = JSON.parse(sessionStorage.getItem("tchat"));
-//avatar et nom du user connecté
+//variables pour avatar et nom du user connecté dans tchat
 const avatarConnect = document.getElementById('avatarConnect');
 const usernameConnect = document.getElementById('usernameConnect');
 
 //avatar, nom et tchat des autres utilisateurs
 const allTchatsMembers = document.getElementById('allTchatsMembers');
 const commentUserMade = document.querySelectorAll('commentUserMade');
+
 // profil de l utilisateur connecté
 const deleteAccount = document.getElementById('deleteAccount');
-
-if(info != null) {
-avatarConnect.innerHTML = ` <img  class="avatarSize" src="${info.avatar}" alt="avatar de l'utilisateur connecté"/> `
-}
+    if(info != null) {
+    avatarConnect.innerHTML = ` <img  class="avatarSize" src="${info.avatar}" alt="avatar de l'utilisateur connecté"/> `
+    }
 
 const tchatMember = document.getElementById('tchatMember');
 const btnSubmitTchat = document.getElementById('btnSubmitTchat');
@@ -23,24 +22,24 @@ const selectImg = document.getElementById('selectImg');
 const linkImg = document.getElementById('linkImg');
 const imgUser =  document.getElementsByClassName('imgUser');
 
-
+//afficher le nom du fichier image que l utilisateur a choisit dans tchat principal
 selectImg.addEventListener('change', function(event) {
     info.id;
     info.token;
     const file = document.getElementById('selectImg');
     linkImg.innerHTML = `
-                <span>fichier joint: ${file.name}</span>
+                <span>fichier joint: ${file.value}</span>
                 <img class="deleteImg" src="images/deleteImg.png"/>`
-
+//delete le fichier image dans le tchat principal
     const deleteImg = document.querySelector('.deleteImg');
         deleteImg.addEventListener("click", function (event) {
         linkImg.remove();  
         file.value="";
-
+        location.reload();
     })
 })
 
-//valider un tchat du user connecté
+//valider le tchat du user connecté
 btnSubmitTchat.addEventListener("click", function (event) {
     const file = document.getElementById('selectImg').files[0];
     event.preventDefault();
@@ -77,7 +76,7 @@ btnSubmitTchat.addEventListener("click", function (event) {
         })
 })
 
-//faire apparaitre tous les tchats/tous les commentaires au chargement de la page
+//faire apparaitre tous les tchats et tous les commentaires au chargement de la page
 function displayAllTchat(){
     fetch('http://localhost:3000' + '/tchat/getAll', {
         method: "get",
@@ -100,10 +99,10 @@ function displayAllTchat(){
                 allTchatsMembers.innerHTML += tchat.displayTchats(info);
             }
             
-            getAllComments();
-            getAllUsers();
+            getAllComments(); //faire apparaitre les commentaires
+            getAllUsers(); //faire apparaitre liste des users connectés
         
-        //supprimer un tchat par le user qui a écrit le tchat  
+        //supprimer un tchat par le user-createur 
             const listBtnTrash = document.querySelectorAll(`.trash`);
             for (let btn of listBtnTrash) {
                 btn.addEventListener('click', function (event) {
@@ -112,6 +111,7 @@ function displayAllTchat(){
                     
                 })
             }
+
         //envoyer un commentaire sur le tchat commenté
             const btnSendComment = document.querySelectorAll(`.commentSend`);
             for (let btn of btnSendComment) {
@@ -129,13 +129,16 @@ function displayAllTchat(){
 
                 let sendComment = JSON.stringify(commentAll)
                 sendCommentUser(sendComment);
+                this.closest('.commentUser').querySelector(`.commentUserConnect`).value="";
+                
                 })    
             }          
     }).catch(function (err) { //le retour en cas de non connection au serveur 
             console.log('Fetch problem: ' + err.message);
     })
 }
-//envoyer un commentaire par le user connecté/identifié  
+
+//fonstion pour envoyer un commentaire :
 function sendCommentUser(sendComment) {
     fetch('http://localhost:3000' + '/comment/', {
         method: "post",
@@ -149,16 +152,15 @@ function sendCommentUser(sendComment) {
     }) 
     .then(function(data){
         getOneComment(data);
-        document.querySelector(`.commentUserConnect`).innerHTML=" ";
-
+       
     })    
-    .catch(function(err) { //le retour en cas de non connection au serveur 
+    .catch(function(err) { 
         console.log('api problem: ' + err.message);
     })
           
 }
 
-//fonction pour valider un commentaire 
+//fonction pour valider et afficher un commentaire :
 function getOneComment(data) {
     let id = data.message.id;
     info.token;
@@ -176,13 +178,14 @@ function getOneComment(data) {
         let tchatParent = document.querySelector(`.oneTchat[data-id="${TchatId}"]`);
         let placeComment = tchatParent.querySelector(`.commentUserMade`);
         tchatParent = placeComment.innerHTML += comment.displayComment(info);
+        location.reload();
     }).catch(function (err) { //le retour en cas de non connection au serveur 
         alert(err);
         console.log('Fetch problem: ' + err);
     })
 }
 
-//fonction pour voir touts les commentaires
+//fonction pour voir tous les commentaires
 function getAllComments(){
     fetch('http://localhost:3000' + '/comment' + '/getAllComments', {
     method: "get",
@@ -202,11 +205,12 @@ function getAllComments(){
             
         }
         bindDeleteComment();
+     
     })
       
 }
 
-//fonction pour voir touts les users
+//fonction pour afficher la liste tous les utilisateurs
 let member = document.querySelector('.member');
 function getAllUsers(){
     fetch('http://localhost:3000' + '/' + 'getAllUsers', {
@@ -234,6 +238,7 @@ function getAllUsers(){
         <img  class="avatarSize" src="images/deleteImg.png" alt="avatar d'un membre'"/>
         <p class="pseudo">retirer le filtre</p>
     </div>`
+
         // afficher les tchats d'un seul utilisateur
         const getTchat = document.querySelectorAll(`.memberUsersConnected`);
         for (let btn of getTchat) {
@@ -257,7 +262,7 @@ function getAllUsers(){
     })
 }
 
-//fonction pour supprimer le tchat par le user connecté
+//fonction pour supprimer le tchat par son createur
  function deleteTchat(tchatId) {
     fetch('http://localhost:3000' + '/tchat/' + tchatId + '/delete', {
         method: "delete",
@@ -281,7 +286,7 @@ function getAllUsers(){
     })
 }
 
-//fonction pour supprimer un commentaire par l auteur de celui-ci
+//fonction pour supprimer un commentaire par son createur
 function deleteComment(id) {
     fetch('http://localhost:3000' + '/comment/' + id + '/delete', {
         method: "delete",
@@ -294,24 +299,24 @@ function deleteComment(id) {
         return response.json();
     }).then(function () {
      document.querySelector(`.commentUser[data-id="${id}"]`).remove();
-    }).catch(function (err) { //le retour en cas de non connection au serveur 
+ 
+    }).catch(function (err) { 
         console.log('Fetch problem: ' + err);
     })  
 }
 
-//supprimer un commentaire par le user qui a écrit le tchat  
+//supprimer un commentaire  
 function bindDeleteComment(){
         const btnTrashComment = document.querySelectorAll(`.trashComment`);
         for (let btn of btnTrashComment) {
             btn.addEventListener('click', function (event) {
                 let id = this.dataset.id;
-                deleteComment(id);
-                
+                deleteComment(id);   
             })
         }
 }
-//function pour afficher un tchat 
 
+//function pour afficher un tchat 
 function getOneTchat(UserId) {
     info.token;
     fetch('http://localhost:3000' + '/tchat' + '/getTchats' + '/'+ UserId, {
@@ -335,5 +340,4 @@ function getOneTchat(UserId) {
     })
 }
         
-
 displayAllTchat();

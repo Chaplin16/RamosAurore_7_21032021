@@ -69,28 +69,36 @@ btnModifPassword.addEventListener('click', function(event) {
     let formModifPassword = document.getElementById('formModifPassword');
     event.preventDefault();
     id = info.id;
-    let passwordChange = {
-    'password' : lastPassword.value,
-    'newPassword' : newPassword.value
-    }
-    let password = JSON.stringify(passwordChange)
-    fetch('http://localhost:3000' + '/' + id + '/password/update', {
-        method: "put",
-        headers: { 
-            "Content-Type": "application/json;charset=UTF-8",
-            "Authorization": `Bearer ${info.token}`
-        },
-        mode:"cors",
-        body: password           
-    })
+    if( formModifPassword.reportValidity() == true) {
+        let passwordChange = {
+        'password' : lastPassword.value,
+        'newPassword' : newPassword.value
+        }
+        let password = JSON.stringify(passwordChange)
+        fetch('http://localhost:3000' + '/' + id + '/password/update', {
+            method: "put",
+            headers: { 
+                "Content-Type": "application/json;charset=UTF-8",
+                "Authorization": `Bearer ${info.token}`
+            },
+            mode:"cors",
+            body: password
+        })
         .then(function(response) {
-            return response.json();
+            if(response.status == 401){
+                alert("Votre mot de passe est différent de celui de l'inscription!")
+                window.location.assign('modifProfil.html');
+            return false;
+            }else{
+                alert('Votre modification a bien été prise en compte')
+                return response.json();
+            }
         })
-        .then(function(){
-            alert('votre mot de passe a bien été modifié!')
-            window.location.reload();
-        })
+        .then(function(){    
+            window.location.reload();     
+        } )
         .catch(function(err) { 
         console.log('api problem: ' + err.message);
-        });
+        })
+    }   
 })

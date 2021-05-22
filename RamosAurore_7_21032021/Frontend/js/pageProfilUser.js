@@ -5,6 +5,7 @@ const btnUpdateProfil = document.getElementById('updateProfil');
 const btnDeleteProfil = document.getElementById('deleteAccount');
 const inputDisconnect = document.getElementById('inputDisconnect');
 
+//afficher le nom de la personne identifiée
 if(info != null){
 hello.innerHTML =`<span> Bonjour ${info.username}</span>`;
 helloAvatar.innerHTML =`<p>
@@ -13,8 +14,7 @@ helloAvatar.innerHTML =`<p>
 }
 
 //modifier l avatar 
-btnAvatar.addEventListener('change', function(event) {
-    
+btnAvatar.addEventListener('change', function(event) {   
     let id = info.id;
     let token = info.token;
     const file = document.getElementById('avatar').files[0];
