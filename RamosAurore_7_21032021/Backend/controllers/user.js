@@ -21,6 +21,7 @@ schema
 
 
 //enregistrement des nouveaux utilisateurs dans BDD
+
 //regex et hachage du mot de passe
 exports.createAccount = (req, res, next) => {
     if (!schema.validate(req.body.password)) {
@@ -30,7 +31,7 @@ exports.createAccount = (req, res, next) => {
             .then(hash => {//on recupere le hash du MDP et on le met ds un objet pour l enregistrer dans la BDD
                 User.create({
                     username: req.body.username,
-                    email: req.body.email,
+                    email: maskData.maskEmail2(req.body.email),
                     password: hash,
                     avatar: "images/avatar1.png",
                     job: req.body.job
@@ -44,7 +45,7 @@ exports.createAccount = (req, res, next) => {
 // connections des utilisateurs deja existants
 exports.login = (req, res, next) => {
     const email = req.body.email;
-    User.findOne({ where: { email } })
+    User.findOne({ where: { email: maskData.maskEmail2(req.body.email) } })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: `Il n y a pas d'utilisateur avec ce mail ${email}!` });
@@ -80,12 +81,6 @@ exports.login = (req, res, next) => {
         );
 };
 
-//route pour voir le profil d'un utilisateur
-// exports.getOneUser = (req, res, next) => {
-//     User.findOne({ where: { id: req.params.id } })
-//         .then(user => res.status(200).json(user))
-//         .catch(error => res.status(404).json({ error }));
-// };
 
 //route pour voir les utilisateurs PB A VOIR!!!!  
 exports.getAllUsers = (req, res, next) => {  
@@ -106,7 +101,7 @@ exports.modifyProfil = (req, res, next) => {
                 }
                 user.update({
                     username: req.body.username,
-                    email: req.body.email,
+                    email: maskData.maskEmail2(req.body.email),
                     job: req.body.job
                 })
 
