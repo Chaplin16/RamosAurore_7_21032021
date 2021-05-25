@@ -180,7 +180,6 @@ function getOneComment(data) {
         tchatParent = placeComment.innerHTML += comment.displayComment(info);
         location.reload();
     }).catch(function (err) { //le retour en cas de non connection au serveur 
-        alert(err);
         console.log('Fetch problem: ' + err);
     })
 }
@@ -257,7 +256,6 @@ function getAllUsers(){
             })
         }
     }).catch(function (err) { //le retour en cas de non connection au serveur 
-        alert(err);
         console.log('Fetch problem: ' + err);
     })
 }
@@ -281,7 +279,6 @@ function getAllUsers(){
     }).then(function () {
         document.querySelector(`.oneTchat[data-id="${tchatId}"]`).remove();
     }).catch(function (err) { //le retour en cas de non connection au serveur 
-        alert(err);
         console.log('Fetch problem: ' + err);
     })
 }
@@ -335,7 +332,7 @@ function getOneTchat(UserId) {
         }
 
     }).catch(function (err) { //le retour en cas de non connection au serveur 
-        alert(err);
+
         console.log('Fetch problem: ' + err);
     })
 }

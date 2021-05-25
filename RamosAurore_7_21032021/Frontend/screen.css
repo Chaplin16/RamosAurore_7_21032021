@@ -1,5 +1,5 @@
 :root{
-    --rouge:#cd5c5c;
+    --rouge:#a51616;
     --grey: #e2e0e0;
     --bluePastel: #28354e;
     background-color: rgb(135,135,135);
@@ -25,11 +25,12 @@ a:hover {
     margin:-5px;
     margin-bottom: 2rem;
     border-bottom: 6px solid var(--rouge);
+    align-items: center;
 }
 
 h1{
     display: flex;
-    color: var(--rouge);
+    color: #fff;
 }
 
 .container{
@@ -145,6 +146,7 @@ label{
     align-items: center;
     font-weight: bold;
     padding-top: 1rem;
+    font-size:1.2rem;
 }
 
 .question img{
@@ -154,11 +156,13 @@ label{
 }
 
 .linkConnect{
-    color: #fff;
+    color: var(--rouge);
+    font-weight: 700;
+    font-size:1.2rem;
 }
 
 .linkConnect:hover{
-    color: var(--rouge);
+    color: #fff;
 }
 
 .footer{
@@ -198,7 +202,7 @@ footer a:hover{
 }
 
 .inputDisconnect{
-    background-color: var(--rouge);
+    border: 3px solid var(--rouge);
     font-weight: bold;  
 }
 
