@@ -496,6 +496,13 @@ input[type="text" i]:focus {
 .trash[data-enable="false"]{
     display:none;
 }
+
+.trashComment[data-enable= "true"],
+.trash[data-enable="true"]{
+    display:block;
+}
+
+
 .inputWithImg{
     width:85%;
     margin-left:1.5rem;

@@ -28,7 +28,7 @@ class Tchats {
                 </label>
             </div>
             <p class="trash">
-                <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion" data-enable="${user.id == this.user.id}" /> 
+                <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion" data-enable="${user.id == this.user.id || user.isAdmin}" /> 
             </p>
         </h3>
         <h3 class="unique">Commentaires</h3>  

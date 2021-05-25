@@ -51,6 +51,7 @@ exports.deleteComment = (req, res, next) => {
             id:req.params.id
         }
     }).then(comment => {
+        console.log(req.token.isAdmin)
         if(comment.UserId == req.token.userId || req.token.isAdmin){
             Comment.destroy({ where: { id: req.params.id } })
             .then(() => 

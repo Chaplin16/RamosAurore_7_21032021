@@ -200,7 +200,7 @@ function getAllComments(){
             let comment = new Comments(data)
             let tchatParent = document.querySelector(`.oneTchat[data-id="${comment.TchatId}"]`);
             let placeComment = tchatParent.querySelector(`.commentUserMade`);
-            tchatParent = placeComment.innerHTML += comment.displayComment();
+            tchatParent = placeComment.innerHTML += comment.displayComment(info);
             
         }
         bindDeleteComment();
