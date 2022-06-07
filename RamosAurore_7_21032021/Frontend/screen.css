@@ -31,15 +31,17 @@ a:hover {
 .logo {
     display: flex;
     background-color: var(--bluePastel);
-    max-width:100%;
+    max-width: 100%;
     margin-bottom:2rem;
     border-bottom: 4px solid var(--rouge);
+    align-items: center;
 
 }
 
 h1{
-    display: flex;
+    font-size: 2rem;
     color: #fff;
+
 }
 
 .container{
@@ -170,7 +172,7 @@ label{
     color: #fff;
     font-weight: 700;
     font-size:1.2rem;
-    text-decoration:underline;
+    text-decoration: none;
 }
 
 .linkConnect:hover{
@@ -182,8 +184,10 @@ label{
     justify-content: center;
     column-gap: 2rem;
     font-size: 15px;
-    margin-top: 5rem;
+    margin-top: 7rem;
+    padding-bottom:5rem;
     color:#fff;
+    text-align: center;
 }
 
 .copyright{
@@ -604,10 +608,6 @@ input[type="text" i]:focus {
         display:block;
     }
 
-    .copyright{
-        margin-left: 15%;
-    }
-
     .linkFooter{
         display: flex;
         justify-content: space-around;
@@ -702,13 +702,15 @@ input[type="text" i]:focus {
 @media all and (max-width: 699px) {
     /* index.html and connect.html */
     .container{
-        flex-direction: column-reverse;
+        column-gap: 2rem;
     }
-    
     .question{
-        margin-left: 1rem;
         margin-top:5rem;
         margin-bottom: 8rem;
+        font-size:1rem;
+    }
+    .linkConnect{
+        font-size: 1rem;;
     }
     
     .login,
@@ -818,5 +820,30 @@ input[type="text" i]:focus {
 @media all and (max-width:600px) {
     .containerModif{
         flex-direction: column;
+    }
+}
+
+@media all and (max-width:480px) {
+    .containerLinkConnect{
+        width:25%;
+    }
+    .question{
+        font-size: 0.8rem;
+    }
+    .linkConnect{
+        font-size: 0.8rem;
+    }
+    .signup{
+        padding: 1rem;
+    }
+    .username,
+    .email,
+    .password,
+    .job{
+        margin-top:0;
+        margin-bottom: 0;
+    }
+    footer{
+        padding-top:5rem;
     }
 }
