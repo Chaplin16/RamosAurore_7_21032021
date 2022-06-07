@@ -107,8 +107,7 @@ function displayAllTchat(){
             for (let btn of listBtnTrash) {
                 btn.addEventListener('click', function (event) {
                     let tchatId = this.dataset.id;
-                    deleteTchat(tchatId);
-                    
+                    deleteTchat(tchatId);    
                 })
             }
 
@@ -227,21 +226,26 @@ function getAllUsers(){
             let username = data.username;
             let avatar = data.avatar;
             let id = data.id;
+            let isAdmin = data.isAdmin;
             
             member.innerHTML += `<div class="memberUsersConnected" data-id="${id}"> 
                                     <img  class="avatarSize" src="${avatar}" alt="avatar d'un membre'"/>
                                     <p class="pseudo">${username}</p>
-                                </div>`
+
+                                    <img role="button" class="trashUser" data-id="${id}" data-username ="${username}" data-enable="${info.isAdmin}" name="submit" src="images/trash.png" alt="supprimer le commentaire"  /> 
+
+                                 </div>`
         }
         member.innerHTML += `<div class="memberUsersConnected"> 
         <img  class="avatarSize" src="images/deleteImg.png" alt="avatar d'un membre'"/>
         <p class="pseudo">retirer le filtre</p>
-    </div>`
+    </div>
+    `
+
 
         // afficher les tchats d'un seul utilisateur
         const getTchat = document.querySelectorAll(`.memberUsersConnected`);
         for (let btn of getTchat) {
-
             btn.addEventListener('click', function(event) {       
                 for(let btn of getTchat){
                     btn.className = "memberUsersConnected";
@@ -255,6 +259,35 @@ function getAllUsers(){
                 }
             })
         }
+
+        // supprimer un user par un administrateur 
+        const trashUser = document.querySelectorAll(`.trashUser`);
+        for (let btn of trashUser) {
+            btn.addEventListener('click', function(event) { 
+                let id = this.dataset.id;
+                let username = this.dataset.username
+                let token = info.token;
+                event.preventDefault();
+                if(confirm("Attention, vous êtes sur le point de supprimer " + username)) {
+                    fetch('http://localhost:3000' + '/' + id + '/delete', {
+                        method: "delete",
+                        headers: { 
+                            "Content-Type": "application/json;charset=UTF-8",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        mode: "cors",
+                    }).then(function(response) {
+                            return response.json();
+                    }).then(function(){                       
+                            window.location.reload();
+                            return true
+                        })
+                }
+                return false
+            });
+            
+        }
+
     }).catch(function (err) { //le retour en cas de non connection au serveur 
         console.log('Fetch problem: ' + err);
     })
@@ -302,7 +335,7 @@ function deleteComment(id) {
     })  
 }
 
-//supprimer un commentaire  
+//function pour supprimer un commentaire  
 function bindDeleteComment(){
         const btnTrashComment = document.querySelectorAll(`.trashComment`);
         for (let btn of btnTrashComment) {
@@ -312,6 +345,8 @@ function bindDeleteComment(){
             })
         }
 }
+
+
 
 //function pour afficher un tchat 
 function getOneTchat(UserId) {

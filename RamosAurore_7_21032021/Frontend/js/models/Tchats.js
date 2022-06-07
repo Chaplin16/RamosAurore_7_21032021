@@ -26,10 +26,10 @@ class Tchats {
                         ${this.attachment ? `<img class="imgUser" src="${this.attachment}" alt="image de l'utilisateur">` : ""}
                     </p>
                 </label>
+                <p class="trash">
+                    <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion" data-enable="${user.id == this.user.id || user.isAdmin}" /> 
+                </p>
             </div>
-            <p class="trash">
-                <img role= "button" class ="trash" data-id="${this.id}"  src="images/trash.png" alt="supprimer la discussion" data-enable="${user.id == this.user.id || user.isAdmin}" /> 
-            </p>
         </h3>
         <h3 class="unique">Commentaires</h3>  
         <p class="commentUserMade"></p>  
@@ -40,7 +40,7 @@ class Tchats {
             </h4>
             <label for="userWriter" >ecrire ici votre commentaire</label>
             <input class="commentUserConnect" id="userWriter" data-id="${this.id}" type="texterea" name="commentUser" placeholder="Réagissez!"/>  
-            <img role="button" class="commentSend" data-id="${user.id}" data-postid="${this.id}"  name="submit" src="images/fleche_rouge.png" alt="touche pour envoyer un commentaire"/>       
+            <img role="button" class="commentSend" data-id="${user.id}" data-postid="${this.id}"  name="submit" src="images/send.png" alt="touche pour envoyer un commentaire"/>       
         </div>
     </div>`;
 
